@@ -1,0 +1,43 @@
+import(TraMineR)
+import(survival)
+
+export(
+    group.p,
+    convert.g,
+    ctplot,
+    pamward,
+    rowmode,
+    seqplot.tentrop,
+    sorti,
+    sortv,
+    toPersonPeriod,
+    FCE_to_TSE,
+    HSPELL_to_STS,
+    seqe2stm,
+    TSE_to_STS,
+	STS_to_SPELL,
+    seqedist,
+    seqedplot,
+    createdatadiscrete,
+    seqerulesdisc,
+    seqstart,
+    seqeordplot,
+    seqrep.grp,
+    dissvar.grp,
+    seqgen.missing,
+    seqgranularity,
+    seqauto,
+    seqentrans,
+	seqemlt
+
+)
+
+## emlt methods
+S3method(plot, emlt)
+S3method(print, emlt)
+
+
+useDynLib(TraMineRextras,
+TMREXTRAS_tmrextrasseqstart=tmrextrasseqstart
+)
+
