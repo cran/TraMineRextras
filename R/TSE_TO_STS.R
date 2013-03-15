@@ -35,6 +35,9 @@ TSE_to_STS <- function(seqdata, id=1, timestamp=2, event=3, stm=NULL, tmin=1, tm
 		cond <- mid==id
 		mevent <- event[cond]
 		mtime <- timestamp[cond]
+		oo <- order(mtime, mevent)
+		mevent <- mevent[oo]
+		mtime <- mtime[oo]
 		prevState <- firstState
 		prevTime <- 1
 		for(i in 1:length(mevent)){

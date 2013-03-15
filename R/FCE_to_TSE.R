@@ -19,20 +19,27 @@ FCE_to_TSE <- function(seqdata, id=NULL, cols, eventlist=NULL, firstEvent=NULL){
 	events <- character(length=num_rows)
 	myi <- 1
 	for (i in 1:nrow(seqdata)) {
+		firsti <- myi
 		if (addbirth) {
-			ids[myi] <- id[i]
 			times[myi] <- 0
 			events[myi] <- firstEvent
 			myi <- myi+1
 		}
 		for(k in 1:length(cols)) {
 			if(!is.na(seqdata[i,cols[k]])) {
-				ids[myi] <- id[i]
 				times[myi] <- seqdata[i,cols[k]]
 				events[myi] <- eventlist[k]
 				myi <- myi+1
 			}
 		}
+		## reorder for ascending time/event
+		sel <- firsti:(myi-1)
+		ids[sel] <- id[i]
+		timessel <- times[sel]
+		eventsel <- events[sel]
+		oo <- order(timessel, eventsel)
+		times[sel] <- timessel[oo]
+		events[sel] <- eventsel[oo]
 	}
 	sel <- 1:(myi-1)
 	trans <- data.frame(id=ids[sel],time=times[sel],event=events[sel])
