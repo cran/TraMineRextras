@@ -34,7 +34,5 @@ seqstart <- function(seqdata, data.start, new.start, tmin=NULL, tmax=NULL, missi
 	dim(seqdata) <- seqdatadim
 	#tmin <- tmin + 1 - firstyear
 	## print(tmin:tmax-correction-1)
-	return(.Call(TraMineRextras:::TMREXTRAS_tmrextrasseqstart, seqdata, new.data, as.integer(new.index-tmin)))
+	return(.Call(TMREXTRAS_tmrextrasseqstart, seqdata, new.data, as.integer(new.index-tmin)))
 }
-
-

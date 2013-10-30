@@ -22,8 +22,6 @@ ctplot <- function(x,y,id,weights=NULL,
                    print=FALSE,return.data=FALSE,...)
   {
 
-    require(TraMineR)
-
     if (!is.factor(id)) {
       id <- factor(id)
     }
@@ -83,8 +81,6 @@ ctplot <- function(x,y,id,weights=NULL,
     } else {
       ytype <- "categorical"
     }
-
-    require(RColorBrewer)
 
     ## ==================
     ## preparing the data
@@ -560,7 +556,7 @@ ctplot <- function(x,y,id,weights=NULL,
     if (y.optimalphabet)
       {
         if (print) cat(" [>] optimize order\n")
-        require(combinat)
+
         permn <- permn(1:nlevels(y))
         if (is.numeric(R)) {
           permn <- permn[sample(1:length(permn),R)]
@@ -856,7 +852,7 @@ ctplot <- function(x,y,id,weights=NULL,
         }
       } else if (show.type==3) {
         if (ytype=="ordinal") {
-          require(cluster)
+
           data.wide <- pointdata[,c("group","x","y")]
           data.wide$y <-
             factor(data.wide$y,levels=1:ny,labels=levels(y),ordered=TRUE)

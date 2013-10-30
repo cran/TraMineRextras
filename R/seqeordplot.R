@@ -49,8 +49,6 @@ seqeordplot <- function(seqe,group=NULL,weighted=TRUE,weights=NULL,
       }
     }
 
-    require(RColorBrewer)
-
     ## ==================
     ## preparing the data
     ## ==================

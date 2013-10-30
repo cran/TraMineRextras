@@ -46,7 +46,6 @@ A matrix with \code{order} rows and  two columns: the auto-association and its p
     \code{\link{seqformat}}
 }
 \examples{
-library(TraMineR)
 data(biofam)
 
 biofam.seq <- seqdef(biofam[1:100,10:25])

@@ -1,7 +1,7 @@
 
 .onAttach <- function(libname, pkgname){
-	suppressWarnings(descr <- utils:::packageDescription("TraMineRextras"))
-	if(utils:::packageVersion("TraMineRextras")$minor %% 2 == 0) {
+	suppressWarnings(descr <- packageDescription("TraMineRextras"))
+	if(packageVersion("TraMineRextras")$minor %% 2 == 0) {
 		state <- "stable"
 	}
 	else {

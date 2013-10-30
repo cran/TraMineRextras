@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
+\section{Changes in version 0.2.2 [2013-10-30]}{
+\itemize{
+    \item{Fixed issue with calling Rinternals from within extern "C" {}
+        in seqstart.cpp (request of B. Ripley)}
+}
+}
 \section{Changes in version 0.2.1 [2013-03-15]}{
 \subsection{General}{
   \itemize{

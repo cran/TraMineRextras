@@ -51,7 +51,6 @@ A situation is defined as a state indexed with time, a sequence a timelines of s
 
 \seealso{plot.emlt}
 \examples{
-library(TraMineR)
 
 data(mvad)
 mvad.seq <- seqdef(mvad[1:100, 17:41])

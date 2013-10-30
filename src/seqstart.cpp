@@ -1,9 +1,7 @@
-
+#include <Rdefines.h>
 
 extern "C" {
 
-
-#include <Rdefines.h>
 
 	SEXP tmrextrasseqstart(SEXP seqdata, SEXP new_data, SEXP new_indexS){
 		int nrow_seqdata=INTEGER(GET_DIM(seqdata))[0];
