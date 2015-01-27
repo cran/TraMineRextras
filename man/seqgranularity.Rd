@@ -18,11 +18,11 @@ seqgranularity(seqdata, tspan = 3, method = "last")
     Integer. Number of successive positions grouped together.
 }
   \item{method}{
-    Character string. Aggregating method. One of \code{"first"} or \code{"last"} (default).
+    Character string. Aggregating method. One of \code{"first"}, \code{"last"} (default) or \code{"mostfreq"}.
 }
 }
 \details{
-Successive position are aggregated by group of \code{tspan}, starting from the first position and, with method \code{"last"}, the last state in the group is assigned to the group. In case of an incomplete last group, the last state is assigned to it.
+Successive positions are aggregated by group of \code{tspan} states. The aggregated state is, depending of the \code{method} chosen, either the first (\code{"first"}), the last (\code{"last"}) or the most frequent (\code{"mostfreq"}) state of the \code{tspan} long spell. The same applies to the last spell, even when it is shorter than \code{tspan}.
 }
 \value{
 The resulting state sequence object.
@@ -38,14 +38,10 @@ Matthias Studer and Gilbert Ritschard
  \code{\link{seqdef}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
 data(mvad)
 mvad <- mvad[1:100,]
 mvad.seq <- seqdef(mvad[,17:86], xtstep=12)
-mvadg.seq <- seqgranularity(mvad.seq, tspan=6)
+mvadg.seq <- seqgranularity(mvad.seq, tspan=6, method="first")
 par(mfrow=c(2,1))
 seqdplot(mvad.seq, withlegend=FALSE, border=NA)
 seqdplot(mvadg.seq, withlegend=FALSE)

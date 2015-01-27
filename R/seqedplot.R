@@ -40,7 +40,8 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 		## Saving graphical parameters
 		savepar <- par(no.readonly = TRUE)
 		on.exit(par(savepar))
-		lout <- TraMineR:::TraMineR.setlayout(nplot, rows, cols, withlegend, axes, legend.prop)
+		##lout <- TraMineR:::TraMineR.setlayout(nplot, rows, cols, withlegend, axes, legend.prop)
+		lout <- TraMineRInternalLayout(nplot, rows, cols, withlegend, axes, legend.prop)
 	  	layout(lout$laymat, heights=lout$heights, widths=lout$widths)
 
 		## Axis should be plotted or not ?
@@ -60,7 +61,8 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 	minage <- NA
 	maxage <- NA
 	for(event in 1:nevent){
-		agematrix <- TraMineR:::seqeage(seqe, as.integer(allevents[event]))
+        ##agematrix <- .Call("tmreventinseq", seqe, as.integer(allevents[event]), PACKAGE="TraMineR")
+        agematrix <- TraMineRInternalSeqeage(seqe, as.integer(allevents[event]))
 		agematrix[agematrix==-1] <- NA
 		if (!is.null(ages)) {
 			agematrix[agematrix<ages[1]] <- NA
@@ -134,12 +136,12 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 	}
 	## Plotting the legend
 	if (!is.null(legpos)) {
-		## Extracting some sequence characteristics
+		## Extracting event names
 
 		ltext <- levels(seqe)[allevents]
 
-		## Adding an entry for missing in the legend
-		TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend)
+		##TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend)
+		TraMineRInternalLegend(legpos, ltext, cpal, cex=cex.legend)
 	}
 
 }

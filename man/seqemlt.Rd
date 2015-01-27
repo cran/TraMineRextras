@@ -1,13 +1,8 @@
 \name{seqemlt}
 \alias{seqemlt}
-\title{Euclidean Metric for Longitudinal Timelines}
+\title{Euclidean Coordinates for Longitudinal Timelines}
 \description{
-Computes a Euclidean distance between sequences.
-Transforms sequences such as distance beween sequences is equivalent to Euclidean distance between transformed sequences.
-The transformed sequences may be used as inputs of any Euclidean algorithm (clustering algorithms, ...).
-The distance is built considering the transitions between states at any step.
-A step weighing mechanism allows to balance short term/long term transitions.
-The background - the duality between distances between sequences and the evolution of the proximities between objects - is analysed.
+Computes the Euclidean coordinates of sequences from which we get the EMLT  distance between sequences introduced in Rousset et al (2012).
 }
 \usage{
 seqemlt(seqdata, a = 1, b = 1, weighted = TRUE)
@@ -27,23 +22,35 @@ seqemlt(seqdata, a = 1, b = 1, weighted = TRUE)
 %%     ~~Describe \code{weighted} here~~
 }
 }
-\details{The distance emlt between two sequences is the Euclidean distance between the transformed sequences coordinates. Using \code{coord} as the data input of any clustering algorithm using a Euclidean metric is equivalent of clustering with the emlt metric.
-A situation is defined as a state indexed with time, a sequence a timelines of states. The distance between situations is defined from the transitions between situations. The emlt distance between sequences takes into account the proximity between situations. Transitions are considered at any steps with a weighting balance between long/short terms. A situation may have no occurrence when the referring object is not present during all the duration. The distance between any situation and a situation with no occurrence is \code{NA}, and has no influence for the distance between sequences.
+\details{
+The EMLT distance is the sum of the dissimilarity between the pairs of states observed at the successive positions, where the dissimilarity between states is defined at each position as the Chi-squared distance between the normalized vectors of transition rates (profiles of situations) from the current state to the next observed states in the sequence.
+Transition rates are down-weighted with the time distance to avoid exaggerated importance of long term transitions.
+
+The EMLT distance between two sequences is obtained as the Euclidean distance between the returned numerical sequence coordinates. So, providing \code{coord} as the data input to any clustering algorithm that uses the Euclidean metric is equivalent to cluster with the EMLT metric.
+
+Each time-indexed state is called a situation, and the distance between two states at a position $t$ is derived from the transition rates to other observed situations. The EMLT distance between sequences takes into account the proximity between situations. Transitions are considered at any step with a weighting balance between long/short terms. A situation may have no occurrence when the referring object is not present during all the duration. The distance between any situation and a situation with no occurrence is \code{NA}, and has no influence for the distance between sequences.
 %%  ~~ If necessary, more details than the description above ~~
+
+The obtained numerical representations of sequences may be used as input of any Euclidean algorithm (clustering algorithms, ...).
+
 }
 \value{
-  An object of class \code{emlt} with the following componants
-  \item{coord}{transformed sequences. Euclidean metric emlt between sequences is equivalent to Euclidean distance between coord. coord is the input of any clustering algorithms using a Euclidean metric}
+  An object of class \code{emlt} with the following components
+  \item{coord}{Matrix with in each row the numerical coordinates of the corresponding sequence.}
   \item{states }{list of states}
   \item{situations }{list of situations}
-  \item{sit.freq }{frequence of situations}
-  \item{sit.transrate }{rate of transitions from a situation to any situation of its own future : vector of transition towards future}
-  \item{sit.profil }{profil of situations. The profil is a normalized vector issued from the rate of transition including a balance of short/long term with the weight of time 1/a*s+b, where s is the step of transition }
-  \item{sit.cor }{Correlation between situations. Two situations are high correlated when their profiles are similar (ie their transitions towards future are similar). }
+  \item{sit.freq }{Situation frequencies}
+  \item{sit.transrate }{rates of transition from a situation to the situation of its own future: vector of transition towards future}
+  \item{sit.profil }{profiles of situations. The profile is a normalized vector issued from the rate of transition including a balance of short/long term with the weight of time 1/a*s+b, where s is the step of transition }
+  \item{sit.cor }{Correlation between situations. Two situations are highly correlated when their profiles are similar (i.e., when their transitions towards future are similar). }
 }
-\references{- Rousset Patrick,  Giret Jean-françois,Classifying Qualitative Time Series with SOM: The Typology of Career Paths in France Lecture Notes in computer science, vol 4507, 2007, Springer Berlin / Heidelberg -
-- Rousset Patrick, Giret Jean-françois, Yvette Grelet (2012) Typologies De Parcours et Dynamique Longitudinale, Bulletin de méthodologie sociologique, issue 114, april 2012. -
-- Rousset Patrick, Giret Jean-françois (2008) A longitudinal Analysis of  Labour Market Data with SOM, Encyclopedia of Artificial Intelligence, Edition Information Science Reference -
+\references{Rousset Patrick,  Giret Jean-François, Classifying Qualitative Time Series with SOM: The Typology of Career Paths in France, Lecture Notes in computer science, vol 4507, 2007, Springer Berlin / Heidelberg
+
+Rousset Patrick, Giret Jean-françois, Yvette Grelet (2012) Typologies De Parcours et Dynamique Longitudinale, \emph{Bulletin de méthodologie sociologique}, issue 114, April 2012.
+
+Rousset Patrick, Giret Jean-François (2008) A longitudinal Analysis of  Labour Market Data with SOM, Encyclopedia of Artificial Intelligence, Edition Information Science Reference.
+
+Studer, Matthias  and Gilbert Ritschard (2014) A comparative review of sequence dissimilarity measures. LIVES Working Paper, 33 {http://www.lives-nccr.ch/sites/default/files/pdf/publication/33_lives_wp_studer_sequencedissmeasures.pdf}
 %% ~put references to the literature/web site here ~
 }
 \author{Patrick Rousset, Senior researcher at Cereq, rousset@cereq.fr with the help of Matthias Studer

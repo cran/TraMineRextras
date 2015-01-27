@@ -3,6 +3,10 @@ import(survival)
 import(RColorBrewer)
 import(combinat)
 importFrom(utils, packageDescription, packageVersion)
+importFrom(cluster, daisy)
+importFrom(cluster, pam)
+importFrom(cluster, agnes)
+
 
 export(
     group.p,
@@ -31,8 +35,8 @@ export(
     seqgranularity,
     seqauto,
     seqentrans,
-	seqemlt
-
+    seqemlt,
+    seqtabstocc
 )
 
 ## emlt methods

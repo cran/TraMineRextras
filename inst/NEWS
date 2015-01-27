@@ -1,4 +1,20 @@
-﻿                CHANGES IN TraMineRextras VERSION 0.2.2 [2013-10-30]
+﻿                CHANGES IN TraMineRextras VERSION 0.2.3 [2015-01-27]
+
+New function
+
+    o   seqtabstocc(): frequencies of state co-occurrence patterns
+
+Changes in existing functions
+
+    o   seqgranularity(): new method "mostfreq"
+
+    o   seqedplot(): replaced calls of TraMineR internal functions seqeage
+        and TraMineR.legend with respectively
+        TraMineRInternalSeqeage and TraMineRInternalLegend
+        (should be transparent to the end user).
+
+
+                CHANGES IN TraMineRextras VERSION 0.2.2 [2013-10-30]
 
     o   Fixed issue with calling Rinternals from within extern "C" {}
         in seqstart.cpp (request of B. Ripley)
