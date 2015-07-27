@@ -1,6 +1,21 @@
-﻿                CHANGES IN TraMineRextras VERSION 0.2.3 [2015-01-27]
+﻿                CHANGES IN TraMineRextras VERSION 0.2.4 [2015-07-23]
 
-New function
+New functions
+
+    o   seqplot.rf(): Implements the Relative Frequency Sequence Plots
+        introduced in Fasang and Liao (2014).
+
+Misc
+
+    o   revised help page for seqemlt() (distance of Rousset et al. 2012)
+
+    o   Added required basic packages to the import statements to
+        comply with R v3.3 requirements.
+
+
+                CHANGES IN TraMineRextras VERSION 0.2.3 [2015-01-27]
+
+New functions
 
     o   seqtabstocc(): frequencies of state co-occurrence patterns
 

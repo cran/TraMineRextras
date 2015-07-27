@@ -1,5 +1,18 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
+\section{Changes in version 0.2.4 [2015-07-23]}{
+\subsection{New functions}{
+  \itemize{
+    \item{\code{seqplot.rf()}: Implements the Relative Frequency Sequence Plots
+        introduced in Fasang and Liao (2014)}
+}}
+\subsection{Misc}{
+  \itemize{
+    \item{revised help page for \code{seqemlt()} (distance of Rousset et al. 2012).}
+    \item{Added required basic packages to the import statements to
+        comply with R v3.3 requirements.}
+}}
+}
 \section{Changes in version 0.2.3 [2015-01-27]}{
 \subsection{New functions}{
   \itemize{
