@@ -1,4 +1,13 @@
-﻿                CHANGES IN TraMineRextras VERSION 0.2.4 [2015-07-23]
+﻿                CHANGES IN TraMineRextras VERSION 0.2.5 [2016-11-10]
+
+New functions
+
+    o   seqimplic(): Identifies position wise typical states
+        of groups of sequences when compared with all the others. There
+        are also plot and print methods for the outcome of the function.
+
+
+                CHANGES IN TraMineRextras VERSION 0.2.4 [2015-07-23]
 
 New functions
 
