@@ -1,4 +1,13 @@
-﻿                CHANGES IN TraMineRextras VERSION 0.2.5 [2016-11-10]
+﻿                CHANGES IN TraMineRextras VERSION 0.2.6 [2017-03-01]
+
+Misc
+
+    o   Function ctplot() suppressed. It is superseded by the
+        function seqpcplot() of the TraMineR package.
+    o   C++ routines are now registered.
+
+
+                CHANGES IN TraMineRextras VERSION 0.2.5 [2016-11-10]
 
 New functions
 

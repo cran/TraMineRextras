@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.2.6 [2017-03-01]}{
+\subsection{Misc}{
+  \itemize{
+    \item{Function ctplot() suppressed. It is superseded by the
+       function seqpcplot() of the TraMineR package.}
+    \item{C++ routines are now registered.}
+}} }
+
 \section{Changes in version 0.2.5 [2016-11-10]}{
 \subsection{New functions}{
   \itemize{
