@@ -51,7 +51,7 @@ In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles
 }
 \examples{
 data(actcal.tse)
-actacl.tse <- actcal.tse[1:500,]
+actcal.tse <- actcal.tse[1:500,]
 iseq <- unique(actcal.tse$id)
 nseq <- length(iseq)
 data(actcal)

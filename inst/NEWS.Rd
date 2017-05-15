@@ -1,6 +1,39 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.0 [2017-05-13]}{
+
+\subsection{Note}{
+  \itemize{
+    TraMineRextras has been adapted to and requires now TraMineR 2.0-5.
+  }
+}
+
+\subsection{Bug Fixes}{
+  \itemize{
+    \item
+    \code{TSE_to_STS()}: The two last sequences were not converted.
+    }
+}
+
+\subsection{Changes in existing functions}{
+  \itemize{
+    \item
+    \code{seqplot.rf()}, \code{seqplot.tentrop()}, \code{seqrep.grp()}, \code{dissvar.grp()}, \code{plot.seqimplic()}: adjusted argument names (main, with.legend, legend.pos, diss, ...) to conform to the TraMineR 2 naming convention.
+    }
+}
+\subsection{Misc}{
+  \itemize{
+    \item
+    \code{seqrep.grp()}: Removed \code{with.missing=TRUE} in a help example as \code{biofam.seq} doesn't contain missing values and to conform to TraMineR 2.0-5+.
+    \item
+    \code{seqeformat()}, \code{seqentrans()}, \code{seqerulesdisc()}: Renamed '\code{seqe}' as '\code{eseq}' in internal code to conform to TraMineR 2.0-5+.
+    \item
+    Adjusted examples in help files (\code{sortv}, \code{seqtabstocc}, \code{seqrep.grp}, \code{seqplot.tentrop}, \code{seqplot.fr}, \code{seqimplic}, \code{seqgranularity}, \code{seqgen.missing}, \code{seqedplot}, \code{seqentrans}) to conform to TraMineR 2.0-5+.
+    }
+}
+}
+
 \section{Changes in version 0.2.6 [2017-03-01]}{
 \subsection{Misc}{
   \itemize{

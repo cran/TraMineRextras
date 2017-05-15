@@ -24,12 +24,6 @@ TSE_to_STS <- function(seqdata, id=1, timestamp=2, event=3, stm=NULL, tmin=1, tm
 	nid <- length(id)
 	while(iID <= nid) {
 		oldID <- id[iID]
-		while(iID <= nid && id[iID]==oldID){
-			iID <- iID + 1
-		}
-		if(iID==nid){
-			break;
-		}
 		mid <- oldID
 		uid[myi] <- mid
 		cond <- mid==id
@@ -54,9 +48,12 @@ TSE_to_STS <- function(seqdata, id=1, timestamp=2, event=3, stm=NULL, tmin=1, tm
 		#message("Indice, ", prevTime:tmax, " prevState ", prevState)
 		#print(sts[myi,])
 		myi <- myi +1
+		while(iID <= nid && id[iID] == oldID) {
+		  iID <- iID + 1
+		}
 	}
 	
-	sts <- sts[,tmin:tmax]
+	sts <- sts[, tmin:tmax , drop = FALSE] # drop for when seqdata has only one sequence
 	rownames(sts) <- uid
 	colnames(sts) <- paste("a", tmin:tmax, sep="")
 	return(as.data.frame(sts))

@@ -144,9 +144,9 @@ print.seqimplic <- function(x, xtstep=x$xtstep, round=NULL, conf.level=NULL, na.
 }
 
 
-plot.seqimplic <- function(x, title=NULL, ylim=NULL, xaxis=TRUE, 
+plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
 	ylab="Implication", yaxis=TRUE, axes="all", xtlab=NULL, cex.axis=1,
-	with.legend="auto", ltext=NULL, cex.legend=1, 
+	with.legend="auto", ltext=NULL, cex.legend=1,
 	legend.prop=NA, rows=NA, cols=NA, conf.level=0.95, lwd=1, only.levels=NULL, ...){
 	
 	savepar <- par(no.readonly = TRUE)
@@ -173,15 +173,15 @@ plot.seqimplic <- function(x, title=NULL, ylim=NULL, xaxis=TRUE,
 	
 		}	
 	}
-	if(is.null(title)){
-		title <- x$levels
-	}else if(length(title) == 1) {
-		title <- paste(title, x$levels, sep=" - ")
+	if(is.null(main)){
+		main <- x$levels
+	}else if(length(main) == 1) {
+		main <- paste(main, x$levels, sep=" - ")
 	}
 	for (np in plotindex) {
 		toplot <-  x$indices[np, , ]
 		toplot[toplot<0] <- NA
-		plot(toplot[1, ], ylim=ylim, xlim=c(1, dim(x$indices)[3]), col=x$cpal[1], main=title[np], 
+		plot(toplot[1, ], ylim=ylim, xlim=c(1, dim(x$indices)[3]), col=x$cpal[1], main=main[np],
 		type="l", ylab=ylab, axes=FALSE, xlab=NA, lwd=lwd, ...)
 		for(a in 2:length(x$alphabet)) {
 			lines(toplot[a, ], col=x$cpal[a], type="l", lwd=lwd,  ...)
@@ -218,4 +218,3 @@ plot.seqimplic <- function(x, title=NULL, ylim=NULL, xaxis=TRUE,
 	}
 
 }
-

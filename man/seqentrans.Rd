@@ -18,7 +18,7 @@ Ritschard}
 }
 \details{
   An event sequence object is an ordered list of transitions, with each transition a non-ordered list of events occurring at a same position.
-  
+
   Average occurrences by sequence may be useful when counts report number of occurrences rather than number of sequences containing the subsequence.
 }
 \value{
@@ -31,7 +31,7 @@ data(actcal.tse)
 actcal.seqe <- seqecreate(actcal.tse[1:500,])
 
 ##Searching for frequent subsequences appearing at least 30 times
-fsubseq <- seqefsub(actcal.seqe, minSupport=10)
+fsubseq <- seqefsub(actcal.seqe, min.support=10)
 fsubseq <- seqentrans(fsubseq)
 ## dispaying only those with at least 3 transitions
 fsubseq[fsubseq$data$ntrans>2]
@@ -39,10 +39,10 @@ fsubseq[fsubseq$data$ntrans>2]
 fsubseq[fsubseq$data$nevent>2]
 
 ## Average occurrences when counting distinct occurrences
-ct <- seqeconstraint(countMethod="CDIST_O")
-fsb <- seqefsub(actcal.seqe, minSupport=10, constraint=ct)
+ct <- seqeconstraint(count.method="CDIST_O")
+fsb <- seqefsub(actcal.seqe, min.support=10, constraint=ct)
 fsb <- seqentrans(fsb, avg.occ=TRUE)
 fsb[1:10,]
- 
+
 }
 \keyword{util}

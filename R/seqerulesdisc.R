@@ -11,7 +11,7 @@ seqerulesdisc <- function(fsubseq, datadiscr, tsef, pvalue=0.1, supvars=NULL, ad
 	eventshr <- list("events"=list(), "hr"=list(), "hrindep"=list(), "pvalues"=list())
 	nrule <- 1
 	## Total number of sequences
-	ntotal <- length(fsubseq$seqe)
+	ntotal <- length(fsubseq$eseq)
 	
 	
 	if(topt==TRUE) {

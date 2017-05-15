@@ -1,4 +1,4 @@
-seqrep.grp <- function(seqdata, group=NULL, mdis=NULL, ret="stat", ...){
+seqrep.grp <- function(seqdata, group=NULL, diss=NULL, ret="stat", mdis=diss, ...){
 
 	if (!inherits(seqdata,"stslist")){
 		stop("data is NOT a state sequence object, see seqdef function to create one",
@@ -17,15 +17,15 @@ seqrep.grp <- function(seqdata, group=NULL, mdis=NULL, ret="stat", ...){
 
     levg <- levels(grp <- factor(grp))
 
-    if (is.null(mdis)) mdis <- seqdist(seqdata, method="LCS")
-    mdis <- as.matrix(mdis)
-    dmax <- max(mdis)
+    if (is.null(diss)) diss <- seqdist(seqdata, method="LCS")
+    diss <- as.matrix(diss)
+    dmax <- max(diss)
 
     q.gr <- gr <- list()
     for (i in 1:length(levg))
         {
         ig <- which(grp==levg[i])
-        gr[[i]] <- seqrep(seqdata[ig,], dist.matrix=mdis[ig,ig], dmax=dmax, ...)
+        gr[[i]] <- seqrep(seqdata[ig,], diss=diss[ig,ig], dmax=dmax, ...)
         q.gr[[i]] <- attr(gr[[i]],"Statistics")
         }
     names(q.gr) <- names(gr) <- levg

@@ -9,7 +9,7 @@ Relative Frequency Sequence Plots (RFS plots) plot a selection of representative
 }
 \usage{
 seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
-    ylab=NA, yaxis=FALSE, title=NULL, ...)
+    ylab=NA, yaxis=FALSE, main=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,7 +19,7 @@ seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
   \item{sortv}{an optional sorting variable that may be used to compute the frequency groups. If \code{NULL}, an MDS is used. Ties are randomly ordered.}
   \item{ylab}{an optional label for the y-axis. If set as \code{NA} (default), no label is drawn.}
   \item{yaxis}{logical. Controls whether a y-axis is plotted. When set as \code{TRUE}, the indexes of the sequences are displayed.}
-  \item{title}{main graphic title. Default is \code{NULL}.}
+  \item{main}{main graphic title. Default is \code{NULL}.}
   \item{\dots}{arguments passed to \code{\link{seqplot}}.}
  }
 \details{
@@ -56,14 +56,14 @@ diss <- seqdist(biofam.seq, method="LCS")
 
 ## Using 12 groups and default MDS sorting
 seqplot.rf(biofam.seq, diss=diss, k=12,
-   title="Non meaningful example (n=100)")
+   main="Non meaningful example (n=100)")
 
 
 ## With a user specified sorting variable
 ## Here time spent in parental home
 parentTime <- seqistatd(biofam.seq)[, 1]
 seqplot.rf(biofam.seq, diss=diss, k=12, sortv=parentTime,
-   title="Sorted by parent time")
+   main="Sorted by parent time")
 
 }
 

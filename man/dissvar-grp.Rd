@@ -9,11 +9,11 @@
 This function computes the dissimilarity-based discrepancy measure of the groups defined by the group variable. The function is a wrapper for the TraMineR \code{\link{dissvar}} function.
 }
 \usage{
-dissvar.grp(mdis, group=NULL, ...)
+dissvar.grp(diss, group=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mdis}{
+  \item{diss}{
         a dissimilarity matrix or a \code{dist} object.
         }
   \item{group}{

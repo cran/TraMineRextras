@@ -74,8 +74,8 @@ seqeformat <- function(data,from="TSE",to="seqe",
         rownames(data) <- 1:nrow(data)
         ret <- list()
         ret$TSE <- data
-        ret$seqe <- seqecreate(data=data,id=id,timestamp=timestamp,
-                               event=event,weighted=weighted)       
+        ret$eseq <- seqecreate(data=data,id=id,timestamp=timestamp,
+                               event=event,weighted=weighted)
       }
 
     ## ================
@@ -165,7 +165,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
       names(ret$TSE)[2] <- "timestamp"
       ret$TSE$timestamp <- ret$TSE$timestamp+start
       ret$TSE$id <- factor(rownames(seq)[ret$TSE$id],levels=rownames(seq))
-      ret$seqe <- seqecreate(data=seq,weighted=weighted,tevent=tevent)
+      ret$eseq <- seqecreate(data=seq,weighted=weighted,tevent=tevent)
       ## reorder event factor levels if period events were called
       if (tevent=="period") {
         which.end <- grep(pattern="end",x=levels(ret$TSE$event))

@@ -2,14 +2,14 @@
 ## author: Gilbert Ritschard
 
 seqplot.tentrop <- function(seqdata, group,
-     title=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      xtlab=NULL, xtstep=NULL,
-     withlegend=TRUE, glabels=NULL, legendpos="topright",
+     with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
   group <- factor(group)
-  if(is.null(title)) {
-     title <- "Tranversal Entropies"
+  if(is.null(main)) {
+     main <- "Tranversal Entropies"
   }
 
   entrop <- by(seqdata, group, seqstatd)
@@ -47,12 +47,12 @@ seqplot.tentrop <- function(seqdata, group,
   if(is.null(glabels)){
       glabels <- levels(group)
   }
-  
+
   if(is.null(xtstep)){
       xtstep <- attr(seqdata,"xtstep")
   }
-  
-  
+
+
   if(is.null(ylim)){
         maxe <- max(entrop[[1]]$Entropy)
         mine <- min(entrop[[1]]$Entropy)
@@ -63,14 +63,14 @@ seqplot.tentrop <- function(seqdata, group,
         ylim <- c(floor(10*mine),ceiling(10*maxe))/10
   }
 
-  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=title, ylim=ylim, xlim=c(1,npos))
+  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos))
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
   axis(1,labels=xtlab[seq(from=1, to=npos, by=xtstep)],at=seq(from=1, to=npos, by=xtstep))
   axis(2)
-  if(withlegend){
-    legend(legendpos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
+  if(with.legend){
+    legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
   }
 
   return(k)
@@ -82,9 +82,9 @@ seqplot.tentrop <- function(seqdata, group,
 ##
 
 seqplot.tentrop.m <- function(seqdata.list,
-     title=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      xtlab=NULL, xtstep=NULL,
-     withlegend=TRUE, glabels=NULL, legendpos="topright",
+     with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
   ncurve <- length(seqdata.list)
@@ -95,8 +95,8 @@ seqplot.tentrop.m <- function(seqdata.list,
   if (warn) {
     warning("sequence objects in seqdata.list are not all of same length")
     }
-  if(is.null(title)) {
-     title <- "Tranversal Entropies"
+  if(is.null(main)) {
+     main <- "Tranversal Entropies"
   }
 
   entrop <- lapply(seqdata.list, seqstatd)
@@ -133,7 +133,7 @@ seqplot.tentrop.m <- function(seqdata.list,
   if(is.null(glabels)){
       glabels <- paste("seq",1:length(seqdata.list),sep="")
   }
-  
+
   if(is.null(xtstep)){
       xtstep <- attr(seqdata.list[[1]],"xtstep")
   }
@@ -148,14 +148,14 @@ seqplot.tentrop.m <- function(seqdata.list,
         ylim <- c(floor(10*mine),ceiling(10*maxe))/10
   }
 
-  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=title, ylim=ylim, xlim=c(1,npos))
+  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos))
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
   axis(1,labels=xtlab[seq(from=1, to=npos, by=xtstep)],at=seq(from=1, to=npos, by=xtstep))
   axis(2)
-  if(withlegend){
-    legend(legendpos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
+  if(with.legend){
+    legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
   }
 
   return(k)

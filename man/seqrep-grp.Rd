@@ -9,7 +9,7 @@ Finding representative sets by group and their quality statistics.
 This function determines representative sequences by group and returns the representatives by group and/or the quality statistics of the representative sets. The function is a wrapper for the TraMineR \code{\link{seqrep}} function.
 }
 \usage{
-seqrep.grp(seqdata, group = NULL, mdis = NULL, ret="stat", ...)
+seqrep.grp(seqdata, group = NULL, diss = NULL, ret="stat", mdis=diss,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,11 +19,13 @@ seqrep.grp(seqdata, group = NULL, mdis = NULL, ret="stat", ...)
   \item{group}{
         group variable. If \code{NULL} a single group is assumed.
         }
-  \item{mdis}{
+  \item{diss}{
         dissimilarity matrix. If \code{NULL} the "LCS" dissimilarity matrix is computed.
         }
   \item{ret}{
         What should be returned? One of \code{"stat"} (default), \code{"rep"} or \code{"both"}.   }
+  \item{mdis}{
+        Deprecated, use \code{"diss"} instead.}
   \item{...}{
         additional arguments passed to \code{\link{seqrep}} .
         }
@@ -55,10 +57,10 @@ biofam.lab <- c("Parent", "Left", "Married", "Left+Marr",
 "Child", "Left+Child", "Left+Marr+Child", "Divorced")
 biofam.short <- c("P","L","M","LM","C","LC","LMC","D")
 biofam.seq <- seqdef(biofam[,10:25], alphabet=0:7, states=biofam.short, labels=biofam.lab)
-dist <- seqdist(biofam.seq, method="HAM", with.missing=TRUE)
+dist <- seqdist(biofam.seq, method="HAM")
 
-seqrep.grp(biofam.seq, group=biofam$plingu02, mdis=dist, trep=.2, tsim=.1)
-seqrep.grp(biofam.seq, group=biofam$plingu02, mdis=dist, ret="rep", trep=.2, tsim=.1)
+seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, coverage=.2, pradius=.1)
+seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, ret="rep", coverage=.2, tsim=.1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

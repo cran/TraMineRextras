@@ -1,8 +1,8 @@
 seqplot.rf <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
-						ylab=NA, yaxis=FALSE, title=NULL, ...){
+						ylab=NA, yaxis=FALSE, main=NULL, ...){
 	
 	return(seqplot.rf_internal(seqdata, k=k, diss=diss, sortv=sortv,
-						ylab=ylab, yaxis=yaxis, main=title, ...))
+						ylab=ylab, yaxis=yaxis, main=main, ...))
 }
 seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
 						use.hclust=FALSE, hclust_method="ward.D", use.quantile=FALSE,
@@ -81,8 +81,8 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 	attr(seqtoplot, "weights") <- NULL
 	opar <- par(mfrow=c(1,2), oma=c(3,0,(!is.null(main))*3,0), mar=c(1, 1, 2, 0))
 	on.exit(par(opar))
-	seqIplot(seqtoplot, withlegend=FALSE, sortv=mdsk, yaxis=yaxis, title="Sequences medoids", ...)
-	##seqIplot(seqtoplot, withlegend=FALSE, sortv=mdsk)
+	seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk, yaxis=yaxis, main="Sequences medoids", ...)
+	##seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk)
 	heights <- xtabs(~mdsk)/nrow(seqdata)
 	at <- (cumsum(heights)-heights/2)/sum(heights)*length(heights)
 	if(!yaxis){

@@ -9,7 +9,7 @@ seqentrans <- function(fsubseq, avg.occ=FALSE){
      fsubseq$data$nevent <- fsubseq$data$ntrans - 1 +
      sapply(strsplit(as.character(fsubseq$subseq), ","), length)
      if (avg.occ){
-         wtot <- sum(seqeweight(fsubseq$seqe))
+         wtot <- sum(seqeweight(fsubseq$eseq))
          fsubseq$data$Avg.occ <- fsubseq$data$Count/wtot
      }
      return(fsubseq)

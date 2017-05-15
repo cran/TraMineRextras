@@ -32,7 +32,7 @@ actcal.seq <- seqdef(actcal[1:500,13:24])
 seqtabstocc(actcal.seq)
 
 ## All state patterns
-seqtabstocc(actcal.seq, tlim=0)
+seqtabstocc(actcal.seq, idxs=0)
 
 }
 \keyword{util}

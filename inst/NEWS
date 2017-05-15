@@ -1,4 +1,26 @@
-﻿                CHANGES IN TraMineRextras VERSION 0.2.6 [2017-03-01]
+                CHANGES IN TraMineRextras VERSION 0.4.0 [2017-05-13]
+
+Note
+    o   TraMineRextras has been adapted to and requires now TraMineR 2.0-5+.
+
+Bug Fixes
+    o   TSE_to_STS(): Latest sequences were not converted.
+
+Changes in existing functions
+    o   seqplot.rf(), seqplot.tentrop(), seqrep.grp(), dissvar.grp(),
+        plot.seqimplic(): 
+        adjusted argument names (e.g., main, with.legend, legend.pos, 
+        diss, ...) to conform to the TraMineR 2 naming convention.
+
+Misc
+    o   seqrep.grp(): Removed 'with.missing=TRUE' in a help example as biofam.seq
+        doesn't contain missing values and to conform to TraMineR 2.0-5+.
+    o   seqeformat(), seqentrans(), seqerulesdisc(): Renamed 'seqe' to 'eseq'
+        in internal code to conform to TraMineR 2.0-5+.
+    o   Adjusted examples in help files to conform to TraMineR 2.0-5+.
+
+
+                CHANGES IN TraMineRextras VERSION 0.2.6 [2017-03-01]
 
 Misc
 

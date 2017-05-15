@@ -10,15 +10,15 @@ Functions to plot, in a same frame, transversal-entropy curves by group or multi
  }
 
 \usage{
-seqplot.tentrop(seqdata, group, title=NULL,
+seqplot.tentrop(seqdata, group, main=NULL,
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
-    xtstep=NULL, withlegend=TRUE, glabels=NULL,
-    legendpos="topright", horiz=FALSE, cex.legend=1, ...)
+    xtstep=NULL, with.legend=TRUE, glabels=NULL,
+    legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 
-seqplot.tentrop.m(seqdata.list, title=NULL,
+seqplot.tentrop.m(seqdata.list, main=NULL,
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
-    xtstep=NULL, withlegend=TRUE, glabels=NULL,
-    legendpos="topright", horiz=FALSE, cex.legend=1, ...)
+    xtstep=NULL, with.legend=TRUE, glabels=NULL,
+    legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 }
 
 \arguments{
@@ -28,7 +28,7 @@ seqplot.tentrop.m(seqdata.list, title=NULL,
 
   \item{group}{a factor giving the group membership of each sequence in \code{seqdata}.}
 
-  \item{title}{a character string giving the title of the graphic; if \code{NULL}, a default title is printed.}
+  \item{main}{a character string giving the title of the graphic; if \code{NULL}, a default title is printed.}
 
   \item{col}{a vector of colors for the different curves.}
 
@@ -44,9 +44,9 @@ seqplot.tentrop.m(seqdata.list, title=NULL,
 
   \item{glabels}{a vector of strings with the curve labels. If \code{NULL} curves are labeled with the levels of the group variable or, for \code{seqplot.tentrop.m}, as \code{seq1, seq2, ...}}
 
-  \item{withlegend}{logical: Should the legend be plotted. Default is \code{TRUE}.}
+  \item{with.legend}{logical: Should the legend be plotted. Default is \code{TRUE}.}
 
-  \item{legendpos}{legend position: default is \code{"topright"}. See\code{\link{legend} }.}
+  \item{legend.pos}{legend position: default is \code{"topright"}. See\code{\link{legend} }.}
 
   \item{horiz}{logical: Should the legend be displayed horizontally. Set as \code{FALSE} by default, i.e., legend is displayed vertically.}
 
@@ -73,13 +73,13 @@ biofam <- biofam[1:200,]
 biofam.seq <- seqdef(biofam[,10:25], xtlab=as.character(15:30), xtstep=3)
 
 ## Plotting transversal entropies by sex
-seqplot.tentrop(biofam.seq, group=biofam$sex, legendpos="bottomright")
+seqplot.tentrop(biofam.seq, group=biofam$sex, legend.pos="bottomright")
 
 ## Plotting transversal entropies for women
 ## by father's social status
 group <- biofam$cspfaj[biofam$sex=="woman"]
 seqplot.tentrop(biofam.seq[biofam$sex=="woman",], group=group,
-    title="Women, by father's social status", legendpos="bottomright")
+    main="Women, by father's social status", legend.pos="bottomright")
 
 }
 \keyword{Plot}
