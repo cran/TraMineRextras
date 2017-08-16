@@ -12,7 +12,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
     ## ==============================
     ## check obs.interval definition
     ## ==============================
-    
+
     if (!is.null(obs.intervals)) {
       if (id!="id"&is.character(id)) {
         id <- which(colnames(obs.intervals)==id)
@@ -27,7 +27,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
 
     ## ================
     ## treat TSE input
-    ## ================ 
+    ## ================
 
     ## prepare TSE input
     if (from=="TSE") {
@@ -84,7 +84,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
 
     ## prepare STS input
     ## =================
-    
+
     if (from=="STS") {
         if (is.null(id)) {seqid <- 1:nrow(data)} else {seqid <- data[,id]}
         data <- data[order(seqid),]
@@ -118,7 +118,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
 
     ## convert STS to seqe using seqcreate
     ## ===================================
-    
+
     if ((from=="STS")&(to=="seqe")) {
       ret <- seqecreate(data=seq,weighted=weighted,
                         tevent=tevent)
@@ -126,11 +126,11 @@ seqeformat <- function(data,from="TSE",to="seqe",
 
     ## convert STS to TSE using seqdef and seqformat
     ## =============================================
-    
+
     if ((from=="STS")&(to=="TSE")) {
       ## create TSE data using seqformat
       m <- seqetm(seq=seq,method=tevent)
-      ret <- seqformat(data=seq,from="STS",to="TSE",tevent=m)
+      ret <- seqformat(seq, from = "STS", to = "TSE", tevent = m)
       names(ret)[2] <- "timestamp"
       ret$timestamp <- ret$timestamp+start
       ret$id <- factor(rownames(seq)[ret$id],levels=rownames(seq))
@@ -141,7 +141,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
         ind <- rep(c(1,1+length(which.start)),
                    length(which.start))+
                      rep(seq(0,length(which.start)-1),each=2)
-        order <- c(which.start,which.end)[ind]           
+        order <- c(which.start,which.end)[ind]
         ret$event <- factor(ret$event,levels=levels(ret$event)[order])
       }
       ## add covariates from original data
@@ -156,12 +156,12 @@ seqeformat <- function(data,from="TSE",to="seqe",
 
     ## convert STS to both
     ## ===================
-    
+
     if ((from=="STS")&(to=="both")) {
       ## create TSE data using seqformat
       ret <- list()
       m <- seqetm(seq=seq,method=tevent)
-      ret$TSE <- seqformat(data=seq,from="STS",to="TSE",tevent=m)
+      ret$TSE <- seqformat(seq, from = "STS", to = "TSE", tevent = m)
       names(ret$TSE)[2] <- "timestamp"
       ret$TSE$timestamp <- ret$TSE$timestamp+start
       ret$TSE$id <- factor(rownames(seq)[ret$TSE$id],levels=rownames(seq))
@@ -173,7 +173,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
         ind <- rep(c(1,1+length(which.start)),
                    length(which.start))+
                      rep(seq(0,length(which.start)-1),each=2)
-        order <- c(which.start,which.end)[ind]           
+        order <- c(which.start,which.end)[ind]
         ret$TSE$event <- factor(ret$TSE$event,
                                 levels=levels(ret$TSE$event)[order])
       }
@@ -186,7 +186,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
         }
       }
       }
-    
+
     ## ================================
     ## treat seqe input (experimental)
     ## ================================
@@ -234,7 +234,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
                             unlist(lapply(X=event,FUN=f.time))),
                           event=factor(unlist(event)))
       }
-    
+
     ## convert seqe to both
     if ((from=="seqe")&(to=="both"))
       {
@@ -245,7 +245,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
     ## ==========================
     ## add observation time data
     ## ==========================
-    
+
     if ((!is.null(obs.intervals))&(to=="both"))
       {
         obs.intervals <- obs.intervals[obs.intervals$id%in%
@@ -258,7 +258,7 @@ seqeformat <- function(data,from="TSE",to="seqe",
     ## ===========================
     ## set class of output object
     ## ===========================
-    
+
     if (to=="both")
       {
         class(ret) <- c("seqelist","list")
@@ -267,6 +267,6 @@ seqeformat <- function(data,from="TSE",to="seqe",
     ## ==============
     ## return object
     ## ==============
-    
+
     return(ret)
   }

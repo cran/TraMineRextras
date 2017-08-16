@@ -1,4 +1,6 @@
-seqrep.grp <- function(seqdata, group=NULL, diss=NULL, ret="stat", mdis=diss, ...){
+seqrep.grp <- function(seqdata, group = NULL, diss = NULL, ret = "stat", with.missing = FALSE, mdis, ...) {
+
+  TraMineR:::checkargs(alist(diss = mdis))
 
 	if (!inherits(seqdata,"stslist")){
 		stop("data is NOT a state sequence object, see seqdef function to create one",
@@ -17,7 +19,7 @@ seqrep.grp <- function(seqdata, group=NULL, diss=NULL, ret="stat", mdis=diss, ..
 
     levg <- levels(grp <- factor(grp))
 
-    if (is.null(diss)) diss <- seqdist(seqdata, method="LCS")
+    if (is.null(diss)) diss <- seqdist(seqdata, method="LCS", with.missing=with.missing)
     diss <- as.matrix(diss)
     dmax <- max(diss)
 
@@ -25,7 +27,7 @@ seqrep.grp <- function(seqdata, group=NULL, diss=NULL, ret="stat", mdis=diss, ..
     for (i in 1:length(levg))
         {
         ig <- which(grp==levg[i])
-        gr[[i]] <- seqrep(seqdata[ig,], diss=diss[ig,ig], dmax=dmax, ...)
+        gr[[i]] <- seqrep(seqdata[ig,], diss=diss[ig,ig], dmax=dmax, with.missing=with.missing, ...)
         q.gr[[i]] <- attr(gr[[i]],"Statistics")
         }
     names(q.gr) <- names(gr) <- levg

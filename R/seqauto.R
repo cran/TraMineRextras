@@ -2,7 +2,7 @@ seqauto <- function(seqdata, order=1, measure="cv"){
 
     available.measures <- c("cv")
 
-    srs <- seqformat(seqdata, from="STS", to="SRS")
+    srs <- seqformat(seqdata, from = "STS", to = "SRS")
     nc <- ncol(srs)
 
     x <- list()

@@ -1,4 +1,3 @@
-\encoding{latin1}
 \name{seqrep.grp}
 \alias{seqrep.grp}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -9,7 +8,8 @@ Finding representative sets by group and their quality statistics.
 This function determines representative sequences by group and returns the representatives by group and/or the quality statistics of the representative sets. The function is a wrapper for the TraMineR \code{\link{seqrep}} function.
 }
 \usage{
-seqrep.grp(seqdata, group = NULL, diss = NULL, ret="stat", mdis=diss,...)
+seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat", 
+    with.missing = FALSE, mdis, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,12 +20,14 @@ seqrep.grp(seqdata, group = NULL, diss = NULL, ret="stat", mdis=diss,...)
         group variable. If \code{NULL} a single group is assumed.
         }
   \item{diss}{
-        dissimilarity matrix. If \code{NULL} the "LCS" dissimilarity matrix is computed.
+        dissimilarity matrix. If \code{NULL} the \dQuote{LCS} dissimilarity matrix is computed.
         }
   \item{ret}{
-        What should be returned? One of \code{"stat"} (default), \code{"rep"} or \code{"both"}.   }
-  \item{mdis}{
-        Deprecated, use \code{"diss"} instead.}
+        What should be returned? One of \code{"stat"} (default), \code{"rep"} or \code{"both"}.
+        }
+  \item{with.missing}{
+        Logical. When \code{diss = NULL}. Are there missing values in the sequences? Default is \code{FALSE}. }
+  \item{mdis}{Deprecated. Use \code{diss} instead.}
   \item{...}{
         additional arguments passed to \code{\link{seqrep}} .
         }
@@ -33,6 +35,8 @@ seqrep.grp(seqdata, group = NULL, diss = NULL, ret="stat", mdis=diss,...)
 
 \details{
 The function is a wrapper for running \code{\link{seqrep}} on the different groups defined by the \code{group} variable.
+
+When \code{diss = NULL}, the \sQuote{LCS} distance is used.
 }
 \value{
 If \code{ret="stat"}, a list with the quality statistics for the set of representatives of each group.
@@ -60,7 +64,16 @@ biofam.seq <- seqdef(biofam[,10:25], alphabet=0:7, states=biofam.short, labels=b
 dist <- seqdist(biofam.seq, method="HAM")
 
 seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, coverage=.2, pradius=.1)
-seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, ret="rep", coverage=.2, tsim=.1)
+seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, ret="rep", coverage=.2, pradius=.1)
+
+## sequences with missing values
+data(ex1)
+sqex1 <- seqdef(ex1[,1:13])
+nrow(ex1)
+gp <- rep(1,7)
+gp[5:7] <- 2
+seqrep.grp(sqex1, group=gp, ret="rep", coverage=.2, pradius=.1, with.missing=TRUE)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

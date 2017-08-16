@@ -1,10 +1,37 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.1 [2017-08-16]}{
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{STS_to_SPELL()}: Deleted. Converting to the \code{"SPELL"} format is now a feature
+      of \code{seqformat()} in TraMineR 2.0-6+.
+      \item
+      \code{seqrep.grp()}: Added argument \code{with.missing} to allow computing the default distances (when \code{diss = NULL}) for sequences with missing values.
+    }
+  }
+
+  \subsection{Misc}{
+    \itemize{
+      \item
+      Replaced deprecated argument names in example of \code{seqrep.grp()}.
+      \item
+      Now imports from RColorBrewer, survival and cluster instead of depending on those packages.
+      \item
+      Suppressed unused import from combinat.
+      \item
+      \code{init.c} file.
+    }
+  }
+
+}
+
 \section{Changes in version 0.4.0 [2017-05-13]}{
 
 \subsection{Note}{
   \itemize{
+    \item
     TraMineRextras has been adapted to and requires now TraMineR 2.0-5.
   }
 }

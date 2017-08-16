@@ -1,12 +1,12 @@
 import(TraMineR)
-import(survival)
-import(RColorBrewer)
 importFrom("utils", "packageDescription", "packageVersion")
 importFrom("graphics", "abline", "axis", "box", "layout", "legend", "lines", "par", "plot", "points", "rect", "segments", "text", "title", "boxplot","strheight", "strwidth")
 importFrom("grDevices", "col2rgb", "hsv", "rgb", "rgb2hsv")
 importFrom("stats", "chisq.test", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm")
 importFrom("cluster", "daisy", "pam", "agnes")
-importFrom("combinat", "permn")
+##importFrom("combinat", "permn")
+importFrom("RColorBrewer","brewer.pal")
+importFrom("survival","survfit", "coxph", "Surv")
 
 export(
     group.p,
@@ -22,7 +22,6 @@ export(
     HSPELL_to_STS,
     seqe2stm,
     TSE_to_STS,
-    STS_to_SPELL,
     seqedist,
     seqedplot,
     createdatadiscrete,
@@ -36,7 +35,7 @@ export(
     seqauto,
     seqentrans,
     seqemlt,
-	seqimplic,
+    seqimplic,
     seqtabstocc
 )
 
@@ -51,6 +50,7 @@ S3method(print, seqimplic)
 
 
 useDynLib(TraMineRextras,
-TMREXTRAS_tmrextrasseqstart=tmrextrasseqstart
+  .registration = TRUE,
+  TMREXTRAS_tmrextrasseqstart=tmrextrasseqstart
 )
 

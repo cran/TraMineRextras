@@ -4,7 +4,7 @@
 \docType{package}
 \title{ TraMineR Extension }
 \description{
-(Version: 0.4.0) Collection of ancillary functions and utilities to be used in conjunction with the TraMineR package for sequence data exploration. Most of the functions are in test phase, lack systematic consistency check of the arguments and are subject to changes. Once fully checked, some of the functions of this collection could be included in a next release of TraMineR.
+(Version: 0.5.1) Collection of ancillary functions and utilities to be used in conjunction with the TraMineR package for sequence data exploration. Most of the functions are in test phase, lack systematic consistency check of the arguments and are subject to changes. Once fully checked, some of the functions of this collection could be included in a next release of TraMineR.
 
 }
 
