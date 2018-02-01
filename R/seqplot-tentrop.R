@@ -88,6 +88,9 @@ seqplot.tentrop.m <- function(seqdata.list,
      horiz=FALSE, cex.legend=1, ...) {
 
   ncurve <- length(seqdata.list)
+  if (ncurve < 2) {
+    stop("seqplot.tentrop.m: seqdata.list must be a list of at least 2 seqelist objects", .call=FALSE)
+  }
   warn <- FALSE
   for (i in 2:ncurve){
     if(ncol(seqdata.list[[1]]) != ncol(seqdata.list[[i]])) {warn <- TRUE}

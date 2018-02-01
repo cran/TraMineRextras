@@ -17,9 +17,11 @@
 }
 \details{
   The function extracts the list of states co-occurring in each sequence. For each sequence, the co-occurring states are extracted as the sequence of the alphabetically sorted distinct states. The frequencies of the extracted sets of states is then obtained by means of the  TraMineR \code{\link[TraMineR]{seqtab}} function.
+  
+  Returned patterns with a single state correspond to sequences that contain only that state.
 }
 \value{
-  A \code{stslist.freq} object.
+  A \code{stslist.freq} object with co-occurrence patterns sorted in descending frequency order.
 }
 %\seealso{
 %}

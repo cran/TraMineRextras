@@ -1,19 +1,19 @@
-seqelatex <- function(seqe){
-	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(seqe))
+seqelatex <- function(eseq){
+	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(eseq))
 	xx <- gsub("-", " \\\\rightarrow ", xx)
 	xx <- gsub("\\(([^\\)]+)\\)", "(\\\\mbox{\\1})", xx)
 	return(paste("$",xx, "$", sep=""))
 }
 
-seqelatex.small <- function(seqe){
-	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(seqe))
+seqelatex.small <- function(eseq){
+	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(eseq))
 	xx <- gsub("-", " \\\\rightarrow ", xx)
 	xx <- gsub("\\(([^\\)]+)\\)", "(\\\\mbox{\\1})", xx)
 	return(paste("{\\small $",xx, "$}", sep=""))
 }
 
-seqelatex.script <- function(seqe){
-	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(seqe))
+seqelatex.script <- function(eseq){
+	xx <- gsub("-([0-9.]+)-?", " \\\\xrightarrow{\\1} ", as.character(eseq))
 	xx <- gsub("-", " \\\\rightarrow ", xx)
 	xx <- gsub("\\(([^\\)]+)\\)", "(\\\\mbox{\\1})", xx)
 	return(paste("{\\scriptsize $",xx, "$}", sep=""))

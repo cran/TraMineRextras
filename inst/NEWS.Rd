@@ -1,6 +1,55 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.2 [2018-02-01]}{
+  \subsection{New functions}{
+    \itemize{
+      \item
+      \code{seqprecarity()}: computes the sequence precarity index from
+      a provided partial state order. The index is a
+      corrected complexity index. See documentation page.
+      \item
+      \code{seqprecorr()}: determines the correction factor used by
+        \code{seqprecarity()}.
+      \item
+      \code{seqprecstart()}: determines the starting precarity level
+        of the sequence from the partial state order.
+      \item
+      \code{seqsurv()}: fits survival curves for states in state sequences.
+        There is a plot method for objects returned by \code{seqsurv()}.
+      \item
+        \code{seqsplot()}: specific version of the TraMineR \code{seqplot()} function
+        to plotting survival curves of states in sequences.
+    }
+  }
+
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqrep.grp())} renamed argument names for consistency with TraMineR.
+      \item
+      \code{seqrep.grp())}: when \code{diss=NULL}, the dissimilarity matrix is now
+      computed by calling \code{seqdist} with the \code{method} and possibly related parameters specified among the \code{...} arguments. An error is raised when \code{diss=NULL} and no \code{method} is provided.
+    }
+  }
+
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqtabstocc())}: label synchronization issues.
+    }
+  }
+
+  \subsection{Misc}{
+    \itemize{
+      \item
+      Uses function \code{TraMineR.check.depr.args()} introduced in TraMineR v 2.0-8. So, depends now on version >= 2.0-8.
+    }
+  }
+
+
+}
+
 \section{Changes in version 0.4.1 [2017-08-16]}{
   \subsection{Changes in existing functions}{
     \itemize{

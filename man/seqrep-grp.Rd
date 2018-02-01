@@ -8,7 +8,7 @@ Finding representative sets by group and their quality statistics.
 This function determines representative sequences by group and returns the representatives by group and/or the quality statistics of the representative sets. The function is a wrapper for the TraMineR \code{\link{seqrep}} function.
 }
 \usage{
-seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat", 
+seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat",
     with.missing = FALSE, mdis, ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -36,12 +36,13 @@ seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat",
 \details{
 The function is a wrapper for running \code{\link{seqrep}} on the different groups defined by the \code{group} variable.
 
-When \code{diss = NULL}, the \sQuote{LCS} distance is used.
+When \code{diss = NULL}, \code{seqdist} is used to compute the dissimilarities.
+%\sQuote{LCS} distance is used.
 }
 \value{
 If \code{ret="stat"}, a list with the quality statistics for the set of representatives of each group.
 
-If \code{ret="rep"}, a list with the set of representatives of each group.
+If \code{ret="rep"}, a list with the set of representatives of each group. Each element of the list is an object of class \code{stslist.rep} returned by \code{\link{seqrep}}.
 
 If \code{ret="both"}, a list with the two previous outcomes.
 }
@@ -60,7 +61,8 @@ biofam <- biofam[1:100,]
 biofam.lab <- c("Parent", "Left", "Married", "Left+Marr",
 "Child", "Left+Child", "Left+Marr+Child", "Divorced")
 biofam.short <- c("P","L","M","LM","C","LC","LMC","D")
-biofam.seq <- seqdef(biofam[,10:25], alphabet=0:7, states=biofam.short, labels=biofam.lab)
+biofam.seq <- seqdef(biofam[,10:25], alphabet=0:7, 
+  states=biofam.short, labels=biofam.lab)
 dist <- seqdist(biofam.seq, method="HAM")
 
 seqrep.grp(biofam.seq, group=biofam$plingu02, diss=dist, coverage=.2, pradius=.1)
@@ -72,7 +74,8 @@ sqex1 <- seqdef(ex1[,1:13])
 nrow(ex1)
 gp <- rep(1,7)
 gp[5:7] <- 2
-seqrep.grp(sqex1, group=gp, ret="rep", coverage=.2, pradius=.1, with.missing=TRUE)
+seqrep.grp(sqex1, group=gp, method="LCS", ret="rep", 
+  coverage=.2, pradius=.1, with.missing=TRUE)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

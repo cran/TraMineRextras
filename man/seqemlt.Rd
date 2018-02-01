@@ -24,13 +24,13 @@ seqemlt(seqdata, a = 1, b = 1, weighted = TRUE)
 }
 \details{
 The EMLT distance is the sum of the dissimilarity between the pairs of states observed at the successive positions, where the dissimilarity between states is defined at each position as the Chi-squared distance between the normalized vectors of transition probabilities (profiles of situations) from the current state to the next observed states in the sequence.
-Transition probabilities are down-weighted with the time distance to avoid exaggerated importance of transitions over long periods. The adjustment weight \eqn{1/a*s+b}, where \eqn{s} is the period length over which the transition probability is measured.
+Transition probabilities are down-weighted with the time distance to avoid exaggerated importance of transitions over long periods. The adjustment weight is \eqn{1/a*s+b}, where \eqn{s} is the period length over which the transition probability is measured.
 
 The EMLT distance between two sequences is obtained as the Euclidean distance between the returned numerical sequence coordinates. So, providing \code{coord} as the data input to any clustering algorithm that uses the Euclidean metric is equivalent to cluster with the EMLT metric.
 
-Each time-indexed state is called a situation, and the distance between two states at a position \eqn{t} is derived from the transition probabilities to other observed situations. 
+Each time-indexed state is called a situation, and the distance between two states at a position \eqn{t} is derived from the transition probabilities to other observed situations.
 %The EMLT distance between sequences takes into account the proximity between situations.
-%%A situation may have no occurrence when the referring object is not present during all the duration \eqn{s}. 
+%%A situation may have no occurrence when the referring object is not present during all the duration \eqn{s}.
 The distance between any situation and a situation that does not occur is coded as \code{NA}. Such non-occurring situations have no influence on the distance between sequences.
 %%  ~~ If necessary, more details than the description above ~~
 
@@ -47,19 +47,20 @@ The obtained numerical representations of sequences may be used as input to any 
   \item{sit.profil }{profiles of situations. Each profile is the normalized vector of transition probabilities to future situations adjusted to down weight transitions over longer periods.}
   \item{sit.cor }{Matrix of correlations between situations. Two situations are highly correlated when their profiles are similar (i.e., when their transitions towards future are similar). }
 }
-\references{Rousset, Patrick and  Jean-François Giret (2007), Classifying Qualitative Time Series with SOM: The Typology of Career Paths in France, in F. Sandoval, A. Prieto and M. Grana (Eds) \emph{Computational and Ambient Intelligence}, Lecture Notes in Computer science, vol 4507,  Springer Berlin / Heidelberg, pp 757-764.
+\references{Rousset, Patrick and  Jean-François Giret (2007), Classifying Qualitative Time Series with SOM: The Typology of Career Paths in France, in F. Sandoval, A. Prieto and M. Grana (Eds) \emph{Computational and Ambient Intelligence}, Lecture Notes in Computer science, vol 4507,  Berlin: Springer, pp 757-764.
 
-Rousset Patrick, Jean-François Giret and Yvette Grelet (2012) Typologies De Parcours et Dynamique Longitudinale, \emph{Bulletin de méthodologie sociologique}, 114(1), 5-34.
+Rousset, Patrick, Jean-François Giret and Yvette Grelet (2012) Typologies De Parcours et Dynamique Longitudinale, \emph{Bulletin de méthodologie sociologique}, 114(1), 5-34.
 
-Rousset Patrick and  Jean-François Giret (2008) A longitudinal Analysis of  Labour Market Data with SOM, in J. Rabuñal Dopico, J. Dorado, & A. Pazos (Eds.) \emph{Encyclopedia of Artificial Intelligence}, Hershey, PA: Information Science Reference, pp 1029-1035.
+Rousset, Patrick and  Jean-François Giret (2008) A longitudinal Analysis of  Labour Market Data with SOM, in J. Rabuñal Dopico, J. Dorado, & A. Pazos (Eds.) \emph{Encyclopedia of Artificial Intelligence}, Hershey, PA: Information Science Reference, pp 1029-1035.
 
-Studer, Matthias  and Gilbert Ritschard (2014) A comparative review of sequence dissimilarity measures. LIVES Working Paper, 33 {http://www.lives-nccr.ch/sites/default/files/pdf/publication/33_lives_wp_studer_sequencedissmeasures.pdf}
+Studer, Matthias  and Gilbert Ritschard (2014) A comparative review of sequence dissimilarity measures. LIVES Working Paper, 33
+\url{http://www.lives-nccr.ch/sites/default/files/pdf/publication/33_lives_wp_studer_sequencedissmeasures.pdf}
 %% ~put references to the literature/web site here ~
 }
 \author{Patrick Rousset, Senior researcher at Cereq, rousset@cereq.fr with the help of Matthias Studer. Help page by Gilbert Ritschard.
 }
 
-\seealso{plot.emlt}
+\seealso{\code{\link{plot.emlt}}}
 \examples{
 
 data(mvad)
@@ -72,16 +73,16 @@ mvad.emlt <- seqemlt(mvad.seq)
 ## typology1 with kmeans in 3 clusters
 km <- kmeans(mvad.emlt$coord, 3)
 
-##Plotting by clusters of typology1 
+##Plotting by clusters of typology1
 seqdplot(mvad.seq, group=km$cluster)
 
-## typology2: 3 clusters by applying hierarchical ward  
+## typology2: 3 clusters by applying hierarchical ward
 ##   on the centers of the 25 group kmeans solution
 km<-kmeans(mvad.emlt$coord, 25)
 hc<-hclust(dist(km$centers, method="euclidean"), method="ward")
 zz<-cutree(hc, k=3)
 
-##Plotting by clusters of typology2 
+##Plotting by clusters of typology2
 seqdplot(mvad.seq, group=zz[km$cluster])
 
 ## Plotting the evolution of the correlation between states

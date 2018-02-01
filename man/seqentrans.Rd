@@ -14,7 +14,7 @@ Ritschard}
 }
 \arguments{
   \item{fsubseq}{ A \code{subseqelist} object as returned by \code{\link[TraMineR]{seqefsub}}.}
-  \item{avg.occ}{ Should a column with average number of occurrences also be added.}
+  \item{avg.occ}{ Logical: Should a column with average number of occurrences also be added?}
 }
 \details{
   An event sequence object is an ordered list of transitions, with each transition a non-ordered list of events occurring at a same position.

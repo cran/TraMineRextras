@@ -15,7 +15,7 @@ dissvar.grp <- function(diss, group=NULL, ...){
     }
 
     if (length(grp) != n){
-        stop("length(grp) not compatible with size of diss",
+        stop("length(group) not compatible with size of diss",
             call. = FALSE)
         }
 

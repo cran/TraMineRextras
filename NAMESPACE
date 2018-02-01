@@ -36,7 +36,12 @@ export(
     seqentrans,
     seqemlt,
     seqimplic,
-    seqtabstocc
+    seqtabstocc,
+    seqprecarity,
+    seqprecorr,
+    seqprecstart,
+    seqsurv,
+    seqsplot
 )
 
 ## emlt methods
@@ -47,7 +52,12 @@ S3method(print, emlt)
 S3method(plot, seqimplic)
 S3method(print, seqimplic)
 
+## seqimplic methods
+S3method(plot, seqimplic)
+S3method(print, seqimplic)
 
+## stlist.surv methods
+S3method(plot, stslist.surv)
 
 useDynLib(TraMineRextras,
   .registration = TRUE,

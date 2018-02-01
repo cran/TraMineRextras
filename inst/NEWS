@@ -1,3 +1,33 @@
+                CHANGES IN TraMineRextras VERSION 0.4.2 [2018-02-01]
+
+New functions
+    o   seqprecarity(): computes the sequence precarity index from
+        a provided partial state order. The index is a
+        corrected complexity index. See documentation page.
+    o   seqprecorr(): determines the correction factor used by
+        seqprecarity().
+    o   seqprecstart(): determines the starting precarity level
+        of the sequence from the partial state order.
+    o   seqsurv(): fits survival curves for states in state sequences.
+        There is a plot method for objects returned by seqsurv().
+    o   seqsplot(): specific version of the TraMineR seqplot() function
+        to plotting survival curves of states in sequences.
+
+Changes in existing functions
+    o   seqrep.grp() renamed argument names for consistency with TraMineR.
+    o   seqrep.grp(): when 'diss=NULL', the dissimilarity matrix is now
+        computed by calling seqdist with the 'method' and possibly
+        related parameters specified among the '...' arguments.
+        An error is raised when 'diss=NULL' and no 'method' is provided.
+
+Bug fixes
+    o   seqtabstocc(): label synchronization issue.
+
+Misc
+    o   Uses function \code{TraMineR.check.depr.args()} introduced
+        in TraMineR v 2.0-8. So, depends now on version >= 2.0-8.
+
+
                 CHANGES IN TraMineRextras VERSION 0.4.1 [2017-08-16]
 
 Changes in existing functions

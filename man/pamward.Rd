@@ -12,15 +12,17 @@ Runs a pam clustering (\code{\link[cluster]{pam}}) from the solution in k groups
 }
 
 \usage{
-pamward(dist, k=3, method="ward")
+pamward(diss, k=3, method="ward", dist)
 }
 
 \arguments{
-  \item{dist}{A distance matrix or object.}
+  \item{diss}{Distance matrix or object.}
 
-  \item{k}{Number of clusters.}
+  \item{k}{Integer. Number of clusters.}
 
-  \item{method}{Method for the hierarchical clustering (see \code{\link[cluster]{agnes}})}
+  \item{method}{Method for the hierarchical clustering (see \code{\link[cluster]{agnes}}).}
+  
+  \item{dist}{Deprecated. Use \code{diss} instead.}
 }
 
 \details{

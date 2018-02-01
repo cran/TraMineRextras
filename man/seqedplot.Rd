@@ -23,7 +23,7 @@ seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, title = NULL,
   \item{breaks}{Number of breaks defining a period.}
   \item{ages}{Two numeric values representing minimum and maximum ages to be represented.}
   \item{title}{title for the graphic. Default is \code{NULL}.}
-  \item{type}{the type of the plot. If \code{type="survival"}, plots the survival curves of the first occurence of each event. If \code{type="hazard"}, plots the mean numbers of each event in a given time frame.}
+  \item{type}{the type of the plot. If \code{type="survival"}, plots the survival curves of the first occurrence of each event. If \code{type="hazard"}, plots the mean numbers of each event in a given time frame.}
   \item{ignore}{Character. An optional list of events that will not be plotted.}
   \item{withlegend}{defines if and where the legend of the state colors is plotted.
     The default value \code{"auto"} sets the position of the legend automatically.
@@ -51,7 +51,7 @@ In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles
 }
 \examples{
 data(actcal.tse)
-actcal.tse <- actcal.tse[1:500,]
+actcal.tse <- actcal.tse[1:200,]
 iseq <- unique(actcal.tse$id)
 nseq <- length(iseq)
 data(actcal)

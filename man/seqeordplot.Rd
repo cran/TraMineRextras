@@ -2,9 +2,10 @@
 \alias{seqeordplot}
 \title{Plot the order of event sequences.}
 \description{
-  Illustrates the order of event sequences in a modified time-series
+  Deprecated: Use the seqpcplot function of TraMineR.
+  Displays the order of event sequences in a modified time-series
   plot. The x axis presents the position in the sequence the y axis the
-  event.
+  event.   
 }
 
 \usage{
