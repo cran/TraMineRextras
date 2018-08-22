@@ -15,7 +15,7 @@ TSE_to_STS <- function(seqdata, id=1, timestamp=2, event=3, stm=NULL, tmin=1, tm
 	#id <- id[eorder]
 	#uid <- unique(id)	
 	if(is.null(tmax)){
-		stop(" [!] You should use the tmax arguments to specify the length of the sequence") 
+		stop(" [!] tmax required to determine the length of the sequence")
 	}
 	sts <- matrix(firstState, nrow=nseq, ncol=tmax)
 	oldID <- NULL

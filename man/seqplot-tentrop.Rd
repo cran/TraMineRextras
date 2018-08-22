@@ -12,12 +12,12 @@ Functions to plot, in a same frame, transversal-entropy curves by group or multi
 \usage{
 seqplot.tentrop(seqdata, group, main=NULL,
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
-    xtstep=NULL, with.legend=TRUE, glabels=NULL,
+    xtstep=NULL, tick.last=NULL, with.legend=TRUE, glabels=NULL,
     legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 
 seqplot.tentrop.m(seqdata.list, main=NULL,
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
-    xtstep=NULL, with.legend=TRUE, glabels=NULL,
+    xtstep=NULL, tick.last=NULL, with.legend=TRUE, glabels=NULL,
     legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 }
 
@@ -40,7 +40,9 @@ seqplot.tentrop.m(seqdata.list, main=NULL,
 
   \item{xtlab}{vector of strings defining the x-axis tick labels.}
 
-  \item{xtstep}{integer: step between tick marks on the x-axis.}
+  \item{xtstep}{integer: step between tick marks on the x-axis. If unspecified, attribute \code{xtstep} of (first) \code{seqdata} is used.}
+
+  \item{tick.last}{logical. Should a tick mark be enforced at the last position on the x-axis? If unspecified, attribute \code{tick.last} of (first) \code{seqdata} is used.}
 
   \item{glabels}{a vector of strings with the curve labels. If \code{NULL} curves are labeled with the levels of the group variable or, for \code{seqplot.tentrop.m}, as \code{seq1, seq2, ...}}
 

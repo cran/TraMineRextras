@@ -7,7 +7,7 @@
 }
 \usage{
 \method{plot}{stslist.surv}(x, cpal = NULL, ylab = NULL, xaxis = TRUE,
-  yaxis = TRUE, xtstep = NULL, cex.axis = 1, ...)
+  yaxis = TRUE, xtstep = NULL, tick.last = NULL, cex.axis = 1, ...)
 }
 \arguments{
   \item{x}{
@@ -21,7 +21,7 @@
   }
   \item{xaxis}{Logical. Should the x-axis be plotted. Default is \code{TRUE}.}
   \item{yaxis}{Logical. Should the y-axis be plotted. Default is \code{TRUE}.}
-  
+
   \item{xtstep}{
     Optional interval at which the tick-marks of the x-axis are
     displayed. For example, with \code{xtstep = 3} a tick-mark is drawn at
@@ -29,6 +29,8 @@
     the available space and is dealt with automatically. If unspecified, the
     \code{xtstep} attribute of the \code{x} object is used.
   }
+  \item{tick.last}{Logical. Should a tick mark be enforced at the last position on the x-axis? If unspecified, the \code{tick.last} attribute of the \code{x} object is used.}
+
   \item{cex.axis}{
     Expansion factor for the font size of the axis labels and
     names. The default value is 1. Values lesser than 1 will reduce the size of
@@ -42,7 +44,7 @@
 }
 \details{
   This is the plot method for the output produced by the \code{\link{seqsurv}}
-  function, i.e., objects of class \emph{stslist.surv}. It displays the survival 
+  function, i.e., objects of class \emph{stslist.surv}. It displays the survival
   curves fitted for states in sequences.
 
 %%  FIXME (Matthias).

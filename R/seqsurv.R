@@ -101,6 +101,7 @@ seqsurv <- function(seqdata, groups = NULL, per.state = FALSE, state = NULL,
   if (exists("ltext")) attr(res, "ltext") <- ltext
   attr(res, "cpal") <- cpal
   attr(res, "xtstep") <- attr(seqdata, "xtstep")
+  attr(res, "tick.last") <- attr(seqdata, "tick.last")
   class(res) <- c("stslist.surv", class(res))
   return(res)
 }

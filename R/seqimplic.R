@@ -115,13 +115,20 @@ seqimplic <- function(seqdata, group, with.missing=FALSE, weighted=TRUE, na.rm=T
 	}
 	class(ret) <- "seqimplic"
 	ret$xtstep <- attr(seqdata, "xtstep")
+	ret$tick.last <- attr(seqdata, "tick.last")
 	return(ret)
 }
 
 
 
 
-print.seqimplic <- function(x, xtstep=x$xtstep, round=NULL, conf.level=NULL, na.print="", ...){
+print.seqimplic <- function(x, xtstep=NULL, tick.last=NULL, round=NULL, conf.level=NULL, na.print="", ...){
+	if (is.null(xtstep)) {
+		xtstep <- ifelse(!is.null(x$xtstep), x$xtstep, 1)
+	}
+	if(is.null(tick.last)){
+		tick.last <- ifelse(!is.null(x$tick.last), x$tick.last, FALSE)
+	}
 	indices <- x$indices
 	if(!is.null(round)){
 		indices <- round(indices, round)
@@ -138,14 +145,17 @@ print.seqimplic <- function(x, xtstep=x$xtstep, round=NULL, conf.level=NULL, na.
 	}
 	for(ll in x$levels){
 		cat(ll, "\n")
-		tpos <- seq(1, length(dimnames(indices)[[3]]), xtstep)
+    npos <- length(dimnames(indices)[[3]])
+		tpos <- seq(1, npos, xtstep)
+    if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
 		print(indices[ll, , tpos], na.print=na.print, ...)
 	}
 }
 
 
 plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
-	ylab="Implication", yaxis=TRUE, axes="all", xtlab=NULL, cex.axis=1,
+	ylab="Implication", yaxis=TRUE, axes="all", xtlab=NULL,
+  xtstep = NULL, tick.last = NULL, cex.axis=1,
 	with.legend="auto", ltext=NULL, cex.legend=1,
 	legend.prop=NA, rows=NA, cols=NA, conf.level=0.95, lwd=1, only.levels=NULL, ...){
 	
@@ -154,6 +164,13 @@ plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
 	if(is.null(only.levels)){
 		only.levels <- x$levels
 	}
+	if (is.null(xtstep)) {
+		xtstep <- ifelse(!is.null(x$xtstep), x$xtstep, 1)
+	}
+	if(is.null(tick.last)){
+		tick.last <- ifelse(!is.null(x$tick.last), x$tick.last, FALSE)
+	}
+
 	plotindex <- (1:length(x$levels))[x$levels %in% only.levels]
 	nplot <- length(plotindex)
 	if(nplot>1||with.legend!=FALSE){
@@ -191,7 +208,9 @@ plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
 			if (is.null(xtlab)){
 				xtlab <- dimnames(x$indices)[[3]]
 			}
-			tpos <- seq(1, length(xtlab), x$xtstep)
+      npos <- length(xtlab)
+		  tpos <- seq(from=1, to=npos, by=xtstep)
+      if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
 			axis(1, at=tpos-0.5, labels=xtlab[tpos], cex.axis=cex.axis)
 		}
 		if (is.null(yaxis) || yaxis) {

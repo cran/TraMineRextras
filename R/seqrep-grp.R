@@ -13,10 +13,13 @@ seqrep.grp <- function(seqdata, group = NULL, diss = NULL, ret = "stat", with.mi
         }
     grp <- group
     if (is.null(grp)) grp <- rep(1, nrow(seqdata))
+    grp <- TraMineR:::group(grp)
     if (length(grp) != nrow(seqdata)){
         stop("length(grp) not equal to number of sequences",
             call. = FALSE)
         }
+    if (any(xtabs( ~ grp) < 2))
+      stop("Each group must have 2 or more cases. At least one group has only 1.", call.=FALSE)
 
     levg <- levels(grp <- factor(grp))
 

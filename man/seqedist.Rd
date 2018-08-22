@@ -13,15 +13,17 @@ seqedist(seqe, idcost, vparam, interval="No", norm="YujianBo")
   \item{idcost}{Insertion/deletion cost of the different type of event (one entry per event type).}
   \item{vparam}{The cost of moving an event of one time unit.}
   \item{norm}{Character. One of \code{"YujianBo"} (respects triangle inequality), \code{"max"} (maximum distance) or \code{"none"}.}
-  \item{interval}{Character. One of \code{"No"} (absolute ages), \code{"previous"} (time spent since previous event) or \code{"next"} (time spent until next event.).}
+  \item{interval}{Character. One of \code{"No"} (absolute ages), \code{"previous"} (time spent since previous event) or \code{"next"} (time spent until next event).}
 }
 \value{a distance matrix.}
 
 \author{Matthias Studer}
 
 \references{
-Studer, M., Müller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des séquences d'événements", 
-In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles technologies de l'information RNTI}. Vol. E-19, pp. 37-48. 
+Studer, M., Müller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des séquences d'événements",
+In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles technologies de l'information RNTI}. Vol. E-19, pp. 37-48.
+
+Ritschard, G., Bürgin, R., and Studer, M. (2014), "Exploratory Mining of Life Event Histories", In McArdle, J.J. & Ritschard, G. (eds) \emph{Contemporary Issues in Exploratory Data Mining in the Behavioral Sciences}. Series: Quantitative Methodology, pp. 221-253. New York: Routledge.
 
 }
 

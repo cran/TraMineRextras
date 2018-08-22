@@ -1,6 +1,31 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.3 [2018-08-22]}{
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqsplot()} now supports the \code{ncol} argument for controlling the number of columns in the color legend.
+      \item
+      \code{plot.stslist.surv()}, \code{seqplot.tentrop()}, , \code{seqplot.tentrop.m()}, \code{plot.seqimplic()}, \code{print.seqimplic()}: new argument \code{tick.last} that when set as \code{TRUE} allows to enforce a tick mark at the last position on the time x-axis. Has no effect when the last position is 1 + a multiple of \code{xtstep}. Default is to use the \code{tick.last} attribute of the state sequence object.
+      \item
+      \code{seqrep.grp()}: an error is raised when one of the groups has less than two cases.
+    }
+  }
+  \subsection{Bug fixes}{
+    \itemize{
+      \item{Function \code{seqgen.missing()} the number of left and right
+        elements to be turned into missings were inverted.}
+    }
+  }
+  \subsection{Misc}{
+    \itemize{
+      \item{Function \code{seqeordplot()} suppressed. It is superseded by the
+       function \code{seqpcplot()} of the TraMineR package.}
+    }
+  }
+}
+
 \section{Changes in version 0.4.2 [2018-02-01]}{
   \subsection{New functions}{
     \itemize{
@@ -88,7 +113,7 @@
 \subsection{Bug Fixes}{
   \itemize{
     \item
-    \code{TSE_to_STS()}: The two last sequences were not converted.
+    \code{TSE_to_STS()}: The two last sequences were not converted and unexpected outcome in case of a single sequence.
     }
 }
 
@@ -113,8 +138,8 @@
 \section{Changes in version 0.2.6 [2017-03-01]}{
 \subsection{Misc}{
   \itemize{
-    \item{Function ctplot() suppressed. It is superseded by the
-       function seqpcplot() of the TraMineR package.}
+    \item{Function \code{ctplot()} suppressed. It is superseded by the
+       function \code{seqpcplot()} of the TraMineR package.}
     \item{C++ routines are now registered.}
 }} }
 

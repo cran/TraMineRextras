@@ -18,6 +18,11 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 	## Storing original optional arguments list
 	oolist <- list(...)
 
+  	leg.ncol <- if ("ncol" %in% names(oolist)) { oolist[["ncol"]] } else { NULL }
+    oolist <- oolist[names(oolist) != "ncol"]
+
+
+
   ## Specific preparation for surv plot
 
      ## survfit accepts a subset argument to produce the survival curves for a subset
@@ -298,8 +303,11 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
       ltext <- ltext.grp
     }
 
-		TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle)
-
+    ## if (is.null(leg.ncol))  ## for backward compatibility
+    if (packageVersion("TraMineR") < '2.0.9')  ## for backward compatibility
+		  TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle)
+    else
+		  TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
 	}
 
 	## Restoring graphical parameters

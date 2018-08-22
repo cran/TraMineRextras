@@ -27,7 +27,7 @@ export(
     createdatadiscrete,
     seqerulesdisc,
     seqstart,
-    seqeordplot,
+    ##seqeordplot,
     seqrep.grp,
     dissvar.grp,
     seqgen.missing,

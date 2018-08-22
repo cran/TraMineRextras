@@ -1,3 +1,26 @@
+                CHANGES IN TraMineRextras VERSION 0.4.3 [2018-08-22]
+
+Changes in existing functions
+    o   seqsplot() now supports the 'ncol' argument for controlling
+        the number of columns in the color legend.
+    o   plot.stslist.surv(), seqplot.tentrop(), seqplot.tentrop.m(),
+        plot.seqimplic(), print.seqimplic(): new argument 'tick.last'
+        that when set as TRUE allows to enforce a tick mark at
+        the last position on the time x-axis. Has no effect when
+        the last position is 1 + a multiple of xtstep.
+        Default is to use the 'tick.last' attribute of the state
+        sequence object.
+    o   seqrep.grp() an error is raised when one of the groups has less than two cases.
+
+Bug fixes
+    o   seqgen.missing(): the number of left and right
+        elements to be turned into missings were inverted.
+
+Misc
+    o   Function seqeordplot() suppressed. It is superseded by the
+        function seqpcplot() of the TraMineR package.
+
+
                 CHANGES IN TraMineRextras VERSION 0.4.2 [2018-02-01]
 
 New functions
@@ -51,7 +74,8 @@ Note
     o   TraMineRextras has been adapted to and requires now TraMineR 2.0-5+.
 
 Bug Fixes
-    o   TSE_to_STS(): Latest sequences were not converted.
+    o   TSE_to_STS(): The two last sequences were not converted and
+        unexpected outcome in case of a single sequence.
 
 Changes in existing functions
     o   seqplot.rf(), seqplot.tentrop(), seqrep.grp(), dissvar.grp(),

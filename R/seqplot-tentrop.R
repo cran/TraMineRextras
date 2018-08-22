@@ -3,7 +3,7 @@
 
 seqplot.tentrop <- function(seqdata, group,
      main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
-     xtlab=NULL, xtstep=NULL,
+     xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
@@ -48,9 +48,12 @@ seqplot.tentrop <- function(seqdata, group,
       glabels <- levels(group)
   }
 
-  if(is.null(xtstep)){
-      xtstep <- attr(seqdata,"xtstep")
-  }
+	if (is.null(xtstep)) {
+		xtstep <- ifelse(!is.null(attr(seqdata, "xtstep")), attr(seqdata, "xtstep"), 1)
+	}
+	if(is.null(tick.last)){
+		tick.last <- ifelse(!is.null(attr(seqdata, "tick.last")), attr(seqdata, "tick.last"), FALSE)
+	}
 
 
   if(is.null(ylim)){
@@ -67,7 +70,9 @@ seqplot.tentrop <- function(seqdata, group,
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
-  axis(1,labels=xtlab[seq(from=1, to=npos, by=xtstep)],at=seq(from=1, to=npos, by=xtstep))
+	tpos <- seq(from=1, to=npos, by=xtstep)
+  if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
+  axis(1,labels=xtlab[tpos],at=tpos)
   axis(2)
   if(with.legend){
     legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
@@ -83,7 +88,7 @@ seqplot.tentrop <- function(seqdata, group,
 
 seqplot.tentrop.m <- function(seqdata.list,
      main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
-     xtlab=NULL, xtstep=NULL,
+     xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
@@ -137,9 +142,12 @@ seqplot.tentrop.m <- function(seqdata.list,
       glabels <- paste("seq",1:length(seqdata.list),sep="")
   }
 
-  if(is.null(xtstep)){
-      xtstep <- attr(seqdata.list[[1]],"xtstep")
-  }
+	if (is.null(xtstep)) {
+		xtstep <- ifelse(!is.null(attr(seqdata.list[[1]], "xtstep")), attr(seqdata.list[[1]], "xtstep"), 1)
+	}
+	if(is.null(tick.last)){
+		tick.last <- ifelse(!is.null(attr(seqdata.list[[1]], "tick.last")), attr(seqdata.list[[1]], "tick.last"), FALSE)
+	}
 
   if(is.null(ylim)){
         maxe <- max(entrop[[1]]$Entropy)
@@ -155,7 +163,9 @@ seqplot.tentrop.m <- function(seqdata.list,
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
-  axis(1,labels=xtlab[seq(from=1, to=npos, by=xtstep)],at=seq(from=1, to=npos, by=xtstep))
+	tpos <- seq(from=1, to=npos, by=xtstep)
+  if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
+  axis(1,labels=xtlab[tpos],at=tpos)
   axis(2)
   if(with.legend){
     legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)

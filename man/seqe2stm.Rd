@@ -26,7 +26,7 @@ By default, a new state is created for each combination of events that already h
 For instance, we may want to forget the "marriage" event once the event "divorce" has occurred.
 
 \code{dropMatrix} specifies for each event given in row, the previous events, given in column that should be forgotten.
-\code{dropList} uses a list to specify the same things. The form is list(event1=c(..., events to forgets), event2=c(..., events to forgets)).
+\code{dropList} uses a list to specify the same thing. The form is list(event1=c(..., events to forget), event2=c(..., events to forget)).
 See example below.
 }
 \value{
