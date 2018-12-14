@@ -26,7 +26,7 @@ citEntry(entry="article",
   year = "2010",
   volume = "E-19",
   pages = "37-48",
-  
+
   booktitle = "Extraction et gestion des connaissances (EGC 2010)",
   textVersion="Studer, M., M\u00FCller, N.S., Ritschard, G. & Gabadinho, A. (2010), Classer, discriminer et visualiser des s\u00E9quences d'\u00E9v\u00E9nements, In Extraction et gestion des connaissances (EGC 2010), Revue des nouvelles technologies de l'information RNTI. Vol. E-19, pp. 37-48. "
 )
@@ -39,9 +39,9 @@ citEntry(entry="incollection",
   editor = "Gilbert Ritschard and Matthias Studer",
   series = "Life Course Research and Social Policies",
   address = "Cham",
-  note = "(forthcoming)",
-  pages = "286-304",
+  volume = 10,
+  pages = "279-295",
 
-  textVersion="Ritschard, G., Bussi, M. & O'Reilly, J. (2018), An Index of Precarity for Measuring Early Employment Insecurity, In Ritschard, G. & Studer, M. (eds) Sequence Analysis and Related Approaches: Innovative Methods and Applications. Series: Life Course Research and Social Policies. pp. 286-304. Cham: Springer.",
+  textVersion="Ritschard, G., Bussi, M. & O'Reilly, J. (2018), An Index of Precarity for Measuring Early Employment Insecurity, In Ritschard, G. & Studer, M. (eds) Sequence Analysis and Related Approaches: Innovative Methods and Applications. Series: Life Course Research and Social Policies. Vol. 10, pp. 279-295. Cham: Springer.",
   header="For the precarity index:"
 )

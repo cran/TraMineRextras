@@ -6,8 +6,9 @@
   the \code{\link{seqsurv}} function.
 }
 \usage{
-\method{plot}{stslist.surv}(x, cpal = NULL, ylab = NULL, xaxis = TRUE,
-  yaxis = TRUE, xtstep = NULL, tick.last = NULL, cex.axis = 1, ...)
+\method{plot}{stslist.surv}(x, cpal = NULL, ylab = NULL, xlab = NULL,
+  xaxis = TRUE, yaxis = TRUE, xtstep = NULL, tick.last = NULL, 
+  cex.axis = 1, ...)
 }
 \arguments{
   \item{x}{
@@ -17,7 +18,10 @@
   \item{cpal}{Vector of colors. Alternative color palette to be used for the drawn lines. The vector should be of length equal to the number of drawn survival curves, i.e., the number of selected states or number of groups when \code{x} was obtained with \code{per.state=TRUE}. When \code{cpal=NULL}, the default colors assigned to the \code{cpal} attribute of \code{x} are used.
   }
   \item{ylab}{
-    An optional label for the y axis. If set to \code{NA}, no label is drawn.
+    Optional label for the y axis. If set as \code{NA}, no label is displayed. If \code{NULL}, a default label is used.
+  }
+  \item{xlab}{
+    Optional label for the x axis. If set as \code{NA}, no label is displayed. If \code{NULL}, a default label is used.
   }
   \item{xaxis}{Logical. Should the x-axis be plotted. Default is \code{TRUE}.}
   \item{yaxis}{Logical. Should the y-axis be plotted. Default is \code{TRUE}.}

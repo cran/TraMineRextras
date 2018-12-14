@@ -1,6 +1,41 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.4 [2018-12-14]}{
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{plot.stslist.surv()}: new \code{xlab} argument.
+      \item
+      \code{seqprecarity()}, \code{seqprecorr()}, and \code{seqprecstart()}: Important
+        code cleaning.
+      \item
+      \code{seqprecarity()}, \code{seqprecorr()}: New argument \code{method} that
+        replaces \code{tr.type} to select the type of transition weights.
+        Two additional methods have been implemented, namely \code{'RANK'}
+        (for rank-based transition weights) and \code{'ONE'} for
+        non-weighted transitions. Also new argument \code{stprec} to allow
+        specifying rank values for \code{method='RANK'}.
+    }
+  }
+
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqsurv()}: levels of spell$states were not ordered conformably with the alphabet of the state sequence object, which caused \code{plot.ststlist.surv} to use wrong colors for the survival curves when \code{per.state=FALSE}.
+      \item
+      \code{seqsplot()}: color synchronization failed when one of the states selected was unobserved in one of the groups.
+      \item
+      \code{seqprecorr()}: identification of non-comparable states did not work as expected.
+      \item
+      \code{seqprecstart()}: did not work as expected when equiv class included incomparable states.
+
+    }
+  }
+
+}
+
+
 \section{Changes in version 0.4.3 [2018-08-22]}{
   \subsection{Changes in existing functions}{
     \itemize{

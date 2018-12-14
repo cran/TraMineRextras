@@ -19,9 +19,18 @@ seqsurv <- function(seqdata, groups = NULL, per.state = FALSE, state = NULL,
   seq.length <- seqlength(seqdata)
   spell$length <- seq.length[spell$id]
   spell$status <- spell$end != spell$length
+  ## GR states must be ordered according to the alphabet for color matches
+  #stlev <- alphabet(seqdata)[alphabet(seqdata) %in% levels(spell$states)]
+  #spell$states <- factor(spell$states, levels=stlev)
+  spell$states <- factor(spell$states, levels=alphabet(seqdata))
 
-  if (is.null(state)) state <- alphabet(seqdata)
-
+  obs.states <- seqstatl(seqdata)
+  if (is.null(state)) state <- obs.states
+  else {
+     state <- state[state %in% obs.states]
+     if (length(state) < 1)
+        stop(strwrap(" [!] state contains only unobserved states"), call. = FALSE)
+  }
  ## Defining group related variables (colors, ltext, ...)
   if (is.null(groups))  ## Make a single group
     groups <- factor(rep("1", nrow(seqdata)))

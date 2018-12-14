@@ -1,6 +1,6 @@
 # Authors: Pierre-Alexandre Fonta, Matthias Studer, Gilbert Ritschard (2018)
 
-plot.stslist.surv <- function(x, cpal = NULL, ylab = NULL, xaxis = TRUE,
+plot.stslist.surv <- function(x, cpal = NULL, ylab = NULL, xlab = NULL, xaxis = TRUE,
   yaxis = TRUE, xtstep = NULL, tick.last = NULL, cex.axis = 1, ...) {
   if (yaxis) yaxt <- "s" else yaxt <- "n"
   if (is.null(cpal)) cpal <- attr(x, "cpal")
@@ -11,7 +11,7 @@ plot.stslist.surv <- function(x, cpal = NULL, ylab = NULL, xaxis = TRUE,
 	if(is.null(tick.last)){
 		tick.last <- ifelse(!is.null(attr(x, "tick.last")), attr(x, "tick.last"), FALSE)
 	}
-  xlab <- "Time since the start of the spell"
+  if (is.null(xlab)) xlab <- "Time since start of the spell"
   c <- class(x)
   class(x) <- c[c != "stslist.surv"]
   if ("survfit" %in% class(x)) {

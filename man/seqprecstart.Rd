@@ -10,7 +10,7 @@ Determines the initial state precarity level from the state ordering. (See detai
 }
 
 \usage{
-seqprecstart(seqdata, state.order=alphabet(seqdata), state.equiv=NULL)
+seqprecstart(seqdata, state.order=alphabet(seqdata), state.equiv=NULL, stprec=NULL)
 }
 
 \arguments{
@@ -19,16 +19,22 @@ seqprecstart(seqdata, state.order=alphabet(seqdata), state.equiv=NULL)
   \item{state.order}{Vector of short state labels defining the order of the states. First the less precarious (most positive) state and then the other states in increasing precariousness order. States of the alphabet that are not included here define the non-comparable states.}
 
   \item{state.equiv}{List of state equivalence classes. The classes in the list are each set as the vector of the short labels of the states forming the class. }
+      
+  \item{stprec}{Vector of user defined state precarity levels ordered conformably with the alphabet of seqdata.}
 
 }
 
 
 \details{
-The initial state precarity levels are set as equivalently spaced values between 0 and 1 assigned to the states in the specified order.
+When \code{stprec=NULL}, the initial state precarity levels are set as equivalently spaced values between 0 and 1 assigned to the states in the specified order.
 
 Equivalent states get the mean value of the states in the equivalence class.
 
-Incomparable states (those not listed on the state.order list) receive a value of .5, i.e., the average of all state costs.
+Incomparable states (those not on the \code{state.order} list and not member of an equivalent class having a state listed in \code{state.order}) receive the average of all state precarity levels.
+
+When \code{stprec} is user defined, the provided vector is normalized by its maximal value and mean value of states in a class are assigned to all class members.
+
+Only one state per class needs to be on the state order list. If more than one member is on the state order list they should be listed consecutively. Note that currently no check is performed.
 
 }
 
@@ -47,9 +53,9 @@ The vector of assigned precarity levels sorted according to the original order o
 
 \references{
 
-Ritschard, G., Bussi, M., and O'Reilly, J. (forthcoming), "An index of precarity for
+Ritschard, G., Bussi, M., and O'Reilly, J. (2018), "An index of precarity for
 measuring early employment insecurity", in G. Ritschard, and M. Studer, \emph{Sequence Analysis and Related Approaches: Innovative Methods and Applications}, Series Life Course Research and Social
-Policies, Springer.
+Policies, Vol. 10, pp 279-295. Cham: Springer.
 
 
 }
