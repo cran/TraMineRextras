@@ -1,11 +1,12 @@
 ## To be used with seqprecstart and seqprecorr
-states.check <- function(seqdata, state.order, state.equiv){
+states.check <- function(seqdata, state.order, state.equiv, with.missing=FALSE){
 
 
   if(length(state.order) != length(unique(state.order)))
       stop(" [!] Multiple occurrences of same state in state.order: ", paste(state.order, collapse=" "))
 
   alphabet <- alphabet(seqdata)
+  if(with.missing) alphabet <- c(alphabet, attr(seqdata,"nr"))
   inexistant_al <- which(is.na(match(state.order, alphabet)))
   ## Check that the listed inexistant state is not NA
   if(length(inexistant_al)>0 && !is.numeric(seqdata)) {

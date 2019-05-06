@@ -1,14 +1,17 @@
-seqprecstart <- function(seqdata, state.order=alphabet(seqdata), state.equiv=NULL, stprec=NULL) {
+seqprecstart <- function(seqdata, state.order=alphabet(seqdata), state.equiv=NULL, stprec=NULL, with.missing=FALSE) {
   ## cost of starting state
 
-  state.order <- states.check(seqdata, state.order, state.equiv)
+  state.order <- states.check(seqdata, state.order, state.equiv, with.missing=with.missing)
 
   step <- 1/(length(state.order)-1)
 
+  alphabet <- alphabet(seqdata)
+  if (with.missing) alphabet <- c(alphabet, attr(seqdata,"nr"))
+
   state.noncomp <- NULL
-  if (length(unique(state.order)) < length(alphabet(seqdata))){
-    inoncomp <- which(is.na(match(alphabet(seqdata),unique(state.order))))
-    state.noncomp <- alphabet(seqdata)[inoncomp]
+  if (length(unique(state.order)) < length(alphabet)){
+    inoncomp <- which(is.na(match(alphabet,unique(state.order))))
+    state.noncomp <- alphabet[inoncomp]
     state.order.plus <- c(state.order, state.noncomp)
   }
   else {
@@ -16,8 +19,8 @@ seqprecstart <- function(seqdata, state.order=alphabet(seqdata), state.equiv=NUL
   }
 
 
-  ord <- match(state.order.plus,alphabet(seqdata))
-  ordo <- match(alphabet(seqdata),state.order.plus)
+  ord <- match(state.order.plus,alphabet)
+  ordo <- match(alphabet,state.order.plus)
 
   if(is.null(stprec)){
     stprec <- seq(from=0, to=1, by=step)
@@ -32,7 +35,7 @@ seqprecstart <- function(seqdata, state.order=alphabet(seqdata), state.equiv=NUL
   if(!is.null(state.equiv)){
     lc <- length(state.equiv)
     for (i in 1:lc) {
-      iequiv <- match(state.equiv[[i]],alphabet(seqdata))
+      iequiv <- match(state.equiv[[i]],alphabet)
       stprec[iequiv] <- mean(stprec[iequiv])
     }
   }

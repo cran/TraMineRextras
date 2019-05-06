@@ -126,7 +126,9 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 				ony <- survfit(Surv(time, as.integer(status))~ 1)
 				#ony <- ecdf(agesmatrices[[event]][gindex[[np]],1])
 				if (doplot) {
-					plot(ony, col=cpal[event], firstx=ages[1], xmax=ages[2], main=title[np], conf.int=FALSE, xlab=xlab, ylab=ylab, ...)
+          ## plot.survfit has lost his firstx argument (undocumented, but existed at least up to survival v 2.31)
+					##plot(ony, col=cpal[event], firstx=ages[1], xmax=ages[2], main=title[np], conf.int=FALSE, xlab=xlab, ylab=ylab, ...)
+					plot(ony, col=cpal[event], xmax=ages[2], main=title[np], conf.int=FALSE, xlab=xlab, ylab=ylab, xlim=ages, ...)
 					doplot <- FALSE
 				}else{
 					lines(ony, col=cpal[event], ...)

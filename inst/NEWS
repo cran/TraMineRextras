@@ -1,4 +1,25 @@
-                CHANGES IN TraMineRextras VERSION 0.4.4 [2018-12-14] 
+                CHANGES IN TraMineRextras VERSION 0.4.5 [2019-05-06] 
+
+Changes in existing functions
+    o   seqprecarity() and seqprecstart() gain a argument 'with.missing'.
+    o   seqprecarity()}: there is now a print method for the generated
+        'seqprec' object that prevents the printing of all its attributes.
+    o   seqprecorr(): new 'border.effect' argument. To avoid a border 
+        effect, when method is 'FREQ', 'TRATEDSS', or 'TRATE', the 
+        computed transition frequencies or probabilities p are adjusted 
+        as p - p/border.effect when any p > 1 - .1/border.effect.
+    o   seqtabstocc() gains an argument 'with.missing'.
+
+Bug fixes
+    o   seqprecorr(): method='TRATE' now works as expected.
+    o   seqprecarity(), seqprecorr(), and seqprecstart(): errors due
+        to bad handling of missing states.
+    o   seqedplot() called plot.survfit with a firstx argument
+        that has been suppressed (non documented in survival news);
+        now uses xlim instead.
+
+
+                CHANGES IN TraMineRextras VERSION 0.4.4 [2018-12-14]
 
 Changes in existing functions
     o   plot.stslist.surv(): new 'xlab' argument.
@@ -22,7 +43,6 @@ Bug fixes
         not work as expected.
     o   seqprecstart(): did not work as expected when equiv class
         included incomparable states.
-
 
 
                 CHANGES IN TraMineRextras VERSION 0.4.3 [2018-08-22]

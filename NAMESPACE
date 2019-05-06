@@ -59,6 +59,13 @@ S3method(print, seqimplic)
 ## stlist.surv methods
 S3method(plot, stslist.surv)
 
+## seqprec methods
+S3method(print, seqprec)
+
+## seqprecorr methods
+S3method(print, seqprecorr)
+
+
 useDynLib(TraMineRextras,
   .registration = TRUE,
   TMREXTRAS_tmrextrasseqstart=tmrextrasseqstart

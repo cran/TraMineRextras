@@ -1,6 +1,39 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.5 [2019-05-06]}{
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqprecarity()} and \code{seqprecstart()} gain an argument \code{with.missing}.
+      \item
+      \code{seqprecarity()}: there is now a print method for the generated \code{seqprec} object that prevents the printing of all its attributes.
+      \item
+      \code{seqprecorr()}: new \code{border.effect} argument. To avoid a border
+        effect, when method is \code{'FREQ'}, \code{'TRATEDSS'}, or \code{'TRATE'}, the
+        computed transition frequencies or probabilities \eqn{p} are adjusted
+        as \eqn{p - p/}\code{border.effect} when any \eqn{p > 1 - .1/}\code{border.effect}.
+      \item
+      \code{seqtabstocc()} gains an argument \code{with.missing}.
+    }
+  }
+
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqprecorr()}: \code{method='TRATE'} now works as expected.
+
+      \item
+      \code{seqprecarity()}, \code{seqprecorr()}, and \code{seqprecstart()}: errors due to bad handling of missing states.
+      \item
+      \code{seqedplot()} called \code{plot.survfit} with a \code{firstx} argument
+        that has been suppressed (non documented in survival news);
+        now uses \code{xlim} instead.
+
+    }
+  }
+}
+
 \section{Changes in version 0.4.4 [2018-12-14]}{
   \subsection{Changes in existing functions}{
     \itemize{
