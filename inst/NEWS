@@ -1,12 +1,26 @@
-                CHANGES IN TraMineRextras VERSION 0.4.5 [2019-05-06] 
+                CHANGES IN TraMineRextras VERSION 0.4.6 [2019-09-06]
+
+Changes in existing functions
+    o   seqedplot(): argument 'title' is deprecated, use 'main' instead.
+    o   seqedplot(): when type = 'survival', now supports the 'conf.int'
+        argument of plot.survfit to control the display of confidence 
+        intervals.
+
+Bug fixes
+    o   seqedplot(): An issue with the joint use of the 'xmax' and
+        'xlim' arguments when calling plot.survfit raised a warning 
+        since Survival v3.0.
+
+
+                CHANGES IN TraMineRextras VERSION 0.4.5 [2019-05-06]
 
 Changes in existing functions
     o   seqprecarity() and seqprecstart() gain a argument 'with.missing'.
     o   seqprecarity()}: there is now a print method for the generated
         'seqprec' object that prevents the printing of all its attributes.
-    o   seqprecorr(): new 'border.effect' argument. To avoid a border 
-        effect, when method is 'FREQ', 'TRATEDSS', or 'TRATE', the 
-        computed transition frequencies or probabilities p are adjusted 
+    o   seqprecorr(): new 'border.effect' argument. To avoid a border
+        effect, when method is 'FREQ', 'TRATEDSS', or 'TRATE', the
+        computed transition frequencies or probabilities p are adjusted
         as p - p/border.effect when any p > 1 - .1/border.effect.
     o   seqtabstocc() gains an argument 'with.missing'.
 

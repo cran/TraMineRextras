@@ -1,12 +1,21 @@
-seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="survival", ignore=NULL,
+seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL, main=NULL, type="survival", ignore=NULL,
 	withlegend="auto",cex.legend=1, use.layout=(!is.null(group) | withlegend!=FALSE),legend.prop=NA, rows=NA, cols=NA, axes="all",
-	xlab="time", ylab=ifelse(type=="survival", "survival probability", "mean number of events"), cpal=NULL, ...){
-	
+	xlab="time", ylab=ifelse(type=="survival", "survival probability", "mean number of events"), cpal=NULL,
+  title, ...){
+
+  TraMineR.check.depr.args(alist(main = title))
+
 	if(!is.seqelist(seqe)) stop("seqe should be a seqelist. See help on seqecreate.")
 	
 	if(type=="survival" && all(seqelength(seqe)==-1)){
 		stop(" [!] You should set observation time to use type='survival' (see seqelength)")
 	}
+
+	## Storing original optional arguments list
+	oolist <- list(...)
+  if (!("conf.int" %in% names(oolist))) oolist[["conf.int"]] <- "none"
+
+
 	#if(is.null(ignore)) ignore <- character()
 	## ==============================
 	## Preparing if group is not null
@@ -21,10 +30,10 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 			gindex[[s]] <- which(group==levels(group)[s])
 
 		## Title of each plot
-		if (!is.null(title))
-			title <- paste(title,"-",levels(group))
+		if (!is.null(main))
+			main <- paste(main,"-",levels(group))
 		else
-			title <- levels(group)
+			main <- levels(group)
 	}
 	else {
 		nplot <- 1
@@ -108,7 +117,7 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 			doplot <- TRUE
 			for (event in 1:nevent) {
 				if (doplot) {
-					plot(onx, ony[[np]][[event]], ylim=c(miny,maxy), col=cpal[event], type="l", xlab=xlab, ylab=ylab, main=title[np], ...)
+					plot(onx, ony[[np]][[event]], ylim=c(miny,maxy), col=cpal[event], type="l", xlab=xlab, ylab=ylab, main=main[np], ...)
 					doplot <- FALSE
 				}else{
 					lines(onx, ony[[np]][[event]], col=cpal[event], ...)
@@ -127,11 +136,19 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL,title=NULL, type="s
 				#ony <- ecdf(agesmatrices[[event]][gindex[[np]],1])
 				if (doplot) {
           ## plot.survfit has lost his firstx argument (undocumented, but existed at least up to survival v 2.31)
-					##plot(ony, col=cpal[event], firstx=ages[1], xmax=ages[2], main=title[np], conf.int=FALSE, xlab=xlab, ylab=ylab, ...)
-					plot(ony, col=cpal[event], xmax=ages[2], main=title[np], conf.int=FALSE, xlab=xlab, ylab=ylab, xlim=ages, ...)
+					##plot(ony, col=cpal[event], firstx=ages[1], xmax=ages[2], main=main[np], conf.int=FALSE, xlab=xlab, ylab=ylab, ...)
+					## using xmax and xlim produces warning since survival v 3.0
+          ##plot(ony, col=cpal[event], xmax=ages[2], main=main[np], conf.int=FALSE, xlab=xlab, ylab=ylab, xlim=ages, ...)
+					##plot(ony, col=cpal[event], main=main[np], xlab=xlab, ylab=ylab, xlim=ages, ...)
+          plist <- list(ony, col=cpal[event], main=main[np], xlab=xlab, ylab=ylab, xlim=ages)
+          plist <- c(plist, oolist)
+          do.call(plot, args=plist)
 					doplot <- FALSE
 				}else{
-					lines(ony, col=cpal[event], ...)
+					##lines(ony, col=cpal[event], ...)
+          plist <- list(ony, col=cpal[event])
+          plist <- c(plist, oolist)
+          do.call(lines, args=plist)
 				}
 			}
 		}

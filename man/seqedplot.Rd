@@ -9,12 +9,12 @@ The first one (\code{type="survival"}) plots the survival curves of the first oc
 The second one (\code{type="hazard"}) plots the mean counts of each events in a given time frame.
 }
 \usage{
-seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, title = NULL,
+seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, main = NULL,
    type = "survival", ignore = NULL, withlegend = "auto", cex.legend = 1,
    use.layout = (!is.null(group) | withlegend != FALSE),
    legend.prop = NA, rows = NA, cols = NA, axes = "all", xlab = "time",
    ylab = ifelse(type == "survival", "survival probability", "mean number of events"),
-   cpal = NULL, ...)
+   cpal = NULL, title, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@ seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, title = NULL,
   \item{group}{Plots one plot for each level of the factor given as argument.}
   \item{breaks}{Number of breaks defining a period.}
   \item{ages}{Two numeric values representing minimum and maximum ages to be represented.}
-  \item{title}{title for the graphic. Default is \code{NULL}.}
+  \item{main}{title for the graphic. Default is \code{NULL}.}
   \item{type}{the type of the plot. If \code{type="survival"}, plots the survival curves of the first occurrence of each event. If \code{type="hazard"}, plots the mean numbers of each event in a given time frame.}
   \item{ignore}{Character. An optional list of events that will not be plotted.}
   \item{withlegend}{defines if and where the legend of the state colors is plotted.
@@ -40,13 +40,14 @@ seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, title = NULL,
   \item{xlab}{an optional label for the x-axis. If set to \code{NA}, no label is drawn.}
   \item{ylab}{an optional label for the y-axis. If set to \code{NA}, no label is drawn.}
   \item{cpal}{Color palette used for the events. If \code{NULL}, a new color palette is generated.}
-  \item{\dots}{Additionnal arguments passed to \code{\link[graphics]{lines}}.}
+  \item{title}{Deprecated. Use \code{main} instead.}
+  \item{\dots}{Additional arguments passed to \code{\link[graphics]{lines}}.}
 }
 
 \author{Matthias Studer}
 
 \references{
-Studer, M., Müller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des séquences d'événements",
+Studer, M., M\"{u}ller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des s\'{e}quences d'\'{e}v\'{e}nements",
 In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles technologies de l'information RNTI}. Vol. E-19, pp. 37-48.
 }
 \examples{
