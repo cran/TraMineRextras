@@ -13,7 +13,7 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL, main=NULL, type="s
 
 	## Storing original optional arguments list
 	oolist <- list(...)
-  if (!("conf.int" %in% names(oolist))) oolist[["conf.int"]] <- "none"
+  if (!("conf.int" %in% names(oolist))) oolist[["conf.int"]] <- FALSE
 
 
 	#if(is.null(ignore)) ignore <- character()
@@ -67,6 +67,8 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL, main=NULL, type="s
 	allevents <- which(!levels(seqe) %in% ignore)
 	numevent <- length(levels(seqe))
 	nevent <- length(allevents)
+  if (nevent < 1) stop("At least one event should remain aside the ignore list!")
+
 	minage <- NA
 	maxage <- NA
 	for(event in 1:nevent){
@@ -84,6 +86,8 @@ seqedplot <- function(seqe, group=NULL, breaks=20, ages=NULL, main=NULL, type="s
 	}
 	if(is.null(ages))ages <- c(minage, maxage)
 	if(is.null(cpal)) {
+		if (nevent==1)
+			cpal <- brewer.pal(3,"Dark2")[1]
 		if (nevent==2)
 			cpal <- brewer.pal(3,"Dark2")[1:2]
 		else if (nevent<=8)

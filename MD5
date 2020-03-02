@@ -1,5 +1,5 @@
-72561b50fdb32d87aa424a2d3a8c9b4b *DESCRIPTION
-c9450660c7dd53ce64d9f213683340cd *NAMESPACE
+0d101db98f5928945fc1f4ba1f6956d2 *DESCRIPTION
+64c7fbd7cf5a32236e280fa5f5346c2f *NAMESPACE
 bef7f51347882da3af275dcb7b039520 *R/FCE_to_TSE.R
 51ca4c3e07d1d4fb224e734e647516d0 *R/HSPELL_to_STS.R
 3139ea0ccc7e338b5ef4fdb7abc11b91 *R/TSE_TO_STS.R
@@ -14,7 +14,7 @@ cb224dd4e0f457d3cef2edd44187cba6 *R/group-p.R
 983103213b8fce9cdc2733b689f3cd5f *R/seqauto.R
 b9a171e317128aa0201cf9fa57b3ce31 *R/seqe2stm.R
 23124fcf6dffb781ececca0088c1f571 *R/seqedist.R
-dbd6b83d60697cc0026dbe6d5a2779ef *R/seqedplot.R
+0f17b9ba51683b204cd542517f87f452 *R/seqedplot.R
 f0c5c5ebda0e55054386d7fc58f9b7fa *R/seqeformat.R
 ed0cdd956a5e34a38b194ac5e057e9bd *R/seqemlt.R
 26c23e0b7cb59416f438024f5accb3c0 *R/seqentrans.R
@@ -24,10 +24,6 @@ dc3acf35a9ea79690d042516053895f4 *R/seqerulesdisc.R
 5e84c20e702b27f4ae06392b4ca996cb *R/seqimplic.R
 ea7d0491b28b4b9b86c22c776abe4b15 *R/seqplot-rf.R
 3e64ee8d088d4f925b57814dc4a17be3 *R/seqplot-tentrop.R
-d90167605a1dadca2e6142d23ffa6db9 *R/seqprec.states.check.R
-1bffe119a06079cbeb5c079bdbd0db27 *R/seqprecarity.R
-8a863b000f078ad3048dbd3406a5e2e2 *R/seqprecorr.R
-ba7a78709845a9408e0c3fc46fff486a *R/seqprecstart.R
 b4faf2db9119e01b80459e953ca73f8d *R/seqrep-grp.R
 ce70bc2041a0523e403b18c19288e012 *R/seqsplot.R
 f8a6de55f2bd5f4e702e56d7ae04dbac *R/seqstart.R
@@ -36,9 +32,9 @@ fc84cba2c35f93c5d9bddabad3032731 *R/seqtabstocc.R
 06d8dc167f09429403e0bcc70646e01b *R/sortv.R
 bed83b07c3eb568de1590a64ed195415 *R/toPersonPeriod.R
 a099c3bd211c0b2fdec0da26a8994a5c *R/zzz.R
-96fd4962db7d55b26931642279b1dab8 *inst/CITATION
-0e46ccdf28e1e81654dd41fd1f210721 *inst/NEWS
-6f3ce45b309bc250119a3f31166fb6f3 *inst/NEWS.Rd
+41077cd90986a7e9b548b99ba0c41fb2 *inst/CITATION
+d9178204243faeb9b7c1029fbb03d4d6 *inst/NEWS
+98fd9672ce537b585c5e25f8146dd2fa *inst/NEWS.Rd
 021e321fee2ea861a0554e0a47bb5ae1 *man/FCE_to_TSE.Rd
 382a2bd76845f861c0f23ee958ad92c8 *man/HSPELL_to_STS.Rd
 ba54c77e25cf59471db590a629de66c0 *man/TSE_to_STS.Rd
@@ -54,7 +50,7 @@ e77da38edb7123713bbc9faf39a6f504 *man/rowmode.Rd
 29f526132c92c802c5302639e1f94105 *man/seqauto.Rd
 05b1976d127c365fce249198a633d7a7 *man/seqe2stm.Rd
 fa136011bcc42c742b9785bb15510dfd *man/seqedist.Rd
-8e2e4156bf75f908c78ffdad44b90a3a *man/seqedplot.Rd
+fde05b302131dcd1c41dd6bd422d2e82 *man/seqedplot.Rd
 0fa66017030dfc38dc85e49939dd05ed *man/seqemlt.Rd
 d8255c03cacc767bb8ddd219d15aeea6 *man/seqentrans.Rd
 60c86a75c0817e9da67e05c7e47471eb *man/seqerulesdisc.Rd
@@ -63,8 +59,6 @@ bb3b4bd104e0464550d6460fb0c46e6d *man/seqgranularity.Rd
 685682c77de1efe89ea32ff98c7188b5 *man/seqimplic.Rd
 8f07271eb2588e7679fd5715c0037f42 *man/seqplot-rf.Rd
 72eac26e0e565d6ef26ab0cd7756aafa *man/seqplot-tentrop.Rd
-5ca971c7ea5232f89f7e2686412bbb45 *man/seqprecarity.Rd
-933d65f298c9411646c4f2bd971f42a4 *man/seqprecstart.Rd
 30965fbcc826c49518c9424e24199c8b *man/seqrep-grp.Rd
 1df2dcb529d1faef412d9fadc2fa9679 *man/seqsplot.Rd
 251a4fab24cd3c3db43b3a07ab52b778 *man/seqstart.Rd

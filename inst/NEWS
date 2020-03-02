@@ -1,14 +1,26 @@
-                CHANGES IN TraMineRextras VERSION 0.4.6 [2019-09-06]
+                CHANGES IN TraMineRextras VERSION 0.4.7 [2020-03-02]
+
+Bug fixes
+    o   seqedplot(): Issue with color selection when only one event.
+    o   seqedplot(): Now calls plot.survfit with by default
+        conf.int=FALSE instead of "none" (advised by Terry Therneau).
+
+Misc.
+    o   seqprecarity(), seqprecorr(), seqprecstart() deleted. These
+        functions are in TraMineR since v 2.0-13.
+        
+
+                CHANGES IN TraMineRextras VERSION 0.4.6 [2019-05-06]
 
 Changes in existing functions
     o   seqedplot(): argument 'title' is deprecated, use 'main' instead.
     o   seqedplot(): when type = 'survival', now supports the 'conf.int'
-        argument of plot.survfit to control the display of confidence 
+        argument of plot.survfit to control the display of confidence
         intervals.
 
 Bug fixes
     o   seqedplot(): An issue with the joint use of the 'xmax' and
-        'xlim' arguments when calling plot.survfit raised a warning 
+        'xlim' arguments when calling plot.survfit raised a warning
         since Survival v3.0.
 
 

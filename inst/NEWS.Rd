@@ -1,6 +1,24 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.4.7 [2020-03-02]}{
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqedplot()}: issue with color selection when only one event.
+      \item
+      \code{seqedplot()}: Now calls \code{plot.survfit} with by default
+        \code{conf.int=FALSE} instead of \code{"none"} (advised by Terry Therneau).
+    }
+  }
+  \subsection{Misc.}{
+    \itemize{
+      \item
+      \code{seqprecarity(), seqprecorr(), seqprecstart()} deleted. These functions are now in TraMineR since v 2.0-13.
+    }
+  }
+}
+
 \section{Changes in version 0.4.6 [2019-09-06]}{
   \subsection{Changes in existing functions}{
     \itemize{

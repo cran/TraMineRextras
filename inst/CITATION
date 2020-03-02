@@ -5,24 +5,7 @@ p2 <- person("Gilbert", "Ritschard", email = "gilbert.ritschard@unige.ch")
 p3 <- person("Matthias", "Studer", email = "matthias.studer@unige.ch")
 p4 <- person("Nicolas S.", "M\u00FCller", email = "nsmuller@gmail.com")
 p5 <- person("Reto", "B\u00FCrgin", email = "rbuergin@gmx.ch")
-p6 <- person("Marherita", "Bussi")
-p7 <- person("Jacqueline", "O'Reilly")
 
-citEntry(entry="incollection",
-  author = personList(p1, p6, p7),
-  title = "An Index of Precarity for Measuring Early Employment Insecurity",
-  booktitle = "Sequence Analysis and Related Approaches: Innovative Methods and Applications",
-  publisher = "Springer",
-  year = "2018",
-  editor = "Gilbert Ritschard and Matthias Studer",
-  series = "Life Course Research and Social Policies",
-  address = "Cham",
-  volume = 10,
-  pages = "279-295",
-
-  textVersion="Ritschard, G., Bussi, M. & O'Reilly, J. (2018), An Index of Precarity for Measuring Early Employment Insecurity, In Ritschard, G. & Studer, M. (eds) Sequence Analysis and Related Approaches: Innovative Methods and Applications. Series: Life Course Research and Social Policies. Vol. 10, pp. 279-295. Cham: Springer.",
-  header="For the precarity index:"
-)
 citEntry(entry="article",
   author = personList(p3, p4, p2, p1),
   title = "Classer, discriminer et visualiser des s\u00E9quences d'\u00E9v\u00E9nements",

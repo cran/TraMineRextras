@@ -37,9 +37,6 @@ export(
     seqemlt,
     seqimplic,
     seqtabstocc,
-    seqprecarity,
-    seqprecorr,
-    seqprecstart,
     seqsurv,
     seqsplot
 )
@@ -58,12 +55,6 @@ S3method(print, seqimplic)
 
 ## stlist.surv methods
 S3method(plot, stslist.surv)
-
-## seqprec methods
-S3method(print, seqprec)
-
-## seqprecorr methods
-S3method(print, seqprecorr)
 
 
 useDynLib(TraMineRextras,

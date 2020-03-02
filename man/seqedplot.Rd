@@ -47,7 +47,7 @@ seqedplot(seqe, group = NULL, breaks = 20, ages = NULL, main = NULL,
 \author{Matthias Studer}
 
 \references{
-Studer, M., M\"{u}ller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des s\'{e}quences d'\'{e}v\'{e}nements",
+Studer, M., Müller, N.S., Ritschard, G. & Gabadinho, A. (2010), "Classer, discriminer et visualiser des séquences d'événements",
 In Extraction et gestion des connaissances (EGC 2010), \emph{Revue des nouvelles technologies de l'information RNTI}. Vol. E-19, pp. 37-48.
 }
 \examples{
