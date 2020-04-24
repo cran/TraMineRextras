@@ -2,11 +2,12 @@ import(TraMineR)
 importFrom("utils", "packageDescription", "packageVersion")
 importFrom("graphics", "abline", "axis", "box", "layout", "legend", "lines", "par", "plot", "points", "rect", "segments", "text", "title", "boxplot","strheight", "strwidth")
 importFrom("grDevices", "col2rgb", "hsv", "rgb", "rgb2hsv")
-importFrom("stats", "chisq.test", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm")
+importFrom("stats", "chisq.test", "pchisq", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm")
 importFrom("cluster", "daisy", "pam", "agnes")
 ##importFrom("combinat", "permn")
 importFrom("RColorBrewer","brewer.pal")
 importFrom("survival","survfit", "coxph", "Surv")
+importFrom("gtools","permute")
 
 export(
     group.p,
@@ -38,7 +39,10 @@ export(
     seqimplic,
     seqtabstocc,
     seqsurv,
-    seqsplot
+    seqsplot,
+    seqCompare,
+    seqBIC,
+    seqLRT
 )
 
 ## emlt methods

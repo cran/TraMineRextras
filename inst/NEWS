@@ -1,3 +1,21 @@
+                CHANGES IN TraMineRextras VERSION 0.6.0 [2020-04-24] 
+
+New functions
+    o   seqCompare() BIC and Likelihood ratio test (LRT) for comparing
+        two sets of sequences.
+    o   seqLRT() LRT for comparing two sets of sequences.
+    o   seqBIC() BIC for comparing sequence data.
+
+Changes in existing functions
+    o   seqgranularity(): two new methods "first.valid" and
+        "last.valid" for sequences with missing values.
+    o   seqplot-rf() gains a new argument 'which.plot'.
+
+Bug fixes
+    o   seqgranularity() did not return a proper stslist object
+        when \code{method="mostfreq"}.
+
+
                 CHANGES IN TraMineRextras VERSION 0.4.7 [2020-03-02]
 
 Bug fixes
@@ -8,7 +26,7 @@ Bug fixes
 Misc.
     o   seqprecarity(), seqprecorr(), seqprecstart() deleted. These
         functions are in TraMineR since v 2.0-13.
-        
+
 
                 CHANGES IN TraMineRextras VERSION 0.4.6 [2019-05-06]
 

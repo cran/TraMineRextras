@@ -29,9 +29,10 @@ seqemlt <- function(seqdata, a = 1, b = 1, weighted = TRUE) {
         situation.states.time <- paste(alphabet(seq), situation.time, sep = ".")
         situation.states <- rep(alphabet(seq), times = dim(seq)[2])
         x <- array(0, dim = c(dim(seq)[1], length(situation.states.time)))
+        mseq <- as.matrix(seq)
         for (i in 1:dim(seq)[1]) {
             for (j in 1:dim(seq)[2]) {
-                x[i, which(situation.time == j & situation.states == seq[i, j])] <- 1
+                x[i, which(situation.time == j & situation.states == mseq[i, j])] <- 1
             }
         }
         colnames(x) <- situation.states.time
@@ -153,7 +154,7 @@ seqemlt <- function(seqdata, a = 1, b = 1, weighted = TRUE) {
     ## La fonction benz() est une fonction intermédaires.  Elle définit la matrice
     ## des covariances entre les profil à partir de la matrice des distances Benz
     ## se limite aux situation réelle (celle qui se sont produites au moins une
-    ## fois) et sert d'entrée à la fonction recode()et cor()
+    ## fois) et sert d'entrée à la fonction recode()et cor() '
 
     benz <- function(seq, d) {
         situation.time <- rep(1:dim(seq)[2], each = length(alphabet(seq)))
@@ -205,7 +206,7 @@ seqemlt <- function(seqdata, a = 1, b = 1, weighted = TRUE) {
     ## l'espace des profils Les coordonnées de chaque situation sur les axes
     ## principaux La décomposition de chaque sequence sur les axes principaux La
     ## distance entre les séquences peut alors être définie comme la distance
-    ## euclidienne
+    ## euclidienne '
 
     recode <- function(disj, prin) {
         recode <- disj %*% prin

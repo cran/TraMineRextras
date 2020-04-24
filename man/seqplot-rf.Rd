@@ -9,7 +9,7 @@ Relative Frequency Sequence Plots (RFS plots) plot a selection of representative
 }
 \usage{
 seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
-    ylab=NA, yaxis=FALSE, main=NULL, ...)
+    ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,9 +17,10 @@ seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
   \item{k}{integer: Number of groupings (frequency groups?)}
   \item{diss}{matrix of pairwise dissimilarities between sequences in \code{seqdata} (see \code{\link{seqdist}}).}
   \item{sortv}{an optional sorting variable that may be used to compute the frequency groups. If \code{NULL}, an MDS is used. Ties are randomly ordered.}
-  \item{ylab}{an optional label for the y-axis. If set as \code{NA} (default), no label is drawn.}
+  \item{ylab}{string. An optional label for the y-axis. If set as \code{NA} (default), no label is drawn. Does not apply to \code{which.plot="both"}.}
   \item{yaxis}{logical. Controls whether a y-axis is plotted. When set as \code{TRUE}, the indexes of the sequences are displayed.}
   \item{main}{main graphic title. Default is \code{NULL}.}
+  \item{which.plot}{string. One of \code{"both"}, \code{"medoids"}, \code{"diss.to.med"}. When \code{"medoids"}, only the index plot of the medoids is displayed, when \code{"diss.to.med"}, the grouped boxplots of the distances to the medoids is displayed, and when \code{"both"} a combined plot of the two is displayed.}
   \item{\dots}{arguments passed to \code{\link{seqplot}}.}
  }
 \details{
@@ -64,6 +65,6 @@ seqplot.rf(biofam.seq, diss=diss, k=12,
 parentTime <- seqistatd(biofam.seq)[, 1]
 seqplot.rf(biofam.seq, diss=diss, k=12, sortv=parentTime,
    main="Sorted by parent time")
-
+   
 }
 

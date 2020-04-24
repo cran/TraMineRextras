@@ -1,12 +1,13 @@
 seqplot.rf <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
-						ylab=NA, yaxis=FALSE, main=NULL, ...){
+						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...){
 	
 	return(seqplot.rf_internal(seqdata, k=k, diss=diss, sortv=sortv,
-						ylab=ylab, yaxis=yaxis, main=main, ...))
+						ylab=ylab, yaxis=yaxis, main=main, which.plot=which.plot,
+            ...))
 }
 seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
 						use.hclust=FALSE, hclust_method="ward.D", use.quantile=FALSE,
-						yaxis=FALSE, main=NULL, ...){
+						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...){
 	
 	message(" [>] Using k=", k, " frequency groups")
 	
@@ -74,22 +75,37 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 		
 	}
 
-	##Attribute to each sequences the medoid sequences
+	##Assign the medoid sequence to each sequence
 	seqtoplot <- seqdata[kmedoid.index, ]
 	
 	##Correct weights to their original weights (otherwise we use the medoid weights)
 	attr(seqtoplot, "weights") <- NULL
-	opar <- par(mfrow=c(1,2), oma=c(3,0,(!is.null(main))*3,0), mar=c(1, 1, 2, 0))
-	on.exit(par(opar))
-	seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk, yaxis=yaxis, main="Sequences medoids", ...)
+
+  if (which.plot=="both"){
+	   opar <- par(mfrow=c(1,2), oma=c(3,0,(!is.null(main))*3,0), mar=c(1, 1, 2, 0))
+	   on.exit(par(opar))
+	   seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk, yaxis=yaxis, main="Sequences medoids", ...)
+  }
+
+  if (which.plot=="medoids")
+  	 seqIplot(seqtoplot, sortv=mdsk, yaxis=yaxis, ylab=ylab, main=paste(main,"Sequences medoids", sep=": "), ...)
 	##seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk)
-	heights <- xtabs(~mdsk)/nrow(seqdata)
+	
+  heights <- xtabs(~mdsk)/nrow(seqdata)
 	at <- (cumsum(heights)-heights/2)/sum(heights)*length(heights)
 	if(!yaxis){
 		par(yaxt="n")
 	}
-	
-	boxplot(kmedoid.dist~mdsk, horizontal=TRUE, width=heights, frame=FALSE,  main="Dissimilarities to medoid", ylim=range(as.vector(diss)), at=at)
+	if (which.plot == "both") {
+	   boxplot(kmedoid.dist~mdsk, horizontal=TRUE, width=heights, frame=FALSE,
+        main="Dissimilarities to medoid",
+        ylim=range(as.vector(diss)), at=at, ylab=ylab)
+  }
+	if (which.plot == "diss.med") {
+	   boxplot(kmedoid.dist~mdsk, horizontal=TRUE, width=heights, frame=FALSE,
+        main=paste(main,"Dissimilarities to medoid",sep=": "),
+        ylim=range(as.vector(diss)), at=at, ylab=ylab)
+  }
 	
 	#calculate R2
 	R2 <-1-sum(kmedoid.dist^2)/sum(gmedoid.dist^2)
@@ -104,6 +120,8 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 	message(" [>] Pseudo/median-based-R2: ", format(R2))
 	message(" [>] Pseudo/median-based-F statistic: ", format(Fstat))
 	##cat(sprintf("Representation quality: R2=%0.2f F=%0.2f", R2, Fstat))
-	title(main=main, outer=TRUE)
-	title(sub=sprintf("Representation quality: R2=%0.2f and F=%0.2f", R2, Fstat), outer=TRUE, line=2)
+  if (which.plot=="both") {
+  	title(main=main, outer=TRUE)
+  	title(sub=sprintf("Representation quality: R2=%0.2f and F=%0.2f", R2, Fstat), outer=TRUE, line=2)
+  }
 }

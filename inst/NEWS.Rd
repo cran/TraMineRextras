@@ -1,6 +1,36 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.6.0 [2020-04-24 ]}{
+  \subsection{New functions}{
+    \itemize{
+      \item
+      \code{seqCompare()} BIC and Likelihood ratio test (LRT) for comparing
+        two sets of sequences.
+      \item
+      \code{seqLRT()} LRT for comparing two sets of sequences.
+      \item
+      \code{seqBIC()} BIC for comparing sequence data.
+    }
+  }
+
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqgranularity()} two new methods \code{"first.valid"} and \code{"last.valid"} for sequences with missing values.
+      \item
+      \code{seqplot.rf()} gains a new argument \code{which.plot}.
+    }
+  }
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqgranularity()} did not return a proper \code{stslist} object when \code{method="mostfreq"}.
+    }
+  }
+
+}
+
 \section{Changes in version 0.4.7 [2020-03-02]}{
   \subsection{Bug fixes}{
     \itemize{

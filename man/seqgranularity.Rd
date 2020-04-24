@@ -18,21 +18,27 @@ seqgranularity(seqdata, tspan = 3, method = "last")
     Integer. Number of successive positions grouped together.
 }
   \item{method}{
-    Character string. Aggregating method. One of \code{"first"}, \code{"last"} (default) or \code{"mostfreq"}.
+    Character string. Aggregating method. One of \code{"first"}, \code{"first.valid"}, \code{"last"} (default), \code{"last.valid"}, \ or \code{"mostfreq"}.
 }
 }
 \details{
-Successive positions are aggregated by group of \code{tspan} states. The aggregated state is, depending of the \code{method} chosen, either the first (\code{"first"}), the last (\code{"last"}) or the most frequent (\code{"mostfreq"}) state of the \code{tspan} long spell. The same applies to the last spell, even when it is shorter than \code{tspan}.
+Successive positions are aggregated by group of \code{tspan} states. The aggregated state is, depending of the \code{method} chosen, either the first (\code{"first"}), the first valid (\code{"first.valid"}), the last (\code{"last"}), the last valid (\code{"last.valid"}), or the most frequent (\code{"mostfreq"}) state of the \code{tspan} long spell. The same applies to the last spell, even when it is shorter than \code{tspan}.
+
+Methods (\code{"first"}) and (\code{"last"}) differ from (\code{"first.valid"}) and (\code{"last.valid"}) only when sequences contain missing values and/or have different lengths.
+
+When there are (void or non void) missings, method \code{"mostfreq"} replaces each interval with the most frequent valid state on the interval or the missing state when there are no valid state.
+
+End missings are set as void when there are voids in \code{seqdata} and as the \code{nr} attribute otherwise.
 }
 \value{
-The resulting state sequence object.
+A \code{stslist} object: The compacted state sequence object.
 }
 \author{
 Matthias Studer and Gilbert Ritschard
 }
 
 %% ~Make other sections like Warning with
-\section{Warning }{This function needs further testing.}
+%\section{Warning }{This function needs further testing.}
 
 \seealso{
  \code{\link{seqdef}}
@@ -45,6 +51,7 @@ mvadg.seq <- seqgranularity(mvad.seq, tspan=6, method="first")
 par(mfrow=c(2,1))
 seqdplot(mvad.seq, with.legend=FALSE, border=NA)
 seqdplot(mvadg.seq, with.legend=FALSE)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
