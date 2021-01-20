@@ -1,4 +1,19 @@
-                CHANGES IN TraMineRextras VERSION 0.6.0 [2020-04-24] 
+                CHANGES IN TraMineRextras VERSION 0.6.1 [2021-01-20]
+
+New functions:
+    o   seqindic.dyn() dynamic individual indicator values.
+    o   plot.dynin() plot method for dynin objects produced
+        by seqindic.dyn.
+    o   seqpolyads() degree of similarities between polyadic members
+        (contributed by Tim Liao)
+    o   polyads example data set
+
+Changes in existing functions:
+    o   seqplot.tentrop() default color now set using
+        qualitative_hcl from colorspace with the 'Dark 3' palette.
+
+
+                CHANGES IN TraMineRextras VERSION 0.6.0 [2020-04-08]
 
 New functions
     o   seqCompare() BIC and Likelihood ratio test (LRT) for comparing

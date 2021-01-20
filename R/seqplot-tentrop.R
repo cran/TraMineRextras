@@ -15,7 +15,8 @@ seqplot.tentrop <- function(seqdata, group,
   entrop <- by(seqdata, group, seqstatd)
 
   k <- length(entrop)
-  default.col <- brewer.pal(9,"Set1")
+  default.col <- qualitative_hcl(k, palette = "Dark 3")
+  ##default.col <- brewer.pal(9,"Set1")
   ##default.col <- c("red","blue","black","magenta","green")
   if(is.null(col)) {
      #col <- colors.list[1:k]
@@ -25,7 +26,7 @@ seqplot.tentrop <- function(seqdata, group,
   col <- rep(col,kk)
   col <- col[1:k]
 
-  default.lty <- c("solid","dashed","dotted","solid","dashed")
+  default.lty <- c("solid","dashed","dotted")
   if(is.null(lty)) {
      lty <- default.lty
   }

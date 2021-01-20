@@ -120,5 +120,5 @@ seqLRT(biofam.seq, group=biofam$sex, set=lang, s=80, method="HAM")
 }
 
 \references{
-Tim F. Liao & Anette E. Fasang. Forthcoming. "Comparing Groups of Life Course Sequences Using the Bayesian Information Criterion and the Likelihood Ratio Test.” \emph{Sociological Methodology} xx:xxx–xxx.
+Tim F. Liao & Anette E. Fasang. Forthcoming. "Comparing Groups of Life Course Sequences Using the Bayesian Information Criterion and the Likelihood Ratio Test.” \emph{Sociological Methodology} \doi{10.1177/0081175020959401}.
 }

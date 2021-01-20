@@ -1,7 +1,33 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
-\section{Changes in version 0.6.0 [2020-04-24 ]}{
+\section{Changes in version 0.6.1 [2021-01-20]}{
+  \subsection{New functions}{
+    \itemize{
+      \item
+      \code{seqindic.dyn()} dynamic individual indicator values.
+      \item
+      \code{plot.dynin()} plot method for \code{dynin} objects produced
+      by \code{seqindic.dyn}.
+      \item
+      \code{seqpolyads()} degree of similarities between polyadic members
+      (contributed by Tim Liao)
+      \item
+      \code{polyads} example data set.
+    }
+  }
+
+
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqplot.tentrop()} default color now set using
+      \code{qualitative_hcl} from \code{colorspace} with the \code{'Dark 3'} palette.
+    }
+  }
+}
+
+\section{Changes in version 0.6.0 [2020-04-24]}{
   \subsection{New functions}{
     \itemize{
       \item

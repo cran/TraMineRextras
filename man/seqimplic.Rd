@@ -15,8 +15,8 @@ Visualization and identification of the states that best characterize a group of
 seqimplic(seqdata, group, with.missing = FALSE, weighted = TRUE, na.rm = TRUE)
 \method{plot}{seqimplic}(x, main = NULL, ylim = NULL, xaxis = TRUE,
     ylab = "Implication", yaxis = TRUE, axes = "all", xtlab = NULL,
-    xtstep = NULL, tick.last = NULL, cex.axis = 1, with.legend = "auto", 
-    ltext = NULL, cex.legend = 1, legend.prop = NA, rows = NA, cols = NA, 
+    xtstep = NULL, tick.last = NULL, cex.axis = 1, with.legend = "auto",
+    ltext = NULL, cex.legend = 1, legend.prop = NA, rows = NA, cols = NA,
     conf.level = 0.95, lwd = 1, only.levels = NULL, ...)
 \method{print}{seqimplic}(x, xtstep = NULL, tick.last = NULL, round = NULL,
     conf.level = NULL, na.print = "", ...)
@@ -99,7 +99,7 @@ The strength of rules with negative implicative statistic are not displayed beca
 \value{
 \code{seqimplic} returns a \code{"seqimplic"} object that can be plotted and printed. The values of the implicative statistics at each time point are in the element \code{indices} of the object.}
 \references{
-Studer, Matthias (2015), Comment: On the Use of Globally Interdependent Multiple Sequence Analysis, Sociological Methodology 45, DOI: 10.1177/0081175015588095.
+Studer, Matthias (2015), Comment: On the Use of Globally Interdependent Multiple Sequence Analysis, Sociological Methodology 45, \doi{10.1177/0081175015588095}.
 
 Gras, Régis and Kuntz, Pascale. (2008), An overview of the Statistical Implicative Analysis (SIA) development, in Gras, R., Suzuki, E., Guillet, F. and Spagnolo, F. (eds), Statistical Implicative Analysis: Theory and application, Series Studies in Computational Intelligence, Vol 127, Berlin: Springer-Verlag, pp 11-40.
 

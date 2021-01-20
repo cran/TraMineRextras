@@ -54,7 +54,7 @@ Rousset, Patrick, Jean-François Giret and Yvette Grelet (2012) Typologies De Pa
 Rousset, Patrick and  Jean-François Giret (2008) A longitudinal Analysis of  Labour Market Data with SOM, in J. Rabuñal Dopico, J. Dorado, & A. Pazos (Eds.) \emph{Encyclopedia of Artificial Intelligence}, Hershey, PA: Information Science Reference, pp 1029-1035.
 
 Studer, Matthias  and Gilbert Ritschard (2014) A comparative review of sequence dissimilarity measures. LIVES Working Paper, 33
-\url{http://dx.doi.org/10.12682/lives.2296-1658.2014.33}
+\doi{10.12682/lives.2296-1658.2014.33}
 %% ~put references to the literature/web site here ~
 }
 \author{Patrick Rousset, Senior researcher at Cereq, rousset@cereq.fr with the help of Matthias Studer. Help page by Gilbert Ritschard.
