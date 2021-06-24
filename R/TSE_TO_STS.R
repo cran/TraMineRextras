@@ -14,6 +14,9 @@ TSE_to_STS <- function(seqdata, id=1, timestamp=2, event=3, stm=NULL, tmin=1, tm
 	#timestamp <- timestamp[eorder]+1
 	#id <- id[eorder]
 	#uid <- unique(id)	
+  if(tmin < 1){
+    stop(" [!] tmin must be a valid numeric column index! (cannot be < 1)")
+  }
 	if(is.null(tmax)){
 		stop(" [!] tmax required to determine the length of the sequence")
 	}

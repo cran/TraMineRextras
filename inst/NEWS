@@ -1,3 +1,22 @@
+                CHANGES IN TraMineRextras VERSION 0.6.2 [2021-06-23] (Development version)
+
+Changes in existing functions:
+    o   seqindic.dyn() gains two arguments: 'wstep' to control
+        spacing between successive windows and
+        'endmiss.as.void' to control whether sequences end at
+        first ending missing value or at the first void.
+    o   plot.dynin() (plot method for objects produced by
+        seqindic.dyn) can now plot series of summary values
+        that end with missing values.
+    o   plot.dynin()} 'conf' can now be logical or the confidence 
+        probability, TRUE being equivalent to 0.95.
+    o   TSE_to_STS() now checks that tmin > 0.
+    o   seqplot.rf() now returns (invisibly) group memberships.
+    
+Bug fixes:
+    o   plot.dynin() issue with check of fstat.
+
+
                 CHANGES IN TraMineRextras VERSION 0.6.1 [2021-01-20]
 
 New functions:

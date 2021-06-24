@@ -8,11 +8,11 @@
 %%  Generic function for
 }
 \usage{
-\method{plot}{dynin}(x, fstat=weighted.mean, group=NULL,
+\method{plot}{dynin}(x, fstat=weighted.mean, group=NULL, conf=FALSE, 
      main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      ylab=NULL, xlab=NULL, xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
-     horiz=FALSE, cex.legend=1, conf=FALSE, bcol=NULL, na.rm=FALSE, ret=FALSE, ...)
+     horiz=FALSE, cex.legend=1, bcol=NULL, na.rm=FALSE, ret=FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +21,8 @@
   \item{fstat}{function: summary function to compute the values plotted. Default is \code{\link{weighted.mean}} with weights taken from the \code{weights} attribute of \code{x}. When \code{\link{weighted.mean}} and \code{x} has no weights, \code{mean} is used instead.
 }
   \item{group}{factor or discrete vector: group membership; a curve is drawn for each group. If \code{NULL} (default) a single curve for the whole set is drawn.
+}
+  \item{conf}{logical or numeric: If logical, should confidence bands be displayed? If numeric, confidence probability. \code{TRUE} is equivalent to .95. Applies only when \code{fstat=mean} or \code{fstat=weighted.mean}.
 }
   \item{main}{character string: Plot title.
 }
@@ -53,8 +55,6 @@
 
   \item{cex.legend}{Scale factor for the legend.}
 
-  \item{conf}{logical: Should confidence bands be displayed? Applies only when \code{fstat=mean} or \code{fstat=weighted.mean}.}
-
   \item{bcol}{color vector. For confidence bands. If \code{NULL} (default), colors are automatically assigned using \code{qualitative_hcl}  with the \code{'Pastel 1'} palette (see \code{\link[colorspace]{hcl_palettes}}).
   }
 
@@ -75,11 +75,11 @@ Confidence bands are computed for a confidence level of 95\% and assuming a norm
 }
 
 \value{
-  If \code{ret=TRUE}, a matrix with the successive group summaries. One row per group.
+  If \code{ret=TRUE}, a matrix with the successive group summaries (One row per group) and, when \code{conf=TRUE}, the matrices with the lower and upper bounds of the confidence intervals as attributes \code{L.grp} and \code{U.grp}.
 }
 
 \references{
-Pelletier, D.; Bignami-Van Assche, S. & Simard-Gendron, A. (2020) Measuring Life Course Complexity with Dynamic Sequence Analysis, \emph{Social Indicators Research} \doi{10.1007/s11205-020-02464-y}.
+Pelletier, D., Bignami-Van Assche, S., & Simard-Gendron, A. (2020) Measuring Life Course Complexity with Dynamic Sequence Analysis, \emph{Social Indicators Research} \doi{10.1007/s11205-020-02464-y}.
 
 %% ~put references to the literature/web site here ~
 }

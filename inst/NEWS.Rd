@@ -1,6 +1,30 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.6.2 [2021-06-23] (Development version)}{
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqindic.dyn()} gains two arguments: \code{wstep} to control the spacing between successive windows and \code{endmiss.as.void} to control whether sequences end at first ending missing value or at the first void.
+      \item
+      \code{plot.dynin()} (plot method for objects produced by \code{seqindic.dyn}) can now plot series of summary values that end with missing values.
+      \item{plot.dynin()} \code{conf} can now be logical or the confidence probability, \code{TRUE} being equivalent to 0.95.
+      \item
+      \code{TSE_to_STS()} now checks that \code{tmin > 0}.
+      \item
+      \code{seqplot.rf()} returns (invisibly) group memberships.
+    }
+  }
+
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{plot.dynin()} issue with check of \code{fstat}.
+    }
+  }
+}
+
+
 \section{Changes in version 0.6.1 [2021-01-20]}{
   \subsection{New functions}{
     \itemize{

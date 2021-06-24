@@ -35,12 +35,13 @@ seqBIC(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
   \item{set}{Vector of length equal to number of sequences in \code{seqdata}. Variable defining the sets. See details.
   }
 
-\item{s}{Integer. Default 100. The size of random samples of sequences. When 0, no sampling is done.
-}
+  \item{s}{Integer. Default 100. The size of random samples of sequences. When 0, no sampling is done.
+  }
 
-\item{seed}{Integer. Default 36963. Using the same seed number guarantees the same results
-  each time.
-}
+  \item{seed}{Integer. Default 36963. Using the same seed number guarantees the same results
+    each time. Set \code{s=NULL} if you don't want to set a seed.
+    The random generator can be chosen with \code{\link{RNGkind}}.
+  }
   \item{stat}{String. The requested statistics. One of \code{"LRT"}, \code{"BIC"}, or \code{"all"}
   }
   \item{squared}{Logical. Should squared distances be used? Can also be \code{"LRTonly"}, in which case the distances to the centers are computed using non-squared distances and LRT is computed with squared distances.
@@ -65,12 +66,12 @@ When \code{seqdata} and \code{seqdata2} are both provided, the LRT and BIC stati
 
 When \code{seqdata} is a list of \code{stslist} objects, \code{seqdata2} must be a list of the same number of \code{stslist} objects.
 
-The default option \code{squared="LRTonly"} corresponds to the initial proposition of Liao and Fasang (2020). With that option, the distances to the virtual center are obtained from the pairwise non-squared dissimilarities and the resulting distances to the virtual center are  squared when computing the LRT (which is in turn used to compute the BIC). With \code{squared=FALSE}, non-squared distances are used in both cases, and with \code{squared=TRUE}, squared distances are used in both cases.
+The default option \code{squared="LRTonly"} corresponds to the initial proposition of Liao and Fasang (2021). With that option, the distances to the virtual center are obtained from the pairwise non-squared dissimilarities and the resulting distances to the virtual center are  squared when computing the LRT (which is in turn used to compute the BIC). With \code{squared=FALSE}, non-squared distances are used in both cases, and with \code{squared=TRUE}, squared distances are used in both cases.
 
-The computation is based on the pairwise distances between the sequences. The \code{opt} argument permits to chose between two strategies. With \code{opt=1}, the matrix of distances is computed successively for each pair of samples of size s. When \code{opt=2}, the matrix of distances is computed once for the observed sequences and the distances for the samples are extracted from that matrix. Option 2 is often more efficient, especially for distances based on spells. It may be slower for methods such as OM or LCS when the number of observed sequences becomes large.
+The computation is based on the pairwise distances between the sequences. The \code{opt} argument permits to choose between two strategies. With \code{opt=1}, the matrix of distances is computed successively for each pair of samples of size s. When \code{opt=2}, the matrix of distances is computed once for the observed sequences and the distances for the samples are extracted from that matrix. Option 2 is often more efficient, especially for distances based on spells. It may be slower for methods such as OM or LCS when the number of observed sequences becomes large.
 }
 
-\value{The function \code{seqLRT} (and seqCompare) with the default \code{"LRT"} stat value) outputs two variables, \var{LRT} and \var{p.LRT}.
+\value{The function \code{seqLRT} (and seqCompare with the default \code{"LRT"} stat value) outputs two variables, \var{LRT} and \var{p.LRT}.
 
   \item{LRT}{This is the likelihood ratio test statistic for comparing the two groups.
   }
@@ -85,6 +86,9 @@ The function \code{seqBIC} (and \code{seqLRT} with the \code{"BIC"} stat value) 
 
 \code{seqCompare} with \code{stat="all"} outputs all four indicators.
 }
+
+\author{Tim Liao and Gilbert Ritschard}
+
 
 \examples{
 ## biofam data set
@@ -120,5 +124,5 @@ seqLRT(biofam.seq, group=biofam$sex, set=lang, s=80, method="HAM")
 }
 
 \references{
-Tim F. Liao & Anette E. Fasang. Forthcoming. "Comparing Groups of Life Course Sequences Using the Bayesian Information Criterion and the Likelihood Ratio Test.” \emph{Sociological Methodology} \doi{10.1177/0081175020959401}.
+Tim F. Liao & Anette E. Fasang (2021). "Comparing Groups of Life Course Sequences Using the Bayesian Information Criterion and the Likelihood Ratio Test.” \emph{Sociological Methodology}, 55 (1), 44-85. \doi{10.1177/0081175020959401}.
 }

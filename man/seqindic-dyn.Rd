@@ -9,7 +9,7 @@
 }
 \usage{
 seqindic.dyn(seqdata, indic="cplx", window.size = .2, sliding=TRUE,
-      with.missing=FALSE, silent.indic=TRUE, ...)
+      wstep=1, with.missing=FALSE, endmiss.as.void=FALSE, silent.indic=TRUE, ...)
 }
 \arguments{
   \item{seqdata}{state sequence object (\code{stslist}) as produced by \code{seqdef}
@@ -20,9 +20,13 @@ seqindic.dyn(seqdata, indic="cplx", window.size = .2, sliding=TRUE,
   }
   \item{sliding}{logical: Should indic be computed on sliding windows? If \code{FALSE}, windows are incremented starting with a window of size \code{window.size}.
   }
+  \item{wstep}{integer: size of position gap between successive windows.
+  }
   \item{with.missing}{logical. Should the missing state be treated as a state of the alphabet?
   }
-  \item{silent.indic}{logical. Should messages issued during computation of indic be suppressed? 
+  \item{endmiss.as.void}{logical. When \code{with.missing=FALSE}, should missings at end of windows be considered as voids, i.e. should the sequence end before end missings? When \code{FALSE} (default), the index is set as \code{NA} for windows that end with a void and, when \code{TRUE}, for windows that end with a void or a missing. Ignored when \code{with.missing=TRUE}.
+  }
+  \item{silent.indic}{logical. Should messages issued during computation of indic be suppressed?
   }
   \item{...}{additional arguments passed to \code{\link{seqindic}}
   }
@@ -46,7 +50,7 @@ There are \code{print} and \code{plot} methods for \code{dynin} objects. See \co
 }
 
 \references{
-Pelletier, D.; Bignami-Van Assche, S. & Simard-Gendron, A. (2020) Measuring Life Course Complexity with Dynamic Sequence Analysis, \emph{Social Indicators Research} \doi{10.1007/s11205-020-02464-y}.
+Pelletier, D., Bignami-Van Assche, S., & Simard-Gendron, A. (2020) Measuring Life Course Complexity with Dynamic Sequence Analysis, \emph{Social Indicators Research} \doi{10.1007/s11205-020-02464-y}.
 
 %% ~put references to the literature/web site here ~
 }
@@ -61,13 +65,30 @@ cases <- 1:100
 actcal <- actcal[cases,] ## Here, only a subset
 actcal.seq <- seqdef(actcal[,13:24], alphabet=c('A','B','C','D'))
 
-a.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE)
+## Using windows every three positions
+a.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE, wstep=3)
+plot(a.dyn, group=actcal[cases,'sex'])
 
-plot(a.dyn, group=actcal[cases,'sex'], fstat=mean)
-
-## Trimmed mean
+## Trimmed mean (to illustrate fstat with specific arguments) 
 plot(a.dyn, group=actcal[cases,'sex'], fstat=function(x)mean(x, trim=.02))
 
+## Incremental windows
+ai.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE, wstep=3, 
+                sliding=FALSE)
+plot(ai.dyn, group=actcal[cases,'sex'])
 
+#############
+## Sequences of different lengths, and with missing values and weights
+data(ex1)
+s.ex1 <- seqdef(ex1[,1:13],weights=ex1[,"weights"])
+seqlength(s.ex1)
+seqlength(s.ex1, with.missing=FALSE)
+group <- c(1,1,1,2,2,2,2)
 
-}
+ind.d <- seqindic.dyn(s.ex1, indic='cplx', with.missing=FALSE)
+plot(ind.d, group=group, fstat=weighted.mean, na.rm=TRUE, conf=TRUE, ret=TRUE)
+
+## Treating 'missing' as a regular state
+ind.dm <- seqindic.dyn(s.ex1, indic='cplx', with.missing=TRUE)
+plot(ind.dm, group=group, fstat=weighted.mean, na.rm=TRUE, conf=TRUE, ret=TRUE)
+} 

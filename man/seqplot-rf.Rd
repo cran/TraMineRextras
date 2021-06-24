@@ -32,6 +32,11 @@ Since ties in \code{sortv} or mds are randomly ordered, one has to set the seed 
 
 Unlike the other \code{\link{TraMineR}} plotting functions, the \code{seqplot.rf} function ignores the \code{weights} and does not support the \code{group} argument.
 }
+
+\value{
+A vector with the group membership (medoid of the group) of each sequence.
+}
+
 \references{
 Fasang, Anette Eva and Tim F. Liao. 2014. "Visualizing Sequences in the Social Sciences: Relative Frequency Sequence Plots." Sociological Methods & Research 43(4):643-676.
 }
@@ -65,6 +70,6 @@ seqplot.rf(biofam.seq, diss=diss, k=12,
 parentTime <- seqistatd(biofam.seq)[, 1]
 seqplot.rf(biofam.seq, diss=diss, k=12, sortv=parentTime,
    main="Sorted by parent time")
-   
+
 }
 

@@ -124,4 +124,5 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
   	title(main=main, outer=TRUE)
   	title(sub=sprintf("Representation quality: R2=%0.2f and F=%0.2f", R2, Fstat), outer=TRUE, line=2)
   }
+  return(invisible(kmedoid.index))
 }
