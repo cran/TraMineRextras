@@ -1,14 +1,39 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
-\section{Changes in version 0.6.2 [2021-06-23] (Development version)}{
+\section{Changes in version 0.6.3 [2022-01-19] (Development version)}{
+
+  \subsection{New functions}{
+    \itemize{
+      \item
+      \code{seqcta()} organizes data for CTA analysis (Studer et al., ALCR 2018).
+      \item
+      \code{seqsamm()}, \code{seqsammseq()} and \code{seqsammeha} organize and retrieve data for SAMM analysis (Studer et al., Soc. Meth. 2018).
+      \item
+      \code{plot.SAMM()} plot of \code{SAMM} object returned by \code{seqsamm}.
+      \item
+      \code{seqsha()} organizes data for SHA analysis (Rossignon et al., in Ritschard & Studer, 2018).
+    }
+  }
+
+  \subsection{Misc.}{
+    \itemize{
+      \item
+      Updated description and some Rd files.
+    }
+
+  }
+}
+
+\section{Changes in version 0.6.2 [2021-06-23]}{
   \subsection{Changes in existing functions}{
     \itemize{
       \item
       \code{seqindic.dyn()} gains two arguments: \code{wstep} to control the spacing between successive windows and \code{endmiss.as.void} to control whether sequences end at first ending missing value or at the first void.
       \item
       \code{plot.dynin()} (plot method for objects produced by \code{seqindic.dyn}) can now plot series of summary values that end with missing values.
-      \item{plot.dynin()} \code{conf} can now be logical or the confidence probability, \code{TRUE} being equivalent to 0.95.
+      \item
+      \code{plot.dynin()} \code{conf} can now be logical or the confidence probability, \code{TRUE} being equivalent to 0.95.
       \item
       \code{TSE_to_STS()} now checks that \code{tmin > 0}.
       \item

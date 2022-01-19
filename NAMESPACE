@@ -2,7 +2,7 @@ import(TraMineR)
 importFrom("utils", "packageDescription", "packageVersion", "combn")
 importFrom("graphics", "abline", "axis", "box", "layout", "legend", "lines", "polygon", "par", "plot", "points", "rect", "segments", "text", "title", "boxplot","strheight", "strwidth")
 importFrom("grDevices", "col2rgb", "hsv", "rgb", "rgb2hsv")
-importFrom("stats", "chisq.test", "pchisq", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm", "sd", "weighted.mean", "pt")
+importFrom("stats", "chisq.test", "pchisq", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm", "sd", "weighted.mean", "pt", "relevel")
 importFrom("cluster", "daisy", "pam", "agnes")
 ##importFrom("combinat", "permn")
 importFrom("RColorBrewer","brewer.pal")
@@ -12,6 +12,7 @@ importFrom("gtools","permute")
 importFrom("doParallel","registerDoParallel")
 importFrom("parallel","makePSOCKcluster","stopCluster")
 importFrom("foreach","foreach","%dopar%")
+importFrom("stats", "ave")
 
 export(
     group.p,
@@ -30,6 +31,11 @@ export(
     seqedist,
     seqedplot,
     createdatadiscrete,
+	seqcta,
+	seqsha,
+	seqsamm,
+	seqsammseq,
+	seqsammeha,
     seqerulesdisc,
     seqstart,
     ##seqeordplot,
@@ -69,6 +75,9 @@ S3method(plot, stslist.surv)
 ## dynin methods
 S3method(plot, dynin)
 S3method(print, dynin)
+
+## SAMM metehods
+S3method(plot, SAMM)
 
 
 useDynLib(TraMineRextras,

@@ -30,7 +30,7 @@ Ritschard}
 data(actcal.tse)
 actcal.seqe <- seqecreate(actcal.tse[1:500,])
 
-##Searching for frequent subsequences appearing at least 30 times
+##Searching for frequent subsequences appearing at least 10 times
 fsubseq <- seqefsub(actcal.seqe, min.support=10)
 fsubseq <- seqentrans(fsubseq)
 ## dispaying only those with at least 3 transitions
