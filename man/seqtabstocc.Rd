@@ -25,7 +25,7 @@
   A \code{stslist.freq} object with co-occurrence patterns sorted in descending frequency order.
 }
 \seealso{
-\code{\link[TraMineR]{seqtab}} 
+\code{\link[TraMineR]{seqtab}}
 }
 \examples{
 ## Creating a sequence object from the first 500 actcal data.
@@ -40,13 +40,13 @@ seqtabstocc(actcal.seq, idxs=0)
 
 ## Example with missing states
 data(ex1)
+ex1 <- ex1[,1:13] ## dropping last weight column
 ## adding 3 sequences with no gap and left missing state
 ex1 <- rbind(ex1,c(rep("A",4),rep(NA,9)))
 ex1 <- rbind(ex1,c(rep("A",4),rep(NA,9)))
 ex1 <- rbind(ex1,rep("A",13))
-s.ex1 <- seqdef(ex1[,1:13])
+s.ex1 <- seqdef(ex1)
 seqtabstocc(s.ex1, with.missing=TRUE)
-
 
 }
 \keyword{util}

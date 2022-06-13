@@ -1,4 +1,16 @@
-                CHANGES IN TraMineRextras VERSION 0.6.3 [2022-01-19] (Development version)
+                CHANGES IN TraMineRextras VERSION 0.6.4 [2022-06-13] 
+
+Changes in existing functions:
+    o   seqplot.rf() gains a new argument 'plus.one' to control which 
+        group sizes to increase when number of sequences is not a multiple of number of groups.
+        
+Bug fixes:
+    o   seqindic.dyn() checked whether fstat is a function by comparing class with a string. Now uses inherits.
+    o   Issue with example in seqtabstocc.Rd.
+    o   Issue with non literal item name in seqsamm.Rd.
+
+
+                CHANGES IN TraMineRextras VERSION 0.6.3 [2022-01-19]
 
 New functions:
     o   seqcta() organizes data for CTA analysis (Studer et al., ALCR 2018).

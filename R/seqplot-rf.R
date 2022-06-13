@@ -1,13 +1,16 @@
 seqplot.rf <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
-						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...){
+						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
+                        plus.one = "first",  ...){
 	
 	return(seqplot.rf_internal(seqdata, k=k, diss=diss, sortv=sortv,
 						ylab=ylab, yaxis=yaxis, main=main, which.plot=which.plot,
+                        plus.one = plus.one,
             ...))
 }
 seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
-						use.hclust=FALSE, hclust_method="ward.D", use.quantile=FALSE,
-						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...){
+						use.hclust=FALSE, hclust_method="ward.D", #use.quantile=FALSE,
+						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
+                        plus.one = "first", ...){
 	
 	message(" [>] Using k=", k, " frequency groups")
 	
@@ -26,12 +29,23 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 		sortv <- cmdscale(diss, k = 1)
 	
 	}
+    if (!(plus.one %in% c("first", "random")))
+        stop(" plus.one must be one of 'first' or 'random' ")
 	if(!is.null(sortv)){
 		ng <- nrow(seqdata) %/% k
 		r <- nrow(seqdata) %% k
 		n.per.group <- rep(ng, k)
 		if(r>0){
-			n.per.group[order(runif(r))] <- ng+1
+			#n.per.group[order(runif(r))] <- ng+1
+            ##gr 23.05.22: order(runif(r)) produces random order of 1:r
+            ##    therefore above makes first r groups one unit larger
+            if(plus.one=="first"){
+                n.per.group[1:r] <- ng + 1
+            }
+            else {
+            ##   random selection fo r groups
+			     n.per.group[sample(1:k,r)] <- ng+1
+            }
 		}
 		mdsk <- rep(1:k, n.per.group)
 		mdsk <- mdsk[rank(sortv, ties.method = "random")]

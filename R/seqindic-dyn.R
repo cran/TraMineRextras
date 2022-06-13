@@ -129,7 +129,7 @@ plot.dynin <- function(x, fstat=weighted.mean, group=NULL, conf=FALSE,
      horiz=FALSE, cex.legend=1, bcol=NULL, na.rm=FALSE,
      ret=FALSE, ...){
 
-  if (class(fstat)!="function") TraMineR:::msg.stop("fstat must be a function!")
+  if (!inherits(fstat,"function")) TraMineR:::msg.stop("fstat must be a function!")
 
   is.w.mean <- identical(fstat,weighted.mean)
   is.mean <- identical(fstat,mean)

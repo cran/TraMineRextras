@@ -283,16 +283,12 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 		## nbstat <- nbstat+1
 		}
 
-    if (type == "s" & per.state){ # we need group legend instead of state legend
-      cpal <- cpal.grp
-      ltext <- ltext.grp
-    }
+        if (type == "s" & per.state){ # we need group legend instead of state legend
+          cpal <- cpal.grp
+          ltext <- ltext.grp
+        }
 
-    ## if (is.null(leg.ncol))  ## for backward compatibility
-    if (packageVersion("TraMineR") < '2.0.9')  ## for backward compatibility
-		  TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle)
-    else
-		  TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
+		TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
 	}
 
 	## Restoring graphical parameters

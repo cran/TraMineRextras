@@ -1,13 +1,15 @@
 Package: TraMineRextras
-Version: 0.6.3
-Date: 2022-01-19
+Version: 0.6.4
+Date: 2022-06-13
 Title: TraMineR Extension
 Authors@R: c(
   person("Gilbert", "Ritschard", role = c("aut", "cre", "ths", "cph"),
   email = "gilbert.ritschard@unige.ch", comment = c(ORCID = "0000-0001-7776-0903")),
   person("Matthias", "Studer", role = "aut", comment = c(ORCID = "0000-0002-6269-1412")),
-  person("Reto", "Buergin", role = "aut"),
-  person("Tim", "Liao", role = "ctb"),
+  person("Reto", "Buergin", role = "aut",
+        comment = c(ORCID = "0000-0002-6212-1567")),
+  person("Tim", "Liao", role = "ctb",
+        comment = c(ORCID = "0000-0002-1296-7660")),
   person("Alexis", "Gabadinho", role = "ctb"),
   person("Pierre-Alexandre", "Fonta", role = "ctb"),
   person("Nicolas", "Muller", role = "ctb"),
@@ -21,15 +23,15 @@ URL: http://traminer.unige.ch/
 Encoding: UTF-8
 Maintainer: Gilbert Ritschard <gilbert.ritschard@unige.ch>
 NeedsCompilation: yes
-Packaged: 2022-01-19 16:28:05 UTC; grits
+Packaged: 2022-06-13 13:58:52 UTC; grits
 Author: Gilbert Ritschard [aut, cre, ths, cph]
     (<https://orcid.org/0000-0001-7776-0903>),
   Matthias Studer [aut] (<https://orcid.org/0000-0002-6269-1412>),
-  Reto Buergin [aut],
-  Tim Liao [ctb],
+  Reto Buergin [aut] (<https://orcid.org/0000-0002-6212-1567>),
+  Tim Liao [ctb] (<https://orcid.org/0000-0002-1296-7660>),
   Alexis Gabadinho [ctb],
   Pierre-Alexandre Fonta [ctb],
   Nicolas Muller [ctb],
   Patrick Rousset [ctb]
 Repository: CRAN
-Date/Publication: 2022-01-19 22:12:48 UTC
+Date/Publication: 2022-06-13 15:40:21 UTC

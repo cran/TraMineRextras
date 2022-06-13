@@ -9,7 +9,8 @@ Relative Frequency Sequence Plots (RFS plots) plot a selection of representative
 }
 \usage{
 seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
-    ylab=NA, yaxis=FALSE, main=NULL, which.plot="both", ...)
+    ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
+    plus.one = "first", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +22,7 @@ seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
   \item{yaxis}{logical. Controls whether a y-axis is plotted. When set as \code{TRUE}, the indexes of the sequences are displayed.}
   \item{main}{main graphic title. Default is \code{NULL}.}
   \item{which.plot}{string. One of \code{"both"}, \code{"medoids"}, \code{"diss.to.med"}. When \code{"medoids"}, only the index plot of the medoids is displayed, when \code{"diss.to.med"}, the grouped boxplots of the distances to the medoids is displayed, and when \code{"both"} a combined plot of the two is displayed.}
+  \item{plus.one}{character string. One of \code{"first"} or \code{"random"}. When the number of sequences is not a multiple of the number groups, which groups should have their size augmented by one unit? If \code{"first"}, the first groups, and if \code{"random"} a random selection of groups.}
   \item{\dots}{arguments passed to \code{\link{seqplot}}.}
  }
 \details{
@@ -28,7 +30,7 @@ RFS plots are useful to visualize large sets of sequences that cannot be plotted
 
 Note that distance-to-medoid plots are meaningful only if there are at least 5-10 sequences in each frequency group. The distance-to-medoid plot is not only a quality criterion of how well the medoids represent a respective frequency group. They also provide additional substantive information about how large the variation of sequences is at a given location of the ordered sequences (see Fasang and Liao 2014).
 
-Since ties in \code{sortv} or mds are randomly ordered, one has to set the seed to reproduce exactly the same plot (see \code{\link{set.seed}}).
+Since ties in \code{sortv} or mds are randomly ordered (see argument \code{ties.method="random"} of function \code{\link{rank}}), one has to set the seed to reproduce exactly the same plot (see \code{\link{set.seed}}).
 
 Unlike the other \code{\link{TraMineR}} plotting functions, the \code{seqplot.rf} function ignores the \code{weights} and does not support the \code{group} argument.
 }
@@ -41,7 +43,7 @@ A vector with the group membership (medoid of the group) of each sequence.
 Fasang, Anette Eva and Tim F. Liao. 2014. "Visualizing Sequences in the Social Sciences: Relative Frequency Sequence Plots." Sociological Methods & Research 43(4):643-676.
 }
 \author{
-Matthias Studer, Anette Eva Fasang and Tim Liao.
+Matthias Studer, Anette Eva Fasang, Tim Liao, and Gilbert Ritschard.
 }
 
 \seealso{
@@ -66,7 +68,9 @@ seqplot.rf(biofam.seq, diss=diss, k=12,
 
 
 ## With a user specified sorting variable
-## Here time spent in parental home
+## Here time spent in parental home: there are ties
+## We set a seed because of random order in ties
+set.seed(123)
 parentTime <- seqistatd(biofam.seq)[, 1]
 seqplot.rf(biofam.seq, diss=diss, k=12, sortv=parentTime,
    main="Sorted by parent time")
