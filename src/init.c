@@ -2,6 +2,7 @@
 #include <Rinternals.h>
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
+void R_init_TraMineRextras(DllInfo *dll);
 
 /* FIXME:
    Check these declarations against the C/Fortran source code.

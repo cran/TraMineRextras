@@ -1,6 +1,35 @@
 \name{NEWS}
 \title{NEWS file for the TraMineRextras package}
 
+\section{Changes in version 0.6.5 [2022-10-09] }{
+
+  \subsection{Changes in existing functions}{
+    \itemize{
+      \item
+      \code{seqplot.rf()} argument \code{plus.one} renamed \code{grp.meth}
+    }
+  }
+  \subsection{Bug fixes}{
+    \itemize{
+      \item
+      \code{seqplot.rf()} \code{which.plot = "diss.to.med"} did not work.
+      \item
+      \code{seqplot.rf()} issue with unwanted ":" in plot title.
+      \item
+      \code{sorti()} possible conflict between column names of \code{seqdata} and arguments passed to \code{order}.
+      \item
+      issue with non UTF-8 commented line in TraMineRextras.Rd
+    }
+  }
+  \subsection{Misc.}{
+    \itemize{
+      \item
+      Replaced \code{permute(.)} with \code{sample(.)} in \code{seqCompare} to remove dependence on gtools that has become orphaned.
+    }
+  }
+}
+
+
 \section{Changes in version 0.6.4 [2022-06-13] }{
 
   \subsection{Changes in existing functions}{

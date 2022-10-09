@@ -182,6 +182,9 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
   oopt <- opt
   multsple <- FALSE
 
+  ## permute function from gtools that has become orphaned
+  permute <- function(x) sample(x, size = length(x), replace = FALSE)
+
   ## Constructing vector of indexes of sampled cases
   #r.s1=r.s2 = list(rep(NA,G))
   for (i in 1:G) {

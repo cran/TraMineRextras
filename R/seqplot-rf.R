@@ -1,19 +1,22 @@
 seqplot.rf <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
 						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
-                        plus.one = "first",  ...){
+                        grp.meth = "first",  ...){
 	
 	return(seqplot.rf_internal(seqdata, k=k, diss=diss, sortv=sortv,
 						ylab=ylab, yaxis=yaxis, main=main, which.plot=which.plot,
-                        plus.one = plus.one,
+                        grp.meth = grp.meth,
             ...))
 }
 seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=NULL,
 						use.hclust=FALSE, hclust_method="ward.D", #use.quantile=FALSE,
 						ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
-                        plus.one = "first", ...){
+                        grp.meth = "first", ...){
 	
 	message(" [>] Using k=", k, " frequency groups")
-	
+
+    plot.types <- c("both","medoids","diss.to.med")
+    if (! which.plot %in% plot.types)
+        stop(" which.plot must be one of ", plot.types)
 	
 	#Extract medoid, possibly weighted
 	gmedoid.index <- disscenter(diss, medoids.index="first")
@@ -29,8 +32,8 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 		sortv <- cmdscale(diss, k = 1)
 	
 	}
-    if (!(plus.one %in% c("first", "random")))
-        stop(" plus.one must be one of 'first' or 'random' ")
+    if (!(grp.meth %in% c("first", "random")))
+        stop(" grp.meth must be one of 'first' or 'random' ")
 	if(!is.null(sortv)){
 		ng <- nrow(seqdata) %/% k
 		r <- nrow(seqdata) %% k
@@ -39,7 +42,7 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 			#n.per.group[order(runif(r))] <- ng+1
             ##gr 23.05.22: order(runif(r)) produces random order of 1:r
             ##    therefore above makes first r groups one unit larger
-            if(plus.one=="first"){
+            if(grp.meth=="first"){
                 n.per.group[1:r] <- ng + 1
             }
             else {
@@ -101,10 +104,16 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 	   seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk, yaxis=yaxis, main="Sequences medoids", ...)
   }
 
-  if (which.plot=="medoids")
-  	 seqIplot(seqtoplot, sortv=mdsk, yaxis=yaxis, ylab=ylab, main=paste(main,"Sequences medoids", sep=": "), ...)
+  if (which.plot=="medoids"){
+     if (!is.null(main))
+        main <- paste(main,"Sequences medoids", sep=": ")
+     else
+        main <- "Sequences medoids"
+
+  	 seqIplot(seqtoplot, sortv=mdsk, yaxis=yaxis, ylab=ylab, main=main, ...)
 	##seqIplot(seqtoplot, with.legend=FALSE, sortv=mdsk)
 	
+  }
   heights <- xtabs(~mdsk)/nrow(seqdata)
 	at <- (cumsum(heights)-heights/2)/sum(heights)*length(heights)
 	if(!yaxis){
@@ -114,10 +123,15 @@ seqplot.rf_internal <- function(seqdata, k=floor(nrow(seqdata)/10), diss, sortv=
 	   boxplot(kmedoid.dist~mdsk, horizontal=TRUE, width=heights, frame=FALSE,
         main="Dissimilarities to medoid",
         ylim=range(as.vector(diss)), at=at, ylab=ylab)
-  }
-	if (which.plot == "diss.med") {
+    }
+    if (which.plot == "diss.to.med") {
+       if (!is.null(main))
+          main <- paste(main,"Dissimilarities to medoids", sep=": ")
+       else
+          main <- "Dissimilarities to medoids"
+
 	   boxplot(kmedoid.dist~mdsk, horizontal=TRUE, width=heights, frame=FALSE,
-        main=paste(main,"Dissimilarities to medoid",sep=": "),
+        main=main,
         ylim=range(as.vector(diss)), at=at, ylab=ylab)
   }
 	

@@ -1,5 +1,5 @@
-ec9d873d932ab2932d520df39f66e3ba *DESCRIPTION
-09fb7b9d999c517f3d5d9ac5187a74c3 *NAMESPACE
+3c882926db7d3c53badb92709d878b77 *DESCRIPTION
+651ad006f1ae5300ad1ae0313dc63890 *NAMESPACE
 bef7f51347882da3af275dcb7b039520 *R/FCE_to_TSE.R
 51ca4c3e07d1d4fb224e734e647516d0 *R/HSPELL_to_STS.R
 3ac4b256c19fdeb0503a8f16ec8c6ea4 *R/TSE_TO_STS.R
@@ -11,7 +11,7 @@ cb224dd4e0f457d3cef2edd44187cba6 *R/group-p.R
 0ddbe7a671ce7abab91e3e0d40008743 *R/pamward.R
 9056ef9760fae02ad634475c6d534c4d *R/plot.stslist.surv.R
 7d870937bcae0e4aaf664a632abe2aa6 *R/rowmode.R
-7206888722d712a4c42e81163aaacee7 *R/seqCompare.R
+380cd1b44227918d819a42915d2f4d4d *R/seqCompare.R
 983103213b8fce9cdc2733b689f3cd5f *R/seqauto.R
 610adccd3967d2f09d99609ded884f85 *R/seqcta.R
 b9a171e317128aa0201cf9fa57b3ce31 *R/seqe2stm.R
@@ -25,7 +25,7 @@ dc3acf35a9ea79690d042516053895f4 *R/seqerulesdisc.R
 6d5736282130668302d7b411c90dc50e *R/seqgranularity.R
 5e84c20e702b27f4ae06392b4ca996cb *R/seqimplic.R
 775f63d443d2d40069ce80ed4fe90365 *R/seqindic-dyn.R
-a43d9ae4aa540fa7c348cfcb81e4fe53 *R/seqplot-rf.R
+1735a1ca0881fbcd1c589f927596d6b6 *R/seqplot-rf.R
 8c8b7039967972c0d7b34a3c37d9a553 *R/seqplot-tentrop.R
 e52ba801071261fb44a9d237f26f5ad7 *R/seqpolyads.R
 b4faf2db9119e01b80459e953ca73f8d *R/seqrep-grp.R
@@ -35,18 +35,18 @@ b4faf2db9119e01b80459e953ca73f8d *R/seqrep-grp.R
 f8a6de55f2bd5f4e702e56d7ae04dbac *R/seqstart.R
 4fecafd48e096dbe92e382e32739a3be *R/seqsurv.R
 fc84cba2c35f93c5d9bddabad3032731 *R/seqtabstocc.R
-06d8dc167f09429403e0bcc70646e01b *R/sortv.R
+5374ae972c99b40ce1c5e2583bb2379f *R/sortv.R
 bed83b07c3eb568de1590a64ed195415 *R/toPersonPeriod.R
 a099c3bd211c0b2fdec0da26a8994a5c *R/zzz.R
-9ecb0bdfb906213cc54af05f9a8fb645 *build/partial.rdb
+f01682ffd9d5582c0d3b8a226f3c2b16 *build/partial.rdb
 b721c88aaeda37d119ae14975b392584 *data/polyads.RData
 e9d669d1d52b800b6bf6e7fd77e2e1f8 *inst/CITATION
-d29e540f22ccdac69b61b2682e03c8bb *inst/NEWS
-10e60d515f3159b252791cfcb07e323d *inst/NEWS.Rd
+0225a5489042c8b28972c9c316eff4cd *inst/NEWS
+306db0de182e4f55c75c247402930f25 *inst/NEWS.Rd
 021e321fee2ea861a0554e0a47bb5ae1 *man/FCE_to_TSE.Rd
 382a2bd76845f861c0f23ee958ad92c8 *man/HSPELL_to_STS.Rd
 ba54c77e25cf59471db590a629de66c0 *man/TSE_to_STS.Rd
-5b29fc54fb6e552eefb4d0de62ccfc70 *man/TraMineRextras-package.Rd
+6dcd7c8a8edfcec46265eaa83216881c *man/TraMineRextras-package.Rd
 9fb1ba43405dac07447fb96a6b4d461d *man/convert.Rd
 2df4d85a7b638b9868a6ee91536dab32 *man/createdatadiscrete.Rd
 d13812055045e936e57f00b1ed9cd00a *man/dissvar-grp.Rd
@@ -70,7 +70,7 @@ e9ebf6d9b590b76d7d2459646f9af5aa *man/seqgen.missing.Rd
 2ea2a1ef952211d9ab4f10a86ac6ebf9 *man/seqgranularity.Rd
 0bbe6502b22c9874e5c074da1c294661 *man/seqimplic.Rd
 6bce767bf59e624a4a59933330c536cc *man/seqindic-dyn.Rd
-03016b743e3d4b0874241b70f58c0398 *man/seqplot-rf.Rd
+a28fd336ebdab257f98773a3d70ca11e *man/seqplot-rf.Rd
 72eac26e0e565d6ef26ab0cd7756aafa *man/seqplot-tentrop.Rd
 7e49a98a35584d9fe84ecb807de6e38d *man/seqpolyads.Rd
 30965fbcc826c49518c9424e24199c8b *man/seqrep-grp.Rd
@@ -82,5 +82,5 @@ e9ebf6d9b590b76d7d2459646f9af5aa *man/seqgen.missing.Rd
 d3fc8be5d4aa203668d80ec5f8939a3a *man/seqtabstocc.Rd
 55cec92e52adc0932a92482f1651e7a2 *man/sortv.Rd
 acfb8a65f3218f7c97b11b3fd93108fe *man/toPersonPeriod.Rd
-b7153b0dd3b5837a4817f0d9ef10f843 *src/init.c
+781987143f43d76e8ac0bfd26572b08d *src/init.c
 b9394181280e480c04b888b0a70e5f71 *src/seqstart.cpp

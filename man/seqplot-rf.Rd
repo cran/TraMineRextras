@@ -10,7 +10,7 @@ Relative Frequency Sequence Plots (RFS plots) plot a selection of representative
 \usage{
 seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
     ylab=NA, yaxis=FALSE, main=NULL, which.plot="both",
-    plus.one = "first", ...)
+    grp.meth = "first", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@ seqplot.rf(seqdata, k = floor(nrow(seqdata)/10), diss, sortv = NULL,
   \item{yaxis}{logical. Controls whether a y-axis is plotted. When set as \code{TRUE}, the indexes of the sequences are displayed.}
   \item{main}{main graphic title. Default is \code{NULL}.}
   \item{which.plot}{string. One of \code{"both"}, \code{"medoids"}, \code{"diss.to.med"}. When \code{"medoids"}, only the index plot of the medoids is displayed, when \code{"diss.to.med"}, the grouped boxplots of the distances to the medoids is displayed, and when \code{"both"} a combined plot of the two is displayed.}
-  \item{plus.one}{character string. One of \code{"first"} or \code{"random"}. When the number of sequences is not a multiple of the number groups, which groups should have their size augmented by one unit? If \code{"first"}, the first groups, and if \code{"random"} a random selection of groups.}
+  \item{grp.meth}{character string. One of \code{"first"} or \code{"random"}. When the number of sequences is not a multiple of the number groups, which groups should have their size augmented by one unit? If \code{"first"}, the first groups, and if \code{"random"} a random selection of groups.}
   \item{\dots}{arguments passed to \code{\link{seqplot}}.}
  }
 \details{
@@ -47,7 +47,7 @@ Matthias Studer, Anette Eva Fasang, Tim Liao, and Gilbert Ritschard.
 }
 
 \seealso{
-See also \code{\link{seqplot}} and \code{\link{seqrep}}.
+See also \code{\link{seqplot}}, \code{\link{seqrf}}, \code{\link{seqrep}}.
 }
 \examples{
 ## Defining a sequence object with the data in columns 10 to 25

@@ -13,7 +13,7 @@ sorti <- function(seqdata, start = "end", sort.index = "TRUE"){
         return(k <- 1:max(seqlength(seqdata)))
     }
 
-    k <- do.call(order, as.data.frame(seqdata)[,end:beg])
+    k <- do.call(order, unname(as.data.frame(seqdata))[,end:beg])
     if (sort.index){
         return(k)
     }
@@ -34,4 +34,3 @@ sortv <- function(seqdata, start = "end"){
 ##        k <- k + asize^i*as.numeric(dframe[,i])
 ##    }
 ##    return(k)
-

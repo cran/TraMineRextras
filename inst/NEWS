@@ -1,9 +1,25 @@
-                CHANGES IN TraMineRextras VERSION 0.6.4 [2022-06-13] 
+                CHANGES IN TraMineRextras VERSION 0.6.5 [2022-10-09]
 
 Changes in existing functions:
-    o   seqplot.rf() gains a new argument 'plus.one' to control which 
+    o   seqplot.rf() argument 'plus.one' renamed 'grp.meth'
+
+Bug fixes:
+    o   seqplot.rf() which.plot = "diss.to.med" did not work.
+    o   seqplot.rf() issue with unwanted ":" in plot title.
+    o   sorti() possible conflict between column names of seqdata and arguments passed to order.
+    o   issue with non UTF-8 commented line in TraMineRextras.Rd
+
+Misc.:
+    o   Replaced `permute(.)` with `sample(.)` in `seqCompare` to remove dependence
+        on gtools that has become orphaned.
+
+
+                CHANGES IN TraMineRextras VERSION 0.6.4 [2022-06-13]
+
+Changes in existing functions:
+    o   seqplot.rf() gains a new argument 'plus.one' to control which
         group sizes to increase when number of sequences is not a multiple of number of groups.
-        
+
 Bug fixes:
     o   seqindic.dyn() checked whether fstat is a function by comparing class with a string. Now uses inherits.
     o   Issue with example in seqtabstocc.Rd.
