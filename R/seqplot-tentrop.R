@@ -2,15 +2,17 @@
 ## author: Gilbert Ritschard
 
 seqplot.tentrop <- function(seqdata, group,
-     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+     main="auto", col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
   group <- factor(group)
-  if(is.null(main)) {
-     main <- "Tranversal Entropies"
+
+  if (!is.null(main) && main[1] == "auto") {
+        main <- "Tranversal Entropies"
   }
+
 
   entrop <- by(seqdata, group, seqstatd)
 
@@ -88,14 +90,14 @@ seqplot.tentrop <- function(seqdata, group,
 ##
 
 seqplot.tentrop.m <- function(seqdata.list,
-     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+     main="auto", col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      xtlab=NULL, xtstep=NULL, tick.last=NULL,
-     with.legend=TRUE, glabels=NULL, legend.pos="topright",
+     with.legend=TRUE, glabels=names(seqdata.list), legend.pos="topright",
      horiz=FALSE, cex.legend=1, ...) {
 
   ncurve <- length(seqdata.list)
-  if (ncurve < 2) {
-    stop("seqplot.tentrop.m: seqdata.list must be a list of at least 2 seqelist objects", .call=FALSE)
+  if (inherits(seqdata.list,"stslist") || !inherits(seqdata.list,"list") || ncurve < 2) {
+    stop("seqplot.tentrop.m: seqdata.list must be a list of at least 2 seqlist objects", .call=FALSE)
   }
   warn <- FALSE
   for (i in 2:ncurve){
@@ -104,8 +106,8 @@ seqplot.tentrop.m <- function(seqdata.list,
   if (warn) {
     warning("sequence objects in seqdata.list are not all of same length")
     }
-  if(is.null(main)) {
-     main <- "Tranversal Entropies"
+  if (!is.null(main) && main[1] == "auto") {
+        main <- "Tranversal Entropies"
   }
 
   entrop <- lapply(seqdata.list, seqstatd)

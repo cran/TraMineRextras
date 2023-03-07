@@ -123,7 +123,7 @@ print.dynin <- function(x, ...){
 #################################
 
 plot.dynin <- function(x, fstat=weighted.mean, group=NULL, conf=FALSE,
-     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+     main="auto", col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      ylab=NULL, xlab=NULL, xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, bcol=NULL, na.rm=FALSE,
@@ -269,7 +269,7 @@ plot.dynin <- function(x, fstat=weighted.mean, group=NULL, conf=FALSE,
     xlab<-paste0("End of ",slid.text,"win size: ", attr(x,"window.size"),")")
   }
   if(is.null(ylab)) ylab<-attr(x,"indic")
-  if(is.null(main))
+  if(!is.null(main) && main[1] == "auto")
     main=paste("Dynamic index",attr(x,'indic'))
 
   if(is.null(ylim)){

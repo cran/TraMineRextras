@@ -2,7 +2,7 @@ import(TraMineR)
 importFrom("utils", "packageDescription", "packageVersion", "combn")
 importFrom("graphics", "abline", "axis", "box", "layout", "legend", "lines", "polygon", "par", "plot", "points", "rect", "segments", "text", "title", "boxplot","strheight", "strwidth")
 importFrom("grDevices", "col2rgb", "hsv", "rgb", "rgb2hsv")
-importFrom("stats", "ave", "chisq.test", "pchisq", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm", "sd", "weighted.mean", "pt", "relevel")
+importFrom("stats", "ave", "chisq.test", "pchisq", "cutree", "glm", "princomp", "reshape", "runif", "xtabs", "as.dist", "binomial", "cmdscale", "hclust","pnorm", "qnorm", "sd", "weighted.mean", "pt", "relevel", "complete.cases", "model.frame", "model.matrix", "na.pass")
 importFrom("cluster", "daisy", "pam", "agnes")
 ##importFrom("combinat", "permn")
 importFrom("RColorBrewer","brewer.pal")
@@ -19,6 +19,7 @@ export(
     pamward,
     rowmode,
     seqplot.tentrop,
+    seqplot.tentrop.m,
     seqplot.rf,
     sorti,
     sortv,
@@ -53,7 +54,8 @@ export(
     seqBIC,
     seqLRT,
     seqindic.dyn,
-    seqpolyads
+    seqpolyads, 
+	dissindic
 )
 
 ## emlt methods

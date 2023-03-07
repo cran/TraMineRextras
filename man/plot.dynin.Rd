@@ -8,8 +8,8 @@
 %%  Generic function for
 }
 \usage{
-\method{plot}{dynin}(x, fstat=weighted.mean, group=NULL, conf=FALSE, 
-     main=NULL, col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
+\method{plot}{dynin}(x, fstat=weighted.mean, group=NULL, conf=FALSE,
+     main="auto", col=NULL, lty=NULL, lwd=3.5, ylim=NULL,
      ylab=NULL, xlab=NULL, xtlab=NULL, xtstep=NULL, tick.last=NULL,
      with.legend=TRUE, glabels=NULL, legend.pos="topright",
      horiz=FALSE, cex.legend=1, bcol=NULL, na.rm=FALSE, ret=FALSE, ...)
@@ -24,7 +24,7 @@
 }
   \item{conf}{logical or numeric: If logical, should confidence bands be displayed? If numeric, confidence probability. \code{TRUE} is equivalent to .95. Applies only when \code{fstat=mean} or \code{fstat=weighted.mean}.
 }
-  \item{main}{character string: Plot title.
+  \item{main}{character string: Plot title. Default is "auto" that prints a default title. Set as \code{NULL} to suppress the title.
 }
   \item{col}{color vector. Group line colors. If \code{NULL} (default), colors are automatically assigned using \code{qualitative_hcl} with the \code{'Dark 3'} palette (see \code{\link[colorspace]{hcl_palettes}}).
 }

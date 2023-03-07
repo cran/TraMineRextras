@@ -2,9 +2,19 @@
 
 plot.stslist.surv <- function(x, cpal = NULL, ylab = NULL, xlab = NULL, xaxis = TRUE,
   yaxis = TRUE, xtstep = NULL, tick.last = NULL, cex.axis = 1, ...) {
+
+  sep.ylab <- (isFALSE(yaxis) && (is.null(ylab) || !is.na(ylab)))
+  cex.lab <- par("cex.lab")
+  if ("cex.lab" %in% names(list(...))) cex.lab <- list(...)[["cex.lab"]]
+
   if (yaxis) yaxt <- "s" else yaxt <- "n"
   if (is.null(cpal)) cpal <- attr(x, "cpal")
   if (is.null(ylab)) ylab <- "Percentage of unterminated spells"
+  if (sep.ylab) {
+      sylab <- ylab
+      ylab <- NA
+  }
+
 	if (is.null(xtstep)) {
 		xtstep <- ifelse(!is.null(attr(x, "xtstep")), attr(x, "xtstep"), 1)
 	}
@@ -28,4 +38,7 @@ plot.stslist.surv <- function(x, cpal = NULL, ylab = NULL, xlab = NULL, xaxis = 
     plot(0, type = "n", col = cpal, xlab = xlab, ylab = ylab, cex.axis = cex.axis,
       xaxt = "n", yaxt = "n", ...)
    }
+   if (sep.ylab)
+    title(ylab=sylab, line=1, cex.lab=cex.lab)
+
 }

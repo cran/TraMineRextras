@@ -1,3 +1,27 @@
+                CHANGES IN TraMineRextras VERSION 0.6.6 [2023-03-07]
+
+New functions:
+    o   dissindic() case indicators to select observations that are typical, atypical, 
+	    illustrative of or counterexample of a statistical association between trajectories 
+		and a covariate/typology.
+
+Changes in existing functions:
+    o   seqsplot(), argument `axes` is deprecated and replaced by `xaxis`.
+        Argument `yaxis` can now also be one of "all" or "left".
+    o   seqsplot(), ylab can be a vector of labels by group level.
+    o   seqsplot() supports arguments of legend among the ... list.
+    o   plot.stslist.surv(), plot method for objects returned by seqsurv displays
+        the ylab closer from the y-axis when yaxis=FALSE. It also recognizes the `cex.lab` argument.
+    o   seqsplot(), seqplot.tentrop(), seqplot.tentrop.m(), seqedplot(), plot.dynin(),
+        and plot.stslist.surv(): default value of main is now "auto" and NULL suppresses
+        the titles as expected.
+    o   seqplot.tentrop.m() now in namespace.
+    o   seqedplot()} argument names and behavior made conformable with those of TraMineR:::seqplot.
+
+Misc.:
+    o   Depends on TraMineR >= 2.2-5 (link to `seqrf` in `seqplot.rf` help page)
+
+
                 CHANGES IN TraMineRextras VERSION 0.6.5 [2022-10-09]
 
 Changes in existing functions:

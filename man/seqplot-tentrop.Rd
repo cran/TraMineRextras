@@ -10,14 +10,15 @@ Functions to plot, in a same frame, transversal-entropy curves by group or multi
  }
 
 \usage{
-seqplot.tentrop(seqdata, group, main=NULL,
+seqplot.tentrop(seqdata, group, main="auto",
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
     xtstep=NULL, tick.last=NULL, with.legend=TRUE, glabels=NULL,
     legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 
-seqplot.tentrop.m(seqdata.list, main=NULL,
+seqplot.tentrop.m(seqdata.list, main="auto",
     col=NULL, lty=NULL, lwd=3.5, ylim=NULL, xtlab=NULL,
-    xtstep=NULL, tick.last=NULL, with.legend=TRUE, glabels=NULL,
+    xtstep=NULL, tick.last=NULL, with.legend=TRUE,
+    glabels=names(seqdata.list),
     legend.pos="topright", horiz=FALSE, cex.legend=1, ...)
 }
 
@@ -28,7 +29,7 @@ seqplot.tentrop.m(seqdata.list, main=NULL,
 
   \item{group}{a factor giving the group membership of each sequence in \code{seqdata}.}
 
-  \item{main}{a character string giving the title of the graphic; if \code{NULL}, a default title is printed.}
+  \item{main}{a character string giving the title of the graphic; if \code{"auto"}, a default title is printed.}
 
   \item{col}{a vector of colors for the different curves.}
 
@@ -76,6 +77,10 @@ biofam.seq <- seqdef(biofam[,10:25], xtlab=as.character(15:30), xtstep=3)
 
 ## Plotting transversal entropies by sex
 seqplot.tentrop(biofam.seq, group=biofam$sex, legend.pos="bottomright")
+
+slist <- list(woman = biofam.seq[biofam$sex=="woman",],
+                man = biofam.seq[biofam$sex=="man",])
+seqplot.tentrop.m(slist, legend.pos="bottomright")
 
 ## Plotting transversal entropies for women
 ## by father's social status

@@ -8,11 +8,14 @@ High level plot function for state sequence objects that produces survival curve
 }
 
 \usage{
-seqsplot(seqdata, group = NULL, main = NULL, cpal = NULL,
-  missing.color = NULL, ylab = NULL, yaxis = TRUE, axes = "all",
-  xtlab = NULL, cex.axis = 1, with.legend = "auto", ltext = NULL,
-  cex.legend = 1, use.layout = (!is.null(group) | with.legend != FALSE),
-  legend.prop = NA, rows = NA, cols = NA, which.states, title, cex.plot, withlegend, ...)
+seqsplot(seqdata, group = NULL, main = "auto",
+  cpal = NULL, missing.color = NULL,
+  ylab = NULL, yaxis = "all",
+  xaxis = "all", xtlab = NULL,
+  cex.axis = 1, with.legend = "auto", ltext = NULL, cex.legend = 1,
+  use.layout = (!is.null(group) | with.legend != FALSE), legend.prop = NA,
+  rows = NA, cols = NA, which.states = NULL,
+  title, cex.plot, withlegend, axes, ...)
 }
 
 \arguments{
@@ -20,17 +23,17 @@ seqsplot(seqdata, group = NULL, main = NULL, cpal = NULL,
 
     \item{group}{Grouping variable of length equal to the number of sequences. When \code{per.state = FALSE} (default), a distinct plot is generated for each level of \code{group}. When \code{per.state = TRUE}, the curves for each group level are drawn in a same plot for each distinct value of \code{alphabet(seqdata)}.}
 
-    \item{main}{Character string. Title for the graphic. Default is \code{NULL}.}
+    \item{main}{Character string. Title for the graphic. Default is \code{"auto"}, i.e., group levels or, when \code{per.state=TRUE}, the state labels. If a single string, the string is pasted with the group or state label. Set as \code{NULL} to suppress titles. Can also be a vector.}
 
     \item{cpal}{Vector. Color palette used for the states or the groups when \code{per.state=TRUE} is given along the \code{...} list. Default is \code{NULL}, in which case the \code{cpal} attribute of the \code{seqdata} sequence object is used (see \code{\link{seqdef}}) or the default colors assigned to groups when \code{type="s"} and \code{per.state=TRUE}. If user specified, a vector of colors of length and order corresponding to \code{alphabet(seqdata)} or, if for groups, the number of levels of the group variable.}
 
     \item{missing.color}{Color for representing missing values inside the sequences. By default, this color is taken from the \code{missing.color} attribute of \code{seqdata}.}
 
-    \item{ylab}{Character string. an optional label for the y-axis. If set as \code{NA}, no label is drawn.}
+    \item{ylab}{Character string or vector of strings. Optional label of the y-axis. If a vector, y-axis label of each group (or state) level. If set as \code{NA}, no label is drawn.}
 
-    \item{yaxis}{Logical. Should the y-axis be plotted?}
+    \item{yaxis}{Logical or one of \code{"all"} or \code{"left"}. If set as \code{TRUE} or \code{"all"} (default), the y-axis is displayed on all plots. In case of multiple plots (when \code{per.state=TRUE} or \code{group} is used), if set as \code{"left"}, the y-axis is only displayed on plots of the left panel. If \code{FALSE} no y-axis is drawn.}
 
-    \item{axes}{Character string or logical. If set as \code{"all"} (default value) x-axes are drawn for each plot in the graphic. If set as \code{"bottom"} and \code{group} is used, axes are drawn only under the plots located at the bottom of the graphic area. If \code{FALSE}, no x-axis is drawn.}
+    \item{xaxis}{Logical or one of \code{"all"} or \code{"bottom"}. If set as \code{TRUE} or \code{"all"} (default value) the x-axis is drawn on each plot in the graphic. In case of multiple plots (when \code{per.state=TRUE} or \code{group} is used), if set as \code{"bottom"}, the x-axis is drawn only under the plots of the bottom panel. If \code{FALSE}, no x-axis is drawn.}
 
     \item{xtlab}{Vector of length equal to the number of columns of \code{seqdata}. Optional labels for the x-axis tick labels. If unspecified, the column names of the \code{seqdata} sequence object are used (see \code{\link{seqdef}}).}
 
@@ -51,8 +54,9 @@ seqsplot(seqdata, group = NULL, main = NULL, cpal = NULL,
   \item{title}{Deprecated. Use \code{main} instead.}
   \item{cex.plot}{Deprecated. Use \code{cex.axis} instead.}
   \item{withlegend}{Deprecated. Use \code{with.legend} instead.}
-  
-  \item{\dots}{arguments to be passed to the function called to produce the appropriate statistics and the associated plot method (see details), or other graphical parameters. For example \code{per.spell} argument will typically be used for survival plots.  
+  \item{axes}{Deprecated. Use \code{xaxis} instead.}
+
+  \item{\dots}{arguments to be passed to the function called to produce the appropriate statistics and the associated plot method (see details), or other graphical parameters. For example \code{per.spell} argument will typically be used for survival plots. Can also include arguments of \code{\link[graphics]{legend}} such as \code{bty="n"} to suppress the box surrounding the legend.
       %the \code{weighted} argument can be passed to control whether (un)weighted statistics are produced or \code{with.missing} argument to take missing values into account when computing transversal or longitudinal state distributions.
       }
 }
@@ -93,11 +97,11 @@ biofam <- biofam[sple,]
 biofam.seq <- seqdef(biofam[,10:25], alphabet=0:7, states=biofam.short, labels=biofam.lab)
 
 ## defining two birth cohorts
-biofam$wwii <- factor(biofam$birthyr > 1945, 
+biofam$wwii <- factor(biofam$birthyr > 1945,
   labels=c("Born Before End of Word War II","Born After Word War II"))
 
 ## ==============================
-## Plots of state survival curves 
+## Plots of state survival curves
 ## ==============================
 
 seqsplot(biofam.seq) ## all states, no group
@@ -108,10 +112,10 @@ seqsplot(biofam.seq, group=biofam$wwii, per.state=TRUE, lwd=2) ## groups for eac
 
 seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM'), lwd=2)
 ## changing default color
-seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM'), 
+seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM'),
   cpal="orange", lwd=2)
-seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM','LMC'), 
-  cpal=c("orange","brown"), lwd=2) 
+seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM','LMC'),
+  cpal=c("orange","brown"), lwd=2)
 seqsplot(biofam.seq, group=biofam$wwii, which.states= c('LM','LMC'), per.state=TRUE)
 }
 

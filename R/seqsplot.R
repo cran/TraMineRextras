@@ -3,13 +3,16 @@
 ## Based on seqplot
 ## ====================================================
 
-seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
-  missing.color = NULL, ylab = NULL, yaxis = TRUE, axes = "all", xtlab = NULL,
+seqsplot <- function(seqdata, group = NULL, main = "auto",
+  cpal = NULL, missing.color = NULL,
+  ylab = NULL, yaxis = "all",
+  xaxis = "all", xtlab = NULL,
   cex.axis = 1, with.legend = "auto", ltext = NULL, cex.legend = 1,
   use.layout = (!is.null(group) | with.legend != FALSE), legend.prop = NA,
-  rows = NA, cols = NA, which.states = NULL, title, cex.plot, withlegend, ...) {
+  rows = NA, cols = NA, which.states = NULL,
+  title, cex.plot, withlegend, axes, ...) {
 
-  TraMineR.check.depr.args(alist(main = title, cex.axis = cex.plot, with.legend = withlegend))
+  TraMineR.check.depr.args(alist(main = title, cex.axis = cex.plot, with.legend = withlegend, xaxis=axes))
   type = "s" ## here this is the only type,
 
 	if (!inherits(seqdata,"stslist"))
@@ -21,6 +24,20 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
   	leg.ncol <- if ("ncol" %in% names(oolist)) { oolist[["ncol"]] } else { NULL }
     oolist <- oolist[names(oolist) != "ncol"]
 
+    if (is.logical(xaxis)){
+        xaxis <- ifelse (xaxis, "all", FALSE)
+    } else {
+        if (!xaxis %in% c("all","bottom"))
+            TraMineR:::msg.stop('If not logical, xaxis should be one of "all" or "bottom"')
+    }
+    axes <- xaxis
+    if (is.logical(yaxis)){
+        yaxis <- ifelse(yaxis, "all", FALSE)
+    } else {
+        if (!yaxis %in% c("all","left"))
+            TraMineR:::msg.stop('If not logical, yaxis should be one of "all" or "left"')
+    }
+    yaxes <- yaxis
 
 
   ## Specific preparation for surv plot
@@ -138,6 +155,12 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
       nplot <- nlevels(group)
       gindex <- vector("list",nplot)
 
+      if (length(ylab) <= 1) ## length(NULL) is 0
+        ylab <- rep(ylab, nplot)
+      else if (length(ylab) != nplot)
+        stop(call.=FALSE, "if a vector, ylab must have one value per group (or state) level!")
+
+
       for (s in 1:nplot){
         if (per.state)
           gindex[[s]] <- 1:nrow(seqdata)
@@ -151,10 +174,19 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
       }
       else
           group.lab <- levels(group)
-      if (!is.null(main))
-        main <- paste(main,"-",group.lab)
-      else
-        main <- group.lab
+
+
+      if (!is.null(main)) {
+          if (main[1] == "auto")
+            main <- group.lab
+          else if (length(main)==1)
+            main <- paste(main,"-",group.lab)
+      }
+
+##      if (!is.null(main))
+##         main <- paste(main,"-",group.lab)
+##       else
+##         main <- group.lab
 	## } else { # single group
   ##        nplot <- 1
   ##        gindex <- vector("list",1)
@@ -168,12 +200,12 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 
 	## IF xaxis argument is provided
 	## it interferes with axes argument
-	if ("xaxis" %in% names(oolist)) {
-		tmpxaxis <- oolist[["xaxis"]]
-		if (tmpxaxis==TRUE) {axes="all"}
-		else if (tmpxaxis==FALSE) {axes=FALSE}
-		oolist <- oolist[!names(oolist) %in% "xaxis"]
-	}
+## 	if ("xaxis" %in% names(oolist)) {
+## 		tmpxaxis <- oolist[["xaxis"]]
+## 		if (tmpxaxis==TRUE) {axes="all"}
+## 		else if (tmpxaxis==FALSE) {axes=FALSE}
+## 		oolist <- oolist[!names(oolist) %in% "xaxis"]
+## 	}
 
 	if (use.layout | !is.null(group) ) {
 		## Saving graphical parameters
@@ -183,13 +215,27 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 	  	layout(lout$laymat, heights=lout$heights, widths=lout$widths)
 
 		## Should axis be plotted or not ?
-		xaxis <- 1:nplot==lout$axisp
+		##xaxis <- 1:nplot==lout$axisp
+        xaxis <- rep(FALSE,nplot)
+        xaxis[lout$axisp] <- TRUE
+
+        yaxis <- rep(FALSE,nplot)
+        if (!isFALSE(yaxes)){
+            if (yaxes == "left"){
+                yaxis[lout$laymat[,1]] <- TRUE
+            }
+            else if (yaxes == "all") {
+                yaxis <- rep(TRUE,nplot)
+            }
+        }
 
 		legpos <- lout$legpos
 	}
 	else {
-		if (axes!=FALSE) {xaxis <- TRUE}
-		else {xaxis <- FALSE}
+		if (isFALSE(axes)) {xaxis <- FALSE}
+		else {xaxis <- TRUE}
+        if (isFALSE(yaxes)) {yaxis <- FALSE}
+        else yaxis <- TRUE
 		legpos <- NULL
 	}
 
@@ -201,7 +247,7 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 		olist <- oolist
 
 		plist <- list(main=main[np], cpal=cpal, missing.color=missing.color,
-			ylab=ylab, yaxis=yaxis, xaxis=xaxis[np],
+			ylab=ylab[np], yaxis=yaxis[np], xaxis=xaxis[np],
 			xtlab=xtlab, cex.axis=cex.axis)
 
 		## Selecting sub sample for x
@@ -272,8 +318,8 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
 
 		if (is.null(cpal)) cpal <- attr(seqdata,"cpal")
 
-		density <- if ("density" %in% names(oolist)) { oolist[["density"]] } else { NULL }
-		angle <- if ("angle" %in% names(oolist)) { oolist[["angle"]] } else { NULL }
+		#density <- if ("density" %in% names(oolist)) { oolist[["density"]] } else { NULL }
+		#angle <- if ("angle" %in% names(oolist)) { oolist[["angle"]] } else { NULL }
 
 		## Adding an entry for missing in the legend
 		if (with.missing & any(seqdata==nr)) {
@@ -288,7 +334,14 @@ seqsplot <- function(seqdata, group = NULL, main = NULL, cpal = NULL,
           ltext <- ltext.grp
         }
 
-		TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
+        legargs <- names(formals(legend))
+        largs <- oolist[names(oolist) %in% legargs]
+        largs <- largs[!names(largs) %in% c("cex")]
+        largs <- c(list(legpos, ltext, cpal, cex=cex.legend, leg.ncol=leg.ncol),largs)
+
+		#TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
+		do.call(TraMineR:::TraMineR.legend, largs)
+		#TraMineR:::TraMineR.legend(legpos, ltext, cpal, cex=cex.legend, density=density, angle=angle, leg.ncol=leg.ncol)
 	}
 
 	## Restoring graphical parameters
