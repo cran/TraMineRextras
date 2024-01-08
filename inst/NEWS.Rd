@@ -1,8 +1,33 @@
 \name{NEWS}
 \title{NEWS file of the TraMineRextras package}
 
+\section{Changes in version 0.6.7 [2024-01-08] }{
 
-\section{Changes in version 0.6.6 [2023-01-13] }{
+    \subsection{Changes in existing functions}{
+    	\itemize{
+    		\item
+            All TraMineRextras plot functions: improved support of
+            graphical parameters. (E.g., \code{las} and \code{cex.axis} can
+            now be used to control the display of tick labels.)
+    	}
+    }
+
+    \subsection{Bug fixes}{
+        \itemize{
+            \item
+            seqimplic.Rd: lack of description for argument \code{ylim}.
+            \item
+            \code{seqpolyads()}: time reported when \code{core > 1} was not reliable
+            \item
+            \code{convert.g()}: error when \code{path=NULL}.
+            \item
+            \code{convert.g()} adapted to changes in ImageMagick.
+
+        }
+    }
+}
+
+\section{Changes in version 0.6.6 [2023-03-07] }{
 
     \subsection{New function}{
     	\itemize{

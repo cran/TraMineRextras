@@ -64,6 +64,9 @@ Use \code{seqplot.tentrop} to plot curves of transversal entropies by groups of 
 Use \code{seqplot.tentrop.m} to plot multiple curves of transversal entropies corresponding to different sets of sequences such as sequences describing cohabitational and sequences describing occupational trajectories.
 }
 
+\value{Number \code{k} of survival curves plotted.
+}
+
 \seealso{
 \code{\link{seqHtplot}} for an alternative way of plotting the transversal entropies and \code{\link{seqstatd} } to get the values of the entropies.
 }

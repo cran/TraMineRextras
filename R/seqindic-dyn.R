@@ -283,9 +283,9 @@ plot.dynin <- function(x, fstat=weighted.mean, group=NULL, conf=FALSE,
   plot(0, type= "n", axes=FALSE, xlab=xlab, ylab=ylab, main=main, ylim=ylim, xlim=c(1,nc), ...)
 	tpos <- seq(from=1, to=nc, by=xtstep)
   if (tick.last & tpos[length(tpos)] < nc) tpos <- c(tpos,nc)
-  axis(1,labels=xtlab[tpos],at=tpos)
+  axis(1,labels=xtlab[tpos], at=tpos, ...)
   #axis(1)
-  axis(2)
+  axis(2, ...)
 
   if (conf) {
       #set.seed(1234)

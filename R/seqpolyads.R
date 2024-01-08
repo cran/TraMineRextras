@@ -7,8 +7,31 @@ seqpolyads <- function (seqlist, a=1, method="HAM", ..., w=rep(1,ncol(combn(1:le
               s=36963, T=1000, core=1, replace=TRUE, weighted=TRUE,
               with.missing=FALSE, rand.weight.type=1, role.weights=NULL, show.time=FALSE) {
 
+  gc(FALSE)
+  if (show.time){
+    syst <- system.time(res <- seqpolyads.private(seqlist=seqlist, a=a, method=method, ..., w=w,
+              s=s, T=T, core=core, replace=replace, weighted=weighted,
+              with.missing=with.missing, rand.weight.type=rand.weight.type,
+              role.weights=role.weights))
+    print(syst)
+  }
+  else {
+    res <- seqpolyads.private(seqlist=seqlist, a=a, method=method, ..., w=w,
+              s=s, T=T, core=core, replace=replace, weighted=weighted,
+              with.missing=with.missing, rand.weight.type=rand.weight.type,
+              role.weights=role.weights)
+  }
+  return(res)
+
+}
+
+
+seqpolyads.private <- function (seqlist, a=1, method="HAM", ..., w=rep(1,ncol(combn(1:length(seqlist),2))),
+              s=36963, T=1000, core=1, replace=TRUE, weighted=TRUE,
+              with.missing=FALSE, rand.weight.type=1, role.weights=NULL, show.time=FALSE) {
+
   #gc(FALSE)
-  if (show.time) ptime.begin <- proc.time()
+  #if (show.time) ptime.begin <- proc.time()
 
   if (!inherits(seqlist, "list") || length(seqlist)<2)
     TraMineR:::msg.stop("seqlist must be a list of at least two stslist objects")
@@ -147,7 +170,7 @@ seqpolyads <- function (seqlist, a=1, method="HAM", ..., w=rep(1,ncol(combn(1:le
   mean.dist <- c(mean.obs.dist,mean.rand.dist)
   names(mean.dist) <- c("Obs","Rand")
 
-  if (show.time) print(proc.time()-ptime.begin)
+  #if (show.time) print(proc.time()-ptime.begin)
 
   list(mean.dist=mean.dist,U=mean.U,U.tp=U.p,V=test.p,
        V.95=polyads.dummy,observed.dist=polyads.dist,random.dist=random.dist)

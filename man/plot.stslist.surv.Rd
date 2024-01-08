@@ -7,8 +7,8 @@
 }
 \usage{
 \method{plot}{stslist.surv}(x, cpal = NULL, ylab = NULL, xlab = NULL,
-  xaxis = TRUE, yaxis = TRUE, xtstep = NULL, tick.last = NULL, 
-  cex.axis = 1, ...)
+  xaxis = TRUE, yaxis = TRUE, xtstep = NULL, tick.last = NULL,
+  ...)
 }
 \arguments{
   \item{x}{
@@ -35,11 +35,11 @@
   }
   \item{tick.last}{Logical. Should a tick mark be enforced at the last position on the x-axis? If unspecified, the \code{tick.last} attribute of the \code{x} object is used.}
 
-  \item{cex.axis}{
-    Expansion factor for the font size of the axis labels and
-    names. The default value is 1. Values lesser than 1 will reduce the size of
-    the font, values greater than 1 will increase the size.
-  }
+  %\item{cex.axis}{
+  %  Expansion factor for the font size of the axis labels and
+  %  names. The default value is 1. Values lesser than 1 will reduce the size of
+  %  the font, values greater than 1 will increase the size.
+  %}
   \item{\dots}{
     Further graphical parameters. For more details about the graphical parameter
     arguments, see \code{\link{plot}}, \code{\link{plot.default}} and

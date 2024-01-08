@@ -1,3 +1,17 @@
+                CHANGES IN TraMineRextras VERSION 0.6.7 [2024-01-08]
+
+Changes in existing functions:
+    o   All TraMineRextras plot functions: improved support of 
+        graphical parameters. (E.g., las and cex.axis can 
+        now be used to control the display of tick labels.)
+        
+Bug fixes:
+    o   seqimplic.Rd: lack of description for argument 'ylim'.
+    o   seqpolyads(): time reported when core > 1 was not reliable.
+    o   convert.g(): error when path=NULL.
+    o   convert.g() adapted to changes in ImageMagick.
+    
+
                 CHANGES IN TraMineRextras VERSION 0.6.6 [2023-03-07]
 
 New functions:

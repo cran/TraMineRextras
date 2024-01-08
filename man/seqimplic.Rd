@@ -42,9 +42,8 @@ Logical. If \code{TRUE} (default), observations with missing values on the \code
  \item{tick.last}{Logical. Should a tick mark be enforced at the last position on the x-axis? If unspecified, the \code{tick.last} attribute of the \code{x} object is used.}
 
  \item{main}{title for the graphic. Default is \code{NULL}.}
-\item{ylim}{
-%%     ~~Describe \code{ylim} here~~
-}
+ \item{ylim}{the y limits of the plot.
+ }
 \item{xaxis}{Logical. Should the x-axis (time) be plotted?.}
 
 \item{ylab}{Optional label for the y-axis. If set as \code{NA}, no label is drawn.}

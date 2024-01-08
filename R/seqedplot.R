@@ -214,7 +214,7 @@ seqedplot <- function(seqe,
         					## using xmax and xlim produces warning since survival v 3.0
                   ##plot(ony, col=cpal[event], xmax=ages[2], main=main[np], conf.int=FALSE, xlab=xlab, ylab=ylab, xlim=ages, ...)
         					##plot(ony, col=cpal[event], main=main[np], xlab=xlab, ylab=ylab, xlim=ages, ...)
-                  plist <- list(ony, col=cpal[event], main=main[np], xlab=xlab, ylab=yylab, xlim=ages,
+                  plist <- list(x=ony, col=cpal[event], main=main[np], xlab=xlab, ylab=yylab, xlim=ages,
                                 yaxt=yaxt, xaxt=xaxt)
                   #plotargs <- names(formals(survival:::plot.survfit))
                   #polist <- oolist[names(oolist) %in% plotargs]

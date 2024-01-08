@@ -15,9 +15,9 @@ bibentry(bibtype="techreport",
   title = "Package {T}ra{M}ine{R}extras",
   institution = "Comprehensive R Archive Network (CRAN)",
   type = "Reference manual",
-  year = "2021",
+  year = "2024",
 
-  textVersion="Ritschard, G., Studer, M., B\u00FCgin, R., Liao, T., Gabadinho, A., Fonta, P.-A., M\u00FCller, N.S.,  & Rousset, P. (2021),
+  textVersion="Ritschard, G., Studer, M., B\u00FCgin, R., Liao, T., Gabadinho, A., Fonta, P.-A., M\u00FCller, N.S.,  & Rousset, P. (2024),
   Package TraMineRextras, Comprehensive R Archive Network (CRAN)"
 )
 

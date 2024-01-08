@@ -50,11 +50,12 @@ export(
     seqtabstocc,
     seqsurv,
     seqsplot,
+    #dissCompare,
     seqCompare,
     seqBIC,
     seqLRT,
     seqindic.dyn,
-    seqpolyads, 
+    seqpolyads,
 	dissindic
 )
 

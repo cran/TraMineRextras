@@ -155,7 +155,7 @@ print.seqimplic <- function(x, xtstep=NULL, tick.last=NULL, round=NULL, conf.lev
 
 plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
 	ylab="Implication", yaxis=TRUE, axes="all", xtlab=NULL,
-  xtstep = NULL, tick.last = NULL, cex.axis=1,
+    xtstep = NULL, tick.last = NULL, cex.axis=1,
 	with.legend="auto", ltext=NULL, cex.legend=1,
 	legend.prop=NA, rows=NA, cols=NA, conf.level=0.95, lwd=1, only.levels=NULL, ...){
 	
@@ -211,10 +211,10 @@ plot.seqimplic <- function(x, main=NULL, ylim=NULL, xaxis=TRUE,
       npos <- length(xtlab)
 		  tpos <- seq(from=1, to=npos, by=xtstep)
       if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
-			axis(1, at=tpos-0.5, labels=xtlab[tpos], cex.axis=cex.axis)
+			axis(1, at=tpos-0.5, labels=xtlab[tpos], cex.axis=cex.axis, ...)
 		}
 		if (is.null(yaxis) || yaxis) {
-			axis(2, cex.axis=cex.axis)
+			axis(2, cex.axis=cex.axis, ...)
 		}
 		if(!is.null(conf.level)) {
 			for(conf in conf.level){

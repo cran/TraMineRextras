@@ -5,10 +5,10 @@
 
 \description{The function computes measures of the degree of similarities within polyadic member sequences compared to randomly assigned polyadic member sequences.}
 \usage{
-seqpolyads(seqlist, a=1, method="HAM", ..., 
+seqpolyads(seqlist, a=1, method="HAM", ...,
     w=rep(1,ncol(combn(1:length(seqlist),2))),
     s=36963, T=1000, core=1, replace=TRUE, weighted=TRUE,
-    with.missing=FALSE, rand.weight.type=1, role.weights=NULL, 
+    with.missing=FALSE, rand.weight.type=1, role.weights=NULL,
     show.time=FALSE)
 }
 \arguments{
@@ -94,7 +94,7 @@ seqChild <- seqdef(polyads[Gen=="3rd Generation",2:11])
 Seq <- rbind(seqGrandP,seqParent,seqChild)
 slgth <- ncol(Seq)
 colnames(Seq) <- 21:30
-seqIplot(Seq,group=Gen,ylim=c(10,0),ylab="Triad",xlab="Age")
+seqIplot(Seq,group=Gen,idxs=10:1,ylab="Triad",xlab="Age")
 seqL <- list(seqGrandP,seqParent,seqChild)
 core=1
 seqG2.Tim <- seqpolyads(seqL[1:2],method="HAM",a=1,core=core,T=100)

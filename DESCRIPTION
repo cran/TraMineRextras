@@ -1,6 +1,6 @@
 Package: TraMineRextras
-Version: 0.6.6
-Date: 2023-03-07
+Version: 0.6.7
+Date: 2024-01-08
 Title: TraMineR Extension
 Authors@R: c(
   person("Gilbert", "Ritschard", role = c("aut", "cre", "ths", "cph"),
@@ -23,7 +23,7 @@ URL: http://traminer.unige.ch/
 Encoding: UTF-8
 Maintainer: Gilbert Ritschard <gilbert.ritschard@unige.ch>
 NeedsCompilation: yes
-Packaged: 2023-03-07 12:25:21 UTC; grits
+Packaged: 2024-01-08 14:17:03 UTC; grits
 Author: Gilbert Ritschard [aut, cre, ths, cph]
     (<https://orcid.org/0000-0001-7776-0903>),
   Matthias Studer [aut] (<https://orcid.org/0000-0002-6269-1412>),
@@ -34,4 +34,4 @@ Author: Gilbert Ritschard [aut, cre, ths, cph]
   Nicolas S. Muller [ctb],
   Patrick Rousset [ctb]
 Repository: CRAN
-Date/Publication: 2023-03-07 13:40:02 UTC
+Date/Publication: 2024-01-08 21:50:02 UTC

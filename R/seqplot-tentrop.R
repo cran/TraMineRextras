@@ -69,19 +69,20 @@ seqplot.tentrop <- function(seqdata, group,
         ylim <- c(floor(10*mine),ceiling(10*maxe))/10
   }
 
-  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos))
+  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos), ...)
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
 	tpos <- seq(from=1, to=npos, by=xtstep)
   if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
-  axis(1,labels=xtlab[tpos],at=tpos)
-  axis(2)
+  #axis(1,labels=xtlab[tpos],at=tpos, las=las, cex.axis=cex.axis)
+  axis(1,labels=xtlab[tpos],at=tpos, ...)
+  axis(2, ...)
   if(with.legend){
     legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
   }
 
-  return(k)
+  return(invisible(k))
 }
 
 
@@ -162,17 +163,17 @@ seqplot.tentrop.m <- function(seqdata.list,
         ylim <- c(floor(10*mine),ceiling(10*maxe))/10
   }
 
-  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos))
+  plot(0, type= "n", axes=FALSE, xlab="", ylab="Entropy", main=main, ylim=ylim, xlim=c(1,npos), ...)
   for (i in 1:k) {
      lines(entrop[[i]]$Entropy, col=col[i],  type="l", lty=lty[i], lwd=lwd[i], ...)
   }
 	tpos <- seq(from=1, to=npos, by=xtstep)
   if (tick.last & tpos[length(tpos)] < npos) tpos <- c(tpos,npos)
-  axis(1,labels=xtlab[tpos],at=tpos)
-  axis(2)
+  axis(1,labels=xtlab[tpos],at=tpos, ...)
+  axis(2, ...)
   if(with.legend){
     legend(legend.pos, legend=glabels,  lwd=lwd, lty=lty[1:k], col=col[1:k], horiz=horiz, cex=cex.legend)
   }
 
-  return(k)
+  return(invisible(k))
 }
