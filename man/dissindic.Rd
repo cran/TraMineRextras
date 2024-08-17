@@ -21,7 +21,7 @@ dissindic(diss, group, gower = FALSE, squared = FALSE, weights = NULL)
 }
 \details{
 
-The two indicators are computed within the discrepancy analysis framework (see \code{\link{dissmfacw}}). The marginality is computed as the "residual" of the discrepancy analysis. A high value means that a sequence (or another object) is far from the center of gravity of its group, i.e. the most typical situation. A low value indicates a sequence (or another object) close to this gravity center. 
+The two indicators are computed within the discrepancy analysis framework (see \code{\link[TraMineR]{dissmfacw}}). The marginality is computed as the "residual" of the discrepancy analysis. A high value means that a sequence (or another object) is far from the center of gravity of its group, i.e. the most typical situation. A low value indicates a sequence (or another object) close to this gravity center. 
 
 By combining the "residuals" of the null model (without covariate) and the marginality, we can identify sequences that are better represented when using the covariate than without it. These values measure the contributions of a sequence to the between or explained sums of squares, a concept directly linked to the explained discrepancy. The gain therefore measures the statistical gain of information for each case when taking the covariate into account.
 
@@ -45,11 +45,11 @@ Studer, M., G. Ritschard, A. Gabadinho and N. S. Müller (2011). Discrepancy ana
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{dissvar}} to compute a pseudo variance from dissimilarities and for a basic introduction to concepts of discrepancy analysis.
+\code{\link[TraMineR]{dissvar}} to compute a pseudo variance from dissimilarities and for a basic introduction to concepts of discrepancy analysis.
    \cr
-   \code{\link{dissassoc}} to test association between objects represented by their dissimilarities and a covariate.
+   \code{\link[TraMineR]{dissassoc}} to test association between objects represented by their dissimilarities and a covariate.
 \cr
-\code{\link{dissmfacw}} to perform multi-factor analysis of variance from pairwise dissimilarities.
+\code{\link[TraMineR]{dissmfacw}} to perform multi-factor analysis of variance from pairwise dissimilarities.
 
 }
 \examples{

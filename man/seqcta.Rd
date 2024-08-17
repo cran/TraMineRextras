@@ -12,7 +12,7 @@ seqcta(seqdata, subseq = 5, time = NULL, event = NULL, initial.state = NULL, cov
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{seqdata}{State sequence object created with the \code{\link{seqdef}} function. The whole trajectory followed by individuals.}
+  \item{seqdata}{State sequence object created with the \code{\link[TraMineR]{seqdef}} function. The whole trajectory followed by individuals.}
   \item{subseq}{Numeric. The length of the trajectory following the event to be considered.}
   \item{time}{Numeric. The time of occurrence of the event, can be \code{NA} for censored observations.  If \code{NULL} (default), \code{initial.state} should be provided.}
   \item{event}{Logical. Whether the event occur for each trajectory. If \code{NULL} (default) and \code{time} is provided, \code{NA} \code{time} values are used to detect censored observations.}

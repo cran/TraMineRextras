@@ -50,7 +50,7 @@ export(
     seqtabstocc,
     seqsurv,
     seqsplot,
-    #dissCompare,
+    dissCompare,
     seqCompare,
     seqBIC,
     seqLRT,

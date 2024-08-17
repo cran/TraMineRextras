@@ -25,7 +25,7 @@ seqauto(seqdata, order = 1, measure = "cv")
 }
 
 \details{
-The function puts the data in \code{"SRS"} form by means of the \code{\link{seqformat}} function.}
+The function puts the data in \code{"SRS"} form by means of the \code{\link[TraMineR]{seqformat}} function.}
 
 \value{
 A matrix with \code{order} rows and  two columns: the auto-association and its p-value.
@@ -43,7 +43,7 @@ A matrix with \code{order} rows and  two columns: the auto-association and its p
 \section{Warning }{Function in development, not fully checked.}
 
 \seealso{
-    \code{\link{seqformat}}
+    \code{\link[TraMineR]{seqformat}}
 }
 \examples{
 data(biofam)

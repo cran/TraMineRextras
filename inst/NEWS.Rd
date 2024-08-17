@@ -1,6 +1,28 @@
 \name{NEWS}
 \title{NEWS file of the TraMineRextras package}
 
+\section{Changes in version 0.7.8 [2024-08-17] }{
+
+    \subsection{New function}{
+        \itemize{
+            \item
+            \code{dissCompare()} comparison of two groups of data represented by a pairwise dissimilarity matrix.
+        }
+    }
+
+    \subsection{Bug fixes}{
+        \itemize{
+            \item
+            \code{seqCompare()} caused an error when only one group occurs in one of the sets. Now returns NA for such sets.
+            \item
+            internal \code{seq.comp()} renamed as \code{seqxcomp()}.
+            \item
+            missing package anchors for Rd \code{link} targets.
+        }
+    }
+}
+
+
 \section{Changes in version 0.6.7 [2024-01-08] }{
 
     \subsection{Changes in existing functions}{

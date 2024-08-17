@@ -16,14 +16,14 @@ seqedplot(seqe,
     use.layout=(!is.null(group) | with.legend!=FALSE), legend.prop=NA,
     rows=NA, cols=NA,
     xaxis="all", xlab="time",
-    yaxis="all", 
+    yaxis="all",
     ylab=ifelse(type=="survival", "survival probability", "mean number of events"),
     cpal=NULL,
     title, withlegend, axes, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{seqe}{an event sequence object as defined by the \code{\link{seqecreate}} function.}
+  \item{seqe}{an event sequence object as defined by the \code{\link[TraMineR]{seqecreate}} function.}
   \item{group}{Plots one plot for each level of the factor given as argument.}
   \item{breaks}{Number of breaks defining a period.}
   \item{ages}{Two numeric values representing minimum and maximum ages to be represented.}

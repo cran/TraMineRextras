@@ -9,7 +9,7 @@ Compute Optimal-Matching-like distances between event sequences. The distance me
 seqedist(seqe, idcost, vparam, interval="No", norm="YujianBo")
 }
 \arguments{
-  \item{seqe}{An event sequence \code{seqelist} object as defined by the \code{\link{seqecreate}} function.}
+  \item{seqe}{An event sequence \code{seqelist} object as defined by the \code{\link[TraMineR]{seqecreate}} function.}
   \item{idcost}{Insertion/deletion cost of the different events (one entry per element of the event alphabet).}
   \item{vparam}{Positive real. The cost for a one-unit change in the time stamp of an event.}
   \item{norm}{Character. One of \code{"YujianBo"} (respects triangle inequality), \code{"max"} (maximum distance) or \code{"none"}.}

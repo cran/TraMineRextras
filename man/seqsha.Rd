@@ -12,7 +12,7 @@ seqsha(seqdata, time, event, include.present = FALSE, align.end = FALSE, covar =
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{seqdata}{State sequence object created with the \code{\link{seqdef}} function. The whole trajectory followed by individuals.}
+\item{seqdata}{State sequence object created with the \code{\link[TraMineR]{seqdef}} function. The whole trajectory followed by individuals.}
   \item{time}{Numeric. The time of occurrence of the event or the observation time for censored observations.}
   \item{event}{Logical. Whether the event occured or not (censored observations).}
   \item{include.present}{Logical. If \code{FALSE} (default), the state occurring at the current time is not included in the previous trajectory.}

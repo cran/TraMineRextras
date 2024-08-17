@@ -1,4 +1,3 @@
-\encoding{latin1}
 \name{seqplot.tentrop}
 \alias{seqplot.tentrop}
 \alias{seqplot.tentrop.m}
@@ -23,7 +22,7 @@ seqplot.tentrop.m(seqdata.list, main="auto",
 }
 
 \arguments{
-  \item{seqdata}{a state sequence object (see \code{\link{seqdef}}).}
+  \item{seqdata}{a state sequence object (see \code{\link[TraMineR]{seqdef}}).}
 
   \item{seqdata.list}{a list of state sequence objects.}
 
@@ -68,7 +67,7 @@ Use \code{seqplot.tentrop.m} to plot multiple curves of transversal entropies co
 }
 
 \seealso{
-\code{\link{seqHtplot}} for an alternative way of plotting the transversal entropies and \code{\link{seqstatd} } to get the values of the entropies.
+\code{\link[TraMineR]{seqHtplot}} for an alternative way of plotting the transversal entropies and \code{\link[TraMineR]{seqstatd} } to get the values of the entropies.
 }
 
 \examples{

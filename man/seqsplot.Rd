@@ -19,13 +19,13 @@ seqsplot(seqdata, group = NULL, main = "auto",
 }
 
 \arguments{
-    \item{seqdata}{State sequence object created with the \code{\link{seqdef}} function.}
+    \item{seqdata}{State sequence object created with the \code{\link[TraMineR]{seqdef}} function.}
 
     \item{group}{Grouping variable of length equal to the number of sequences. When \code{per.state = FALSE} (default), a distinct plot is generated for each level of \code{group}. When \code{per.state = TRUE}, the curves for each group level are drawn in a same plot for each distinct value of \code{alphabet(seqdata)}.}
 
     \item{main}{Character string. Title for the graphic. Default is \code{"auto"}, i.e., group levels or, when \code{per.state=TRUE}, the state labels. If a single string, the string is pasted with the group or state label. Set as \code{NULL} to suppress titles. Can also be a vector.}
 
-    \item{cpal}{Vector. Color palette used for the states or the groups when \code{per.state=TRUE} is given along the \code{...} list. Default is \code{NULL}, in which case the \code{cpal} attribute of the \code{seqdata} sequence object is used (see \code{\link{seqdef}}) or the default colors assigned to groups when \code{type="s"} and \code{per.state=TRUE}. If user specified, a vector of colors of length and order corresponding to \code{alphabet(seqdata)} or, if for groups, the number of levels of the group variable.}
+    \item{cpal}{Vector. Color palette used for the states or the groups when \code{per.state=TRUE} is given along the \code{...} list. Default is \code{NULL}, in which case the \code{cpal} attribute of the \code{seqdata} sequence object is used (see \code{\link[TraMineR]{seqdef}}) or the default colors assigned to groups when \code{type="s"} and \code{per.state=TRUE}. If user specified, a vector of colors of length and order corresponding to \code{alphabet(seqdata)} or, if for groups, the number of levels of the group variable.}
 
     \item{missing.color}{Color for representing missing values inside the sequences. By default, this color is taken from the \code{missing.color} attribute of \code{seqdata}.}
 
@@ -35,13 +35,13 @@ seqsplot(seqdata, group = NULL, main = "auto",
 
     \item{xaxis}{Logical or one of \code{"all"} or \code{"bottom"}. If set as \code{TRUE} or \code{"all"} (default value) the x-axis is drawn on each plot in the graphic. In case of multiple plots (when \code{per.state=TRUE} or \code{group} is used), if set as \code{"bottom"}, the x-axis is drawn only under the plots of the bottom panel. If \code{FALSE}, no x-axis is drawn.}
 
-    \item{xtlab}{Vector of length equal to the number of columns of \code{seqdata}. Optional labels for the x-axis tick labels. If unspecified, the column names of the \code{seqdata} sequence object are used (see \code{\link{seqdef}}).}
+    \item{xtlab}{Vector of length equal to the number of columns of \code{seqdata}. Optional labels for the x-axis tick labels. If unspecified, the column names of the \code{seqdata} sequence object are used (see \code{\link[TraMineR]{seqdef}}).}
 
   \item{cex.axis}{Real. Axis annotation magnification. See \code{\link{par}}.}
 
   \item{with.legend}{Character string or logical. Defines if and where the legend of the state colors is plotted. The default value \code{"auto"} sets the position of the legend automatically. Other possible value is \code{"right"}. Obsolete value \code{TRUE} is equivalent to \code{"auto"}.}
 
-  \item{ltext}{Vector of character strings of length and order corresponding to  \code{alphabet(seqdata)} or, when for groups, to the levels of the group variable. Optional description for the color legend. If unspecified, the \code{label} attribute of the \code{seqdata} sequence object is used (see \code{\link{seqdef}}) or, when for groups, the levels of the group variable.}
+  \item{ltext}{Vector of character strings of length and order corresponding to  \code{alphabet(seqdata)} or, when for groups, to the levels of the group variable. Optional description for the color legend. If unspecified, the \code{label} attribute of the \code{seqdata} sequence object is used (see \code{\link[TraMineR]{seqdef}}) or, when for groups, the levels of the group variable.}
 
   \item{cex.legend}{Real. Legend magnification. See \code{\link{legend}}.}
 

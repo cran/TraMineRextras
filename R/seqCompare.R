@@ -116,6 +116,8 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     gvar <- gvar[inotna]
     gvar <- factor(gvar)
     lev.g <- levels(gvar)
+    if (length(lev.g) == 1)
+      stop("There is only one group among valid cases!")
     if (length(lev.g) > 2)
       stop("Currently seqLRT supports only 2 groups!")
     seqdata <- seqdata[inotna,]
@@ -153,9 +155,9 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     }
   }
 
+  n.n = apply(n,1,min)
   if (s>0) { # for s=0 we do not need that
     m.n = apply(n,1,max)
-    n.n = apply(n,1,min)
     f.n1 <- floor(s/m.n)
     ff.n1 <- sapply(f.n1, g<-function(x){max(1,x)})
     #r.n1 = s-m.n%%s
@@ -163,7 +165,9 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     #k.n = floor((m.n+r.n1)/n.n)
     #r.n2 = (m.n+r.n1)-k.n*n.n
     k.n = floor((ff.n1*m.n+r.n1)/n.n)
+    k.n[is.na(k.n)] <- 0
     r.n2 = (ff.n1*m.n+r.n1)-k.n*n.n
+    r.n2[is.na(r.n2)] <- 0
 
     ##GR we have an error when s > min(m.n), because then we get some r.n1 > m.n
     ##GR Has been fixed, so we should never reach the following stops
@@ -188,58 +192,60 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
   ## Constructing vector of indexes of sampled cases
   #r.s1=r.s2 = list(rep(NA,G))
   for (i in 1:G) {
-    if (s==0) { # no sampling
-      r1 <- 1:nrow(seq.a[[i]])
-      r2 <- 1:nrow(seq.b[[i]]) + nrow(seq.a[[i]])
-      suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
-      weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
-      suppressMessages(
-        Results[i,] <-
-          seq.comp(r1, r2, diss, weights, is.LRT=is.LRT, is.BIC=is.BIC,
-             squared=squared, weighted=weighted, weight.by=weight.by,
-             LRTpow=LRTpow, ...))
-    }
-    else { # sampling
-      set.seed(seed)
-      r.s1 <- c(permute(rep(1:m.n[i],ff.n1[i])),sample(1:m.n[i],r.n1[i],F))
-      r.s2 <- c(permute(rep(1:n.n[i],k.n[i])),sample(1:n.n[i],r.n2[i],F))
-      r.s1 = matrix(r.s1,ncol=s)
-      r.s2 = matrix(r.s2,ncol=s)
-
-      if (is.null(oopt))
-        opt <- ifelse(nrow(seq.a[[i]]) + nrow(seq.b[[i]]) > 2*s, 1, 2)
-      #message('opt = ',opt)
-      if (opt==2) {
-        suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
-        weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
-      }
-
-      multsple <- nrow(r.s1) > 1 || multsple
-    ### new complete samples without replacement of length s over G comparisons
-      t<-matrix(NA,nrow=nrow(r.s1),ncol=nc)
-      for (j in 1:nrow(r.s1)) {
-
-        if (opt==2) {
-          r1 <- r.s1[j,]
-          r2 <- r.s2[j,] + nrow(seq.a[[i]])
+    if (n.n[i] > 0) {
+        if (s==0) { # no sampling
+          r1 <- 1:nrow(seq.a[[i]])
+          r2 <- 1:nrow(seq.b[[i]]) + nrow(seq.a[[i]])
+          suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
+          weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
+          suppressMessages(
+            Results[i,] <-
+              seqxcomp(r1, r2, diss, weights, is.LRT=is.LRT, is.BIC=is.BIC,
+                 squared=squared, weighted=weighted, weight.by=weight.by,
+                 LRTpow=LRTpow))
         }
-        else {
-          seqA<-seq.a[[i]][r.s1[j,],]
-          seqB<-seq.b[[i]][r.s2[j,],]
-          seqAB <- rbind(seqA, seqB)
-          wA <- attr(seqA,"weights")
-          wB <- attr(seqB,"weights")
-          weights <- c(wA,wB)
-          r1 <- 1:length(r.s1[j,])
-          r2 <- length(r.s1[j,]) + 1:length(r.s2[j,])
-          suppressMessages(diss <- seqdist(seqAB, method=method, weighted=weighted, ...))
+        else { # sampling
+          set.seed(seed)
+          r.s1 <- c(permute(rep(1:m.n[i],ff.n1[i])),sample(1:m.n[i],r.n1[i],F))
+          r.s2 <- c(permute(rep(1:n.n[i],k.n[i])),sample(1:n.n[i],r.n2[i],F))
+          r.s1 = matrix(r.s1,ncol=s)
+          r.s2 = matrix(r.s2,ncol=s)
+
+          if (is.null(oopt))
+            opt <- ifelse(nrow(seq.a[[i]]) + nrow(seq.b[[i]]) > 2*s, 1, 2)
+          #message('opt = ',opt)
+          if (opt==2) {
+            suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
+            weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
+          }
+
+          multsple <- nrow(r.s1) > 1 || multsple
+        ### new complete samples without replacement of length s over G comparisons
+          t<-matrix(NA,nrow=nrow(r.s1),ncol=nc)
+          for (j in 1:nrow(r.s1)) {
+
+            if (opt==2) {
+              r1 <- r.s1[j,]
+              r2 <- r.s2[j,] + nrow(seq.a[[i]])
+            }
+            else {
+              seqA<-seq.a[[i]][r.s1[j,],]
+              seqB<-seq.b[[i]][r.s2[j,],]
+              seqAB <- rbind(seqA, seqB)
+              wA <- attr(seqA,"weights")
+              wB <- attr(seqB,"weights")
+              weights <- c(wA,wB)
+              r1 <- 1:length(r.s1[j,])
+              r2 <- length(r.s1[j,]) + 1:length(r.s2[j,])
+              suppressMessages(diss <- seqdist(seqAB, method=method, weighted=weighted, ...))
+            }
+            suppressMessages(t[j,] <-
+                seqxcomp(r1, r2, diss, weights, is.LRT=is.LRT, is.BIC=is.BIC,
+                  squared=squared, weighted=weighted, weight.by=weight.by,
+                  LRTpow=LRTpow))
+          }
+          Results[i,]<-apply(t,2,mean)
         }
-        suppressMessages(t[j,] <-
-            seq.comp(r1, r2, diss, weights, is.LRT=is.LRT, is.BIC=is.BIC,
-              squared=squared, weighted=weighted, weight.by=weight.by,
-              LRTpow=LRTpow, ...))
-      }
-      Results[i,]<-apply(t,2,mean)
     }
   }
   colnames <- NULL
@@ -248,18 +254,18 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     if (is.null(BFopt) && multsple) {
       BF2 <- exp(Results[,nc-1]/2)
       Results <- cbind(Results, BF2)
-      colnames <- c(colnames, "BIC diff.", "Bayes Factor (Avg)", "Bayes Factor (From Avg BIC)")
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor (Avg)", "Bayes Factor (From Avg BIC)")
     }
     else if (BFopt==1 && multsple) {
-      colnames <- c(colnames, "BIC diff.", "Bayes Factor (Avg)")
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor (Avg)")
     }
     else if (BFopt==2 && multsple) {
       BF2 <- exp(Results[,nc-1]/2)
       Results[,nc] <- BF2
-      colnames <- c(colnames, "BIC diff.", "Bayes Factor (From Avg BIC)")
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor (From Avg BIC)")
     }
     else {
-      colnames <- c(colnames, "BIC diff.", "Bayes Factor")
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor")
     }
   }
   colnames(Results) <- colnames
@@ -278,8 +284,8 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
 }
 
 ####################
-seq.comp <- function(r1, r2, diss, weights, is.LRT,is.BIC, squared, weighted, weight.by,
-                    LRTpow,...)
+seqxcomp <- function(r1, r2, diss, weights, is.LRT,is.BIC, squared, weighted, weight.by,
+                    LRTpow)
 {
   #print(length(r1))
   #print(length(r2))

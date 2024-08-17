@@ -14,7 +14,7 @@ seqindic.dyn(seqdata, indic="cplx", window.size = .2, sliding=TRUE,
 \arguments{
   \item{seqdata}{state sequence object (\code{stslist}) as produced by \code{seqdef}
   }
-  \item{indic}{character string: the individual index. Can be any value supported by \code{\link{seqindic}} except index group names.
+  \item{indic}{character string: the individual index. Can be any value supported by \code{\link[TraMineR]{seqindic}} except index group names.
   }
   \item{window.size}{integer or real. If an integer > 1, window size in number of positions. If real number in the range ]0,1), the window size is set as that proportion of the length of the longest sequence.
   }
@@ -28,12 +28,12 @@ seqindic.dyn(seqdata, indic="cplx", window.size = .2, sliding=TRUE,
   }
   \item{silent.indic}{logical. Should messages issued during computation of indic be suppressed?
   }
-  \item{...}{additional arguments passed to \code{\link{seqindic}}
+  \item{...}{additional arguments passed to \code{\link[TraMineR]{seqindic}}
   }
 }
 
 \details{
-The function implements the dynamic sequence analysis approach of \cite{Pelletier et al. (2020)} and generalizes the method to any of the over 20 indicators provided by \code{\link{seqindic}}.
+The function implements the dynamic sequence analysis approach of \cite{Pelletier et al. (2020)} and generalizes the method to any of the over 20 indicators provided by \code{\link[TraMineR]{seqindic}}.
 
 The values of the \code{indic} index are computed for each sequence either on sliding windows of size \code{window.size} or on incremental windows starting from a first window of size \code{window.size}.
 
@@ -46,7 +46,7 @@ A matrix of class \code{dynin} with attributes \code{xtstep}, \code{tick.last}, 
 There are \code{print} and \code{plot} methods for \code{dynin} objects. See \code{\link{plot.dynin}}.
 }
 
-\seealso{\code{\link{seqindic}}, \code{\link{plot.dynin}}
+\seealso{\code{\link[TraMineR]{seqindic}}, \code{\link{plot.dynin}}
 }
 
 \references{
@@ -69,11 +69,11 @@ actcal.seq <- seqdef(actcal[,13:24], alphabet=c('A','B','C','D'))
 a.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE, wstep=3)
 plot(a.dyn, group=actcal[cases,'sex'])
 
-## Trimmed mean (to illustrate fstat with specific arguments) 
+## Trimmed mean (to illustrate fstat with specific arguments)
 plot(a.dyn, group=actcal[cases,'sex'], fstat=function(x)mean(x, trim=.02))
 
 ## Incremental windows
-ai.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE, wstep=3, 
+ai.dyn <- seqindic.dyn(actcal.seq, indic='cplx', with.missing=FALSE, wstep=3,
                 sliding=FALSE)
 plot(ai.dyn, group=actcal[cases,'sex'])
 

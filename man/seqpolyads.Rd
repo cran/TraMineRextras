@@ -12,15 +12,15 @@ seqpolyads(seqlist, a=1, method="HAM", ...,
     show.time=FALSE)
 }
 \arguments{
-\item{seqlist}{A list of \var{J>1} state sequence \code{stslist} objects. List of input sets (polyads) of polyadic sequences. The state sequence objects in the list must all have the same number \var{N} of sequences and the same alphabet.  The state sequence objects should be created with \code{\link{seqdef}} and the list with \code{\link{list}}. E.g., \code{list(gen1.seq,}\code{gen2.seq,}\code{gen3.seq)}.
+\item{seqlist}{A list of \var{J>1} state sequence \code{stslist} objects. List of input sets (polyads) of polyadic sequences. The state sequence objects in the list must all have the same number \var{N} of sequences and the same alphabet.  The state sequence objects should be created with \code{\link[TraMineR]{seqdef}} and the list with \code{\link{list}}. E.g., \code{list(gen1.seq,}\code{gen2.seq,}\code{gen3.seq)}.
 }
 
 \item{a}{Integer, 1 or 2. Random generation mechanism. If 1 (default), draws from the observed set of sequences, and if 2, in addition random draws of states from each randomly drawn sequence. See reference below for detail.
 }
-\item{method}{String. Method for computing sequence distances. See \code{\link{seqdist}}. Additional arguments may be required depending on the method chosen.
+\item{method}{String. Method for computing sequence distances. See \code{\link[TraMineR]{seqdist}}. Additional arguments may be required depending on the method chosen.
 }
 
-\item{...}{Additional arguments passed to \code{\link{seqdist}}
+\item{...}{Additional arguments passed to \code{\link[TraMineR]{seqdist}}
 }
 
 \item{s}{Integer. Default 36963. Using the same seed number on the same computer guarantees the same results each time. Set \code{s=NULL} if you don't want to set a seed. The random generator can be chosen with \code{\link{RNGkind}}.

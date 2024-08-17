@@ -5,7 +5,7 @@
 Finding representative sets by group and their quality statistics.
 }
 \description{
-This function determines representative sequences by group and returns the representatives by group and/or the quality statistics of the representative sets. The function is a wrapper for the TraMineR \code{\link{seqrep}} function.
+This function determines representative sequences by group and returns the representatives by group and/or the quality statistics of the representative sets. The function is a wrapper for the TraMineR \code{\link[TraMineR]{seqrep}} function.
 }
 \usage{
 seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat",
@@ -14,7 +14,7 @@ seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat",
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{seqdata}{
-        state sequence object as defined by \code{\link{seqdef}}.
+        state sequence object as defined by \code{\link[TraMineR]{seqdef}}.
         }
   \item{group}{
         group variable. If \code{NULL} a single group is assumed.
@@ -29,31 +29,31 @@ seqrep.grp(seqdata, group = NULL, diss = NULL, ret = "stat",
         Logical. When \code{diss = NULL}. Are there missing values in the sequences? Default is \code{FALSE}. }
   \item{mdis}{Deprecated. Use \code{diss} instead.}
   \item{...}{
-        additional arguments passed to \code{\link{seqrep}} .
+        additional arguments passed to \code{\link[TraMineR]{seqrep}} .
         }
 }
 
 \details{
-The function is a wrapper for running \code{\link{seqrep}} on the different groups defined by the \code{group} variable.
+The function is a wrapper for running \code{\link[TraMineR]{seqrep}} on the different groups defined by the \code{group} variable.
 
-When \code{diss = NULL}, \code{seqdist} is used to compute the dissimilarities.
+When \code{diss = NULL}, \code{\link[TraMineR]{seqdist}} is used to compute the dissimilarities.
 %\sQuote{LCS} distance is used.
 }
 \value{
 If \code{ret="stat"}, a list with the quality statistics for the set of representatives of each group.
 
-If \code{ret="rep"}, a list with the set of representatives of each group. Each element of the list is an object of class \code{stslist.rep} returned by \code{\link{seqrep}}.
+If \code{ret="rep"}, a list with the set of representatives of each group. Each element of the list is an object of class \code{stslist.rep} returned by \code{\link[TraMineR]{seqrep}}.
 
 If \code{ret="both"}, a list with the two previous outcomes.
 }
 
-\note{This function is a pre-release and further testing is still needed, please report any problems.}
+%\note{This function is a pre-release and further testing is still needed, please report any problems.}
 \author{
 Gilbert Ritschard
 }
 
 \seealso{
-\code{\link{seqrep}}
+\code{\link[TraMineR]{seqrep}}
 }
 \examples{
 data(biofam)

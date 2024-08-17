@@ -13,9 +13,9 @@ seqerulesdisc(fsubseq, datadiscr, tsef, pvalue=0.1, supvars=NULL,
 }
 
 \arguments{
-  \item{fsubseq}{an object created using the \code{seqefsub} function and that contains the list of subsequences to be tested for an association}
-  \item{datadiscr}{the object created by the \code{createdatadiscrete} function and that contains the person-period data}
-  \item{tsef}{the data frame containing the original time-to-event dataset (equivalent to the \code{data} argument from the \code{createdatadiscrete} function)}
+  \item{fsubseq}{an object created using the \code{\link[TraMineR]{seqefsub}} function and that contains the list of subsequences to be tested for an association}
+  \item{datadiscr}{the object created by the \code{\link{createdatadiscrete}} function and that contains the person-period data}
+  \item{tsef}{the data frame containing the original time-to-event dataset (equivalent to the \code{data} argument of the \code{createdatadiscrete} function)}
   \item{pvalue}{the default threshold p-value to consider an association rule as significative, default is 0.1}
   \item{supvars}{a vector of variable names to be used as control variables in the regression models (experimental)}
   \item{adjust}{if set to TRUE, a Bonferroni adjustment is applied to the p-value threshold specified in the \code{pvalue} argument}
@@ -33,7 +33,7 @@ The algorithm is described in the Müller et al. (2010) article, even though this
 
 \seealso{
  \code{\link{createdatadiscrete}} to create the object needed as the \code{datadiscr} argument.
- \code{\link{seqefsub}} to create the object needed as the \code{fsubseq} argument.
+ \code{\link[TraMineR]{seqefsub}} to create the object needed as the \code{fsubseq} argument.
  }
 
 \value{a list with one person-period data frame by event, where the dependent event is different each time. Please see the attached data file and code for an example.}

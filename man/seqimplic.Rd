@@ -23,13 +23,13 @@ seqimplic(seqdata, group, with.missing = FALSE, weighted = TRUE, na.rm = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{seqdata}{a state sequence object (see \code{\link{seqdef}}).}
+\item{seqdata}{a state sequence object (see \code{\link[TraMineR]{seqdef}}).}
 \item{group}{
 a factor giving the group membership of each sequence in \code{seqdata}.
 }
 \item{with.missing}{Logical. If \code{FALSE} (default), missing values are discarded. If \code{TRUE}, missing values are coded as a specific state.}
 
-\item{weighted}{Logical. If \code{TRUE} (default), the implicative strength of the rules are computed using the weights assigned to the state sequence object (see \code{\link{seqdef}}).
+\item{weighted}{Logical. If \code{TRUE} (default), the implicative strength of the rules are computed using the weights assigned to the state sequence object (see \code{\link[TraMineR]{seqdef}}).
   Set as \code{FALSE} to ignore the weights.}
 
 \item{na.rm}{
@@ -51,12 +51,12 @@ Logical. If \code{TRUE} (default), observations with missing values on the \code
 
 \item{axes}{If set as \code{"all"} (default value) x-axes are drawn for each plot in the graphic. If set as \code{"bottom"}, axes are drawn only under the plots located at the bottom of the graphic area. If \code{FALSE}, no x-axis is drawn.}
 
-\item{xtlab}{optional labels for the x-axis ticks labels. If unspecified, the column names of the \code{seqdata} sequence object are used (see \code{\link{seqdef}}).}
+\item{xtlab}{optional labels for the x-axis ticks labels. If unspecified, the column names of the \code{seqdata} sequence object are used (see \code{\link[TraMineR]{seqdef}}).}
 \item{cex.axis}{expansion factor for setting the size of the font for the axis labels and names. The default value is 1. Values lesser than 1 will reduce the size of the font, values greater than 1 will increase the size.}
 
   \item{with.legend}{One of \code{"auto"} (default), \code{"right"} or \code{FALSE}. Defines if and where the legend of the state colors is plotted. With \code{"auto"} sets the position of the legend is set automatically. The obsolete value \code{TRUE} is equivalent to \code{"auto"}.}
 
-  \item{ltext}{optional description of the states to appear in the legend. Must be a vector of character strings with number of elements equal to the size of the alphabet. If unspecified, the \code{label} attribute of the \code{seqdata} sequence object is used (see \code{\link{seqdef}}).}
+  \item{ltext}{optional description of the states to appear in the legend. Must be a vector of character strings with number of elements equal to the size of the alphabet. If unspecified, the \code{label} attribute of the \code{seqdata} sequence object is used (see \code{\link[TraMineR]{seqdef}}).}
 
   \item{cex.legend}{expansion factor for setting the size of the font for the labels in the legend. The default value is 1. Values smaller than 1 reduce the size of the font, values greater than 1 increase the size.}
 

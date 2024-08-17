@@ -6,7 +6,7 @@
  Discrepancy by group.
 }
 \description{
-This function computes the dissimilarity-based discrepancy measure of the groups defined by the group variable. The function is a wrapper for the TraMineR \code{\link{dissvar}} function.
+This function computes the dissimilarity-based discrepancy measure of the groups defined by the group variable. The function is a wrapper for the TraMineR \code{\link[TraMineR]{dissvar}} function.
 }
 \usage{
 dissvar.grp(diss, group=NULL, ...)
@@ -20,12 +20,12 @@ dissvar.grp(diss, group=NULL, ...)
         group variable. If \code{NULL} a single group is assumed.
         }
   \item{...}{
-        additional arguments passed to \code{\link{dissvar}} .
+        additional arguments passed to \code{\link[TraMineR]{dissvar}} .
         }
 }
 
 \details{
-The function is a wrapper for running \code{\link{dissvar}} on the different groups defined by the \code{group} variable.
+The function is a wrapper for running \code{\link[TraMineR]{dissvar}} on the different groups defined by the \code{group} variable.
 }
 \value{
 A vector with the group discrepancy measures.
@@ -38,7 +38,7 @@ Gilbert Ritschard
 }
 
 \seealso{
-\code{\link{dissvar}}
+\code{\link[TraMineR]{dissvar}}
 }
 \examples{
 ## create the biofam.seq state sequence object from the biofam data.

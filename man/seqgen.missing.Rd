@@ -1,7 +1,7 @@
 \name{seqgen.missing}
 \alias{seqgen.missing}
 \title{
-  Generate random missing states within a state sequence object
+  Generate random missing elements within a state sequence object
 }
 \description{
  The function assigns missing values (\code{nr} attribute of the object, which is \code{"*"} by default) to randomly selected positions in randomly selected cases.
@@ -12,7 +12,7 @@ seqgen.missing(seqdata, p.cases = 0.1, p.left = 0.2, p.gaps = 0, p.right = 0.3,
 }
 \arguments{
   \item{seqdata}{
-        A state sequence object
+        A state sequence object.
 }
   \item{p.cases}{
         Proportion of cases with missing values.
@@ -54,7 +54,7 @@ The resulting state sequence object.
 \section{Warning }{This function needs further testing.}
 
 \seealso{
- \code{\link{seqdef}}
+ \code{\link[TraMineR]{seqdef}}
 }
 \examples{
 ## create the biofam.seq state sequence object from the biofam data.

@@ -29,7 +29,7 @@ sortv(seqdata, start = "end")
 \details{
     With \code{start = "end"} (default), the primary sort key is the final state, then the previous one and so on. With \code{start = "beg"}, the primary sort key is the state at the first position, then at the next one and so on.
 
-    With \code{sort.index = FALSE}, the function returns a vector of values whose order will determine the wanted order. This should be used as \code{sortv} argument of the \code{\link{seqiplot}} function. With \code{sort.index = TRUE}, the function returns a vector of indexes to be used for indexing.
+    With \code{sort.index = FALSE}, the function returns a vector of values whose order will determine the wanted order. This should be used as \code{sortv} argument of the \code{\link[TraMineR]{seqiplot}} function. With \code{sort.index = TRUE}, the function returns a vector of indexes to be used for indexing.
 
     The \code{sortv} form is an alias for \code{sorti(..., sort.index = FALSE)}.
 }

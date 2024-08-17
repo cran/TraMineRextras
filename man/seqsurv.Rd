@@ -11,7 +11,7 @@ seqsurv(seqdata, groups = NULL, per.state = FALSE, state = NULL,
     with.missing = FALSE)
 }
 \arguments{
-  \item{seqdata}{A sequence \code{stslist} object as defined by the \code{\link{seqdef}} function.}
+  \item{seqdata}{A sequence \code{stslist} object as defined by the \code{\link[TraMineR]{seqdef}} function.}
   \item{groups}{A stratifying group variable of length equal to the number of sequences.}
   \item{per.state}{Logical. Should the survival probabilites be computed for the state specified as \code{state} argument? If set as \code{TRUE}, the \code{state} argument must also be specified.}
   \item{state}{Single state value or a vector. The short name of the state for which to compute survival probabilities. If a vector of state names, survival probabilities are computed for the subset defined by those states. If \code{NULL}, survival probabilities are computed for all cases.}

@@ -41,7 +41,7 @@ Matthias Studer and Gilbert Ritschard
 %\section{Warning }{This function needs further testing.}
 
 \seealso{
- \code{\link{seqdef}}
+ \code{\link[TraMineR]{seqdef}}
 }
 \examples{
 data(mvad)

@@ -9,7 +9,7 @@ seqemlt(seqdata, a = 1, b = 1, weighted = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{seqdata}{ a state sequence object defined with the \code{\link{seqdef}} function.
+  \item{seqdata}{ a state sequence object defined with the \code{\link[TraMineR]{seqdef}} function.
 %%     ~~Describe \code{seqdata} here~~
 }
   \item{a}{optional argument for the weighting mechanism that controls the balancing between short term/long term transitions. The weighting function is \eqn{1/(a*s+b)} where \eqn{s} is the transition step.
