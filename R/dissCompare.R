@@ -15,14 +15,15 @@ dissCompare <- function(diss,
   weighted=TRUE, 
   weights=NULL,
   #opt=NULL,
-  BFopt=NULL
+  BFopt=NULL,
+  inc.df=FALSE
   )
 {
   #require("gtools")
   #require("TraMineR")
 
-  gc(FALSE)
-  ptime.begin <- proc.time()
+  #gc(FALSE)
+  #ptime.begin <- proc.time()
 
   diss <- as.matrix(diss)
     
@@ -115,8 +116,8 @@ dissCompare <- function(diss,
   # idx.a indexes of group a by set
   idx.a = idx.b <- list()
   for (i in 1:G) {
-    idx.a[[i]] <- which(group[set==lev.set[[i]]]==lev.g[1])
-    idx.b[[i]] <- which(group[set==lev.set[[i]]]==lev.g[2])
+    idx.a[[i]] <- which(group[set==lev.set[i]]==lev.g[1])
+    idx.b[[i]] <- which(group[set==lev.set[i]]==lev.g[2])
   }
 
   for (i in 1:G) {
@@ -136,6 +137,7 @@ dissCompare <- function(diss,
 
   n.n = apply(n,1,min)
   if (s>0) { # for s=0 we do not need that
+
     m.n = apply(n,1,max)
     f.n1 <- floor(s/m.n)
     ff.n1 <- sapply(f.n1, g<-function(x){max(1,x)})
@@ -160,9 +162,11 @@ dissCompare <- function(diss,
     }
   }
 
-  nc <- ifelse(is.LRT & is.BIC, 4, 2)
+  #nc <- ifelse(is.LRT & is.BIC, 4, 2)
+  nc <- 4
   Results <- matrix(NA,G,nc)
   #oopt <- opt
+  
   multsple <- FALSE
 
   ## permute function from gtools that has become orphaned
@@ -170,21 +174,23 @@ dissCompare <- function(diss,
 
   ## Constructing vector of indexes of sampled cases
   #r.s1=r.s2 = list(rep(NA,G))
+  dfv <- NULL
   for (i in 1:G) {
       if (n.n[i] > 0) {
         diss.i <- diss[c(idx.a[[i]],idx.b[[i]]),c(idx.a[[i]],idx.b[[i]])]
-        #print(diss.i)
         weights <- w[c(idx.a[[i]],idx.b[[i]])]
         if (s==0) { # no sampling
           r1 <- 1:length(idx.a[[i]])
           r2 <- 1:length(idx.b[[i]]) + length(idx.a[[i]])
           #suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
           #weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
+        #print(diss.i[1:10,1:10])
         suppressMessages(
             Results[i,] <-
               seqxcomp(r1, r2, diss.i, weights, is.LRT=is.LRT, is.BIC=is.BIC,
                  squared=squared, weighted=weighted, weight.by=weight.by,
                  LRTpow=LRTpow))
+            dfv <- c(dfv,1) ## df is one for each set
         }
         else { # sampling
           set.seed(seed)
@@ -200,7 +206,8 @@ dissCompare <- function(diss,
           #  suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
           #  weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
           #}
-    
+
+          dgf <- nrow(r.s1)    
           multsple <- nrow(r.s1) > 1 || multsple
         ### new complete samples without replacement of length s over G comparisons
           t<-matrix(NA,nrow=nrow(r.s1),ncol=nc)
@@ -216,11 +223,18 @@ dissCompare <- function(diss,
                   LRTpow=LRTpow))
           }
           Results[i,]<-apply(t,2,mean)
+          if (is.LRT & dgf>1){
+            Results[i,1] <- Results[i,1]*dgf
+            Results[i,2] <- pchisq(Results[i,1],dgf,lower.tail=FALSE)
+          }
+          dfv <- c(dfv,dgf )
         }
     }
   }
-  colnames <- NULL
-  if (is.LRT) colnames <- c("LRT", "p-value")
+  #colnames <- NULL
+  #if (is.LRT) {
+  colnames <- c("LRT", "p-value")
+  #}
   if (is.BIC) {
     if (is.null(BFopt) && multsple) {
       BF2 <- exp(Results[,nc-1]/2)
@@ -238,18 +252,32 @@ dissCompare <- function(diss,
     else {
       colnames <- c(colnames, "Delta BIC", "Bayes Factor")
     }
+  } else {
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor")
+  }
+
+  if (inc.df){
+    Results <- cbind(Results,dfv)
+    colnames <- c(colnames, "df")
   }
   colnames(Results) <- colnames
   if(!is.null(set)) rownames(Results) <- lev.set
 
+  if (!is.LRT){
+    Results <- Results[,-c(1,2)]
+  }
+  if (!is.BIC){
+    Results <- Results[,-c(3,4)]
+  }
+
   #### Display elaspsed time ####
 
-  ptime.end <- proc.time()
-  time.begin <- as.POSIXct(sum(ptime.begin[1:2]), origin = "1960-01-01")
-  time.end <- as.POSIXct(sum(ptime.end[1:2]), origin = "1960-01-01")
-  time.elapsed <- format(round(difftime(time.end, time.begin), 3))
+  #ptime.end <- proc.time()
+  #time.begin <- as.POSIXct(sum(ptime.begin[1:2]), origin = "1960-01-01")
+  #time.end <- as.POSIXct(sum(ptime.end[1:2]), origin = "1960-01-01")
+  #time.elapsed <- format(round(difftime(time.end, time.begin), 3))
 
-  message("elapsed time:", time.elapsed)
+  #message("elapsed time:", time.elapsed)
 
   return(Results)
 }

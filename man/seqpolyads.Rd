@@ -32,7 +32,7 @@ seqpolyads(seqlist, a=1, method="HAM", ...,
 \item{T}{Integer. Default 1,000. The number of randomized computations.
 }
 
-\item{core}{Integer. Default 1. Number of cores for the computation. When greater than 1, the procedure utilizes parallel processing.
+\item{core}{Integer or string. Default 1. Number of cores for the computation. When greater than 1, the procedure utilizes parallel processing. When \code{"auto"}, the available number of cores is automatically selected.
 }
   \item{replace}{Logical. When \code{a=2}, should state sampling in each sequence be done with replacement? Default is \code{TRUE}. Ignored when \code{a=1}.
   }

@@ -4,29 +4,29 @@
 
 seqBIC <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
   s=100, seed=36963, squared="LRTonly", weighted=TRUE, opt=NULL,
-  BFopt=NULL, method, ...)
+  BFopt=NULL, inc.df=FALSE, method, ...)
 {
   return(seqCompare(seqdata, seqdata2, group, set, s, seed,
-         stat="BIC", squared, weighted, opt, BFopt, method, ...))
+         stat="BIC", squared, weighted, opt, BFopt, inc.df, method, ...))
 }
 
 seqLRT <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
   s=100, seed=36963, squared="LRTonly", weighted=TRUE, opt=NULL,
-  BFopt=NULL, method, ...)
+  BFopt=NULL, inc.df=FALSE, method, ...)
 {
   return(seqCompare(seqdata, seqdata2, group, set, s, seed,
-         stat="LRT", squared, weighted, opt, BFopt, method, ...))
+         stat="LRT", squared, weighted, opt, BFopt, inc.df, method, ...))
 }
 
 seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
   s=100, seed=36963, stat="all", squared="LRTonly",
-  weighted=TRUE, opt=NULL, BFopt=NULL, method, ...)
+  weighted=TRUE, opt=NULL, BFopt=NULL, inc.df=FALSE, method, ...)
 {
   #require("gtools")
   #require("TraMineR")
 
-  gc(FALSE)
-  ptime.begin <- proc.time()
+  #gc(FALSE)
+  #ptime.begin <- proc.time()
 
   if (is.null(seqdata2) & is.null(group)){
     stop("'seqdata2' and 'group' cannot both be NULL!")
@@ -181,7 +181,8 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     }
   }
 
-  nc <- ifelse(is.LRT & is.BIC, 4, 2)
+  #nc <- ifelse(is.LRT & is.BIC, 4, 2)
+  nc <- 4
   Results <- matrix(NA,G,nc)
   oopt <- opt
   multsple <- FALSE
@@ -191,6 +192,7 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
 
   ## Constructing vector of indexes of sampled cases
   #r.s1=r.s2 = list(rep(NA,G))
+  dfv <- NULL
   for (i in 1:G) {
     if (n.n[i] > 0) {
         if (s==0) { # no sampling
@@ -198,11 +200,13 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
           r2 <- 1:nrow(seq.b[[i]]) + nrow(seq.a[[i]])
           suppressMessages(diss <- seqdist(rbind(seq.a[[i]],seq.b[[i]]), method=method, weighted=weighted, ...))
           weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
+          #print(diss[1:10,1:10])
           suppressMessages(
             Results[i,] <-
               seqxcomp(r1, r2, diss, weights, is.LRT=is.LRT, is.BIC=is.BIC,
                  squared=squared, weighted=weighted, weight.by=weight.by,
                  LRTpow=LRTpow))
+            dfv <- c(dfv,1) ## df is one for each set
         }
         else { # sampling
           set.seed(seed)
@@ -219,6 +223,7 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
             weights <- c(attr(seq.a[[i]],"weights"),attr(seq.b[[i]],"weights"))
           }
 
+          dgf <- nrow(r.s1)
           multsple <- nrow(r.s1) > 1 || multsple
         ### new complete samples without replacement of length s over G comparisons
           t<-matrix(NA,nrow=nrow(r.s1),ncol=nc)
@@ -245,11 +250,18 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
                   LRTpow=LRTpow))
           }
           Results[i,]<-apply(t,2,mean)
+          if (is.LRT & dgf>1){
+            Results[i,1] <- Results[i,1]*dgf
+            Results[i,2] <- pchisq(Results[i,1],dgf,lower.tail=FALSE)
+          }
+          dfv <- c(dfv,dgf)
         }
     }
   }
-  colnames <- NULL
-  if (is.LRT) colnames <- c("LRT", "p-value")
+  #colnames <- NULL
+  #if (is.LRT) {
+    colnames <- c("LRT", "p-value")
+  #}
   if (is.BIC) {
     if (is.null(BFopt) && multsple) {
       BF2 <- exp(Results[,nc-1]/2)
@@ -267,18 +279,31 @@ seqCompare <- function(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     else {
       colnames <- c(colnames, "Delta BIC", "Bayes Factor")
     }
+  } else {
+      colnames <- c(colnames, "Delta BIC", "Bayes Factor")
+  }
+  if (inc.df){
+    Results <- cbind(Results,dfv)
+    colnames <- c(colnames, "df")
   }
   colnames(Results) <- colnames
   if(!is.null(set)) rownames(Results) <- lev.set
 
+
+  if (!is.LRT){
+    Results <- Results[,-c(1,2)]
+  }
+  if (!is.BIC){
+    Results <- Results[,-c(3,4)]
+  }
   #### Display elaspsed time ####
 
-  ptime.end <- proc.time()
-  time.begin <- as.POSIXct(sum(ptime.begin[1:2]), origin = "1960-01-01")
-  time.end <- as.POSIXct(sum(ptime.end[1:2]), origin = "1960-01-01")
-  time.elapsed <- format(round(difftime(time.end, time.begin), 3))
+  #ptime.end <- proc.time()
+  #time.begin <- as.POSIXct(sum(ptime.begin[1:2]), origin = "1960-01-01")
+  #time.end <- as.POSIXct(sum(ptime.end[1:2]), origin = "1960-01-01")
+  #time.elapsed <- format(round(difftime(time.end, time.begin), 3))
 
-  message("elapsed time:", time.elapsed)
+  #message("elapsed time:", time.elapsed)
 
   return(Results)
 }
@@ -341,16 +366,18 @@ seqxcomp <- function(r1, r2, diss, weights, is.LRT,is.BIC, squared, weighted, we
   SS1 <- sum(w1*dist.S1^LRTpow)
   SS2 <- sum(w2*dist.S2^LRTpow)
 
-  res <- NULL
+  #print(c(SS,SS1+SS2))
+
+  #res <- NULL
 
   LRT <- n0*(log(SS/n0) - log((SS1+SS2)/n0))
 
-  if (is.LRT) {
+  #if (is.LRT) {
     p.LRT <- pchisq(LRT,1,lower.tail=FALSE)
     res <- cbind(LRT, p.LRT)
-  }
+  #}
 
-  if (is.BIC) {
+  #if (is.BIC) {
 
     # compute BICs and adjusted BICs
     BIC <- LRT - 1*log(n0)
@@ -358,6 +385,6 @@ seqxcomp <- function(r1, r2, diss, weights, is.LRT,is.BIC, squared, weighted, we
     BF <- exp(BIC/2)
 
     res <- cbind(res, BIC, BF)
-  }
+  #}
   return(res)
 }

@@ -67,8 +67,11 @@ data(mvad)
 mvad.seq <- seqdef(mvad[1:100, 17:41])
 alphabet(mvad.seq)
 head(labels(mvad.seq))
-## Computing distance
+## Computing EMLT object 
 mvad.emlt <- seqemlt(mvad.seq)
+## EMLT Distances are the Euclidean distances
+##   between the vectors of coordinates
+diss.emlt <- dist(mvad.emlt$coord)
 
 ## typology1 with kmeans in 3 clusters
 km <- kmeans(mvad.emlt$coord, 3)

@@ -1,4 +1,22 @@
-                CHANGES IN TraMineRextras VERSION 0.7.8 [2024-08-17]
+                CHANGES IN TraMineRextras VERSION 0.6.9 [2026-06-20]
+                
+Misc.:
+    o   seqCompare() and dissCompare() gains logical argument 
+        inc.df to control whether the degrees of freedom of the LRT 
+        returned should be included in the table. In addition, 
+        in case of multiple samples, i.e., when s is not zero but 
+        smaller than the number of cases of the most frequent 
+        category, the returned LRT is now the sum of the individual 
+        LRTs (previously was the average) and its associated 
+        chi-square p-value is obtained with the corresponding 
+        degrees of freedom.
+    o   seqCompare() and dissCompare(): suppressed report of 
+        computation time. Use system.time() instead.
+    o   seqpolyads(): argument core can now be "auto".
+.
+    
+
+                CHANGES IN TraMineRextras VERSION 0.6.8 [2024-08-17]
                 
 New function:
     o   dissCompare() comparison of two groups of data represented by 

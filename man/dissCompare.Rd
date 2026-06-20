@@ -12,19 +12,20 @@
 \usage{
 seqCompare(seqdata, seqdata2=NULL, group=NULL, set=NULL,
     s=100, seed=36963, stat="all", squared="LRTonly",
-    weighted=TRUE, opt=NULL, BFopt=NULL, method, ...)
+    weighted=TRUE, opt=NULL, BFopt=NULL, inc.df=FALSE, 
+    method, ...)
 
 dissCompare(diss, group, set=NULL,
     s=100, seed=36963, stat="all", squared="LRTonly",
-    weighted=TRUE, weights=NULL, BFopt=NULL)
+    weighted=TRUE, weights=NULL, BFopt=NULL, inc.df=FALSE)
 
 seqLRT(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
     seed=36963, squared="LRTonly", weighted=TRUE, opt=NULL,
-    BFopt=NULL, method, ...)
+    BFopt=NULL, inc.df=FALSE, method, ...)
 
 seqBIC(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
     seed=36963, squared="LRTonly", weighted=TRUE, opt=NULL,
-    BFopt=NULL, method, ...)
+    BFopt=NULL, inc.df=FALSE, method, ...)
 }
 
 \arguments{
@@ -42,7 +43,7 @@ seqBIC(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
   \item{set}{Vector of length equal to number of sequences in \code{seqdata}. Variable defining the sets. See details.
   }
 
-  \item{s}{Integer. Default 100. The size of random samples of sequences. When 0, no sampling is done.
+  \item{s}{Integer. Default 100. When non-zero, comparison statistics are computed for pairs of balanced samples of size s from each group. When 0, no sampling is done.
   }
 
   \item{seed}{Integer. Default 36963. Using the same seed number guarantees the same results
@@ -51,7 +52,7 @@ seqBIC(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
   }
   \item{stat}{String. The requested statistics. One of \code{"LRT"}, \code{"BIC"}, or \code{"all"}
   }
-  \item{squared}{Logical. Should squared distances be used? Can also be \code{"LRTonly"}, in which case the distances to the centers are computed using non-squared distances and LRT is computed with squared distances.
+  \item{squared}{Logical. Should squared distances be used? Can also be \code{"LRTonly"} (deafult), in which case the distances to the centers are computed using non-squared pairwise distances and LRT is computed with squared distances as in Liao and Fasang (2021).
   }
   \item{weighted}{Logical or String. Should weights be taken into account when available? Can also be \code{"by.group"}, in which case weights are used and normalized to respect group sizes.
   }
@@ -61,7 +62,9 @@ seqBIC(seqdata, seqdata2=NULL, group=NULL, set=NULL, s=100,
   }
   \item{BFopt}{Integer or \code{NULL}. Either 1 or 2. Applies only when BIC is computed on multiple samples. When 1 the displayed Bayes Factor (BF) is the averaged BF. When 2, the displayed BF is obtained from the averaged BIC. When \code{NULL} both BFs are displayed.
   }
-\item{method}{String. Method for computing sequence distances. See documentation for \code{\link[TraMineR]{seqdist}}. Additional arguments may be required depending on the method chosen.
+  \item{inc.df}{Logical. Should degrees of freedom be included in the table returned?
+  }
+  \item{method}{String. Method for computing sequence distances. See documentation for \code{\link[TraMineR]{seqdist}}. Additional arguments may be required depending on the method chosen.
 }
 \item{...}{Additional arguments passed to \code{\link[TraMineR]{seqdist}}.
 }
@@ -78,6 +81,8 @@ When \code{seqdata} is a list of \code{stslist} objects, \code{seqdata2} must be
 The default option \code{squared="LRTonly"} corresponds to the initial proposition of Liao and Fasang (2021). With that option, the distances to the virtual center are obtained from the pairwise non-squared dissimilarities and the resulting distances to the virtual center are  squared when computing the LRT (which is in turn used to compute \eqn{\Delta}{Delta }BIC). With \code{squared=FALSE}, non-squared distances are used in both cases, and with \code{squared=TRUE}, squared distances are used in both cases.
 
 The computation is based on the pairwise distances between the sequences. The \code{opt} argument permits to choose between two strategies. With \code{opt=1}, the matrix of distances is computed successively for each pair of samples of size s. When \code{opt=2}, the matrix of distances is computed once for the observed sequences and the distances for the samples are extracted from that matrix. Option 2 is often more efficient, especially for distances based on spells. It may be slower for methods such as OM or LCS when the number of observed sequences becomes large.
+
+When \code{s} is smaller than the number of cases with the most frequent category but not zero, the LRT and BIC are computed on multiple samples of size \code{2*s} and results reported are the sum of the LRTs and the average of the BICs and Bayesian Factors. The p-value of the LRT is the p-value of the sum derived from a Chi-square distribution with the number of samples as degrees of freedom.
 }
 
 \value{Function \code{seqLRT} (and seqCompare with the default \code{"LRT"} stat value) outputs a matrix with two columns, \var{LRT} and \var{p.value}.
@@ -86,14 +91,18 @@ The computation is based on the pairwise distances between the sequences. The \c
   }
   \item{p.value}{This is the upper tail probability associated with the LRT.
   }
-Function \code{seqBIC} (and \code{seqLRT} with the \code{"BIC"} stat value) outputs a matrix with two columns, \code{Delta BIC} and \code{BF}.
+Function \code{seqBIC} (and \code{seqLRT} with the \code{"BIC"} stat value) outputs a matrix with two columns, \code{Delta BIC} and \code{Bayes Factor}, when \code{s} is 0 or larger than the number of cases with the most frequent category
 
   \item{Delta BIC}{This is the difference between BIC values of the model that does not distinguish the two groups and the model taking account of the distinction.
   }
   \item{Bayes Factor}{This is the Bayes factor associated with the BIC difference.
   }
 
-\code{seqCompare} and \code{dissCompare} with \code{stat="all"} return a matrix with all four indicators.
+When \code{s} is less than the number of cases with the most frequent category, the latter is replaced by the two values \code{Bayes Factor (Avg)} and \code{Bayes Factor (From Avg BIC)}.
+
+When \code{inc.df=TRUE}, the degrees of freedom are included as a last column. 
+
+\code{seqCompare} and \code{dissCompare} with \code{stat="all"} return a matrix with all  indicators.
 
 When \code{set=NULL}, the matrix has a single row. Otherwise, there is one row per distinct \code{set} value.
 }
@@ -131,9 +140,19 @@ for (i in 1:l){
   seq.list[[i]] <- biofam.seq[lang==lev[i],]
 }
 
-seqCompare(list(seq.list[[1]]),list(seq.list[[2]]), stat="all", method="OM", sm="CONSTANT")
+## German speaking vs French speaking
+seqCompare(list(seq.list[[1]]),list(seq.list[[2]]), method="OM", sm="CONSTANT")
+
+## Woman vs Man
+diss <- seqdist(biofam.seq, method="HAM")
+dissCompare(diss, group=biofam$sex)
+## or equivalently
+seqCompare(biofam.seq, group=biofam$sex, method="HAM")
+
+
 seqBIC(biofam.seq, group=biofam$sex, method="HAM")
 seqLRT(biofam.seq, group=biofam$sex, set=lang, s=80, method="HAM")
+
 
 }
 
